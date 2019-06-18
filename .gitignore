@@ -1,6 +1,5 @@
 .bundle/
 .yardoc
-yarn.lock
 Gemfile.lock
 _yardoc/
 coverage/
