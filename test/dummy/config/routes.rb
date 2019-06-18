@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount MiqPluginExample::Engine => "/miq_plugin_example"
+  mount Cfme::MigrationAnalytics::Engine => "/migration_analytics"
 end

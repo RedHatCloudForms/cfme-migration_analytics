@@ -3,7 +3,7 @@ require_relative 'boot'
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require "miq_plugin_example"
+require "cfme/migration_analytics"
 
 module Dummy
   class Application < Rails::Application
