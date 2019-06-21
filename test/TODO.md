@@ -1,1 +1,0 @@
-TODO: do we need this tests/ directory with its whole dummy application? maybe we just need a simple barebones spec/ like https://github.com/RedHatCloudForms/cfme-cloud_services/tree/master/spec ?
