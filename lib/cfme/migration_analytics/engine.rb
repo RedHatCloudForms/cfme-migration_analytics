@@ -18,9 +18,8 @@ module Cfme
       # TODO figure out this menu initializer stuff -- how to put inside Compute / Cloud Intel?
       initializer 'plugin' do
         Menu::CustomLoader.register(
-          Menu::Section.new(:spike, N_('Plugin'), 'fa fa-map-pin', [
-            Menu::Item.new('plug', N_('Test'), 'miq_report', {:feature => 'miq_report', :any => true}, '/plug'),
-            Menu::Item.new('plug', N_('Demo'), 'miq_report', {:feature => 'miq_report', :any => true}, '/demo')
+          Menu::Section.new(:migration_analytics, N_('Plugin'), 'fa fa-map-pin', [
+            Menu::Item.new('migration_analytics', N_('Migration Analytics'), 'migration_analytics', {:feature => 'migration_analytics', :any => true}, '/migration_analytics')
           ])
         )
       end
