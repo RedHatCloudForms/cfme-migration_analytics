@@ -13,5 +13,5 @@ class MigrationAnalyticsController < ApplicationController
     end
   end
 
-  menu_section :migration_analytics # TODO change to :migration when we nest this under that section
+  menu_section :migration
 end

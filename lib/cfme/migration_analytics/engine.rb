@@ -15,12 +15,9 @@ module Cfme
         app.config.assets.paths  << root.join('assets', 'images').to_s
       end
 
-      # TODO figure out this menu initializer stuff -- how to put inside Compute / Cloud Intel?
-      initializer 'plugin' do
+      initializer 'plugin-migration-analytics-menu', {:after => 'plugin-migration-menu'} do
         Menu::CustomLoader.register(
-          Menu::Section.new(:migration_analytics, N_('Plugin'), 'fa fa-map-pin', [
-            Menu::Item.new('migration_analytics', N_('Migration Analytics'), 'migration_analytics', {:feature => 'migration_analytics', :any => true}, '/migration_analytics')
-          ])
+          Menu::Item.new('migration_analytics', N_('Migration Analytics'), 'migration_analytics', {:feature => 'migration_analytics', :any => true}, '/migration_analytics', :default, :migration)
         )
       end
     end
