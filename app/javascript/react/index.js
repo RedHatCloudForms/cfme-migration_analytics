@@ -1,23 +1,6 @@
 import React from 'react';
-//import { ConnectedRouter } from 'connected-react-router';
-//import { connect } from 'react-redux';
-//import Routes from './config/Routes';
+import Analytics from './screens/App/Analytics/Analytics';
 
-class App extends React.Component {
-  render() {
-    return (
-      <h1>Hello from React</h1>
-      /*<ConnectedRouter history={ManageIQ.redux.history}>
-        <React.Fragment>
-          <Routes store={ManageIQ.redux.store} />
-        </React.Fragment>
-      </ConnectedRouter>*/
-    );
-  }
-}
-
-const mapStateToProps = () => ({});
-
-//export default connect(mapStateToProps)(App);
+const App = () => <Analytics />;
 
 export default App;

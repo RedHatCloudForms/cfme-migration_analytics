@@ -1,0 +1,19 @@
+#migration-analytics.row.cards-pf {
+  overflow: auto;
+  overflow-x: hidden;
+  padding-bottom: 50px;
+  height: 100%;
+}
+
+#migration-analytics.cards-pf .blank-slate-pf {
+  border: none;
+
+  .blank-slate-pf-icon {
+    opacity: 0.4;
+  }
+}
+
+.manifest-version {
+  text-align: right;
+  padding: 35px;
+}
