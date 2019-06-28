@@ -3,7 +3,7 @@
     "lint": "eslint app/javascript",
     "lint:fix": "eslint --fix app/javascript",
     "prettier": "prettier --write 'app/javascript/**/*.js' '*.{js,json}'",
-    "build": "yarn run lint"
+    "build": "yarn run prettier && yarn run lint"
   },
   "dependencies": {
     "babel-preset-react": "^6.24.1",

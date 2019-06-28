@@ -2,17 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Breadcrumb, EmptyState, Button } from 'patternfly-react';
 import Toolbar from '../common/Toolbar';
-//import BreadcrumbPageSwitcher from '../common/BreadcrumbPageSwitcher'; // TODO: figure out how to share the breadcrumb switcher with v2v
+// import BreadcrumbPageSwitcher from '../common/BreadcrumbPageSwitcher'; // TODO: figure out how to share the breadcrumb switcher with v2v
 import ProcessImprovementSvg from './process-improvement.svg';
 
-const AnalyticsContainer = ({ showEmptyState, children }) =>
+const AnalyticsContainer = ({ showEmptyState, children }) => (
   <div id="migration-analytics" className={showEmptyState ? 'row cards-pf' : ''}>
     {children}
-  </div>;
+  </div>
+);
 
 AnalyticsContainer.propTypes = {
-  showEmptyState: PropTypes.bool,
-  children: PropTypes.node
+  showEmptyState: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 const Analytics = ({ showEmptyState = true }) => (
@@ -23,7 +24,7 @@ const Analytics = ({ showEmptyState = true }) => (
       <Breadcrumb.Item active>
         <strong>{__('Migration Analytics')}</strong>
       </Breadcrumb.Item>
-      {/*<BreadcrumbPageSwitcher activeHref="#/analytics" />*/}
+      {/* <BreadcrumbPageSwitcher activeHref="#/analytics" /> */}
       {/* TODO: figure out how to share the breadcrumb switcher with v2v */}
     </Toolbar>
     <AnalyticsContainer showEmptyState={showEmptyState}>
@@ -51,7 +52,7 @@ const Analytics = ({ showEmptyState = true }) => (
 );
 
 Analytics.propTypes = {
-  showEmptyState: PropTypes.bool
+  showEmptyState: PropTypes.bool.isRequired
 };
 
 export default Analytics;

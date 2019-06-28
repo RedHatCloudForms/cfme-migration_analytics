@@ -7,5 +7,5 @@ const mapStateToProps = () => ({}); // TODO pull analytics state from store
 
 export default connect(
   mapStateToProps,
-  {}, // TODO add analytics actions
+  {} // TODO add analytics actions
 )(Analytics);
