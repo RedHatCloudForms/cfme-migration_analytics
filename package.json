@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "lint": "eslint app/javascript",
+    "lint:fix": "eslint --fix app/javascript",
+    "prettier": "prettier --write 'app/javascript/**/*.js' '*.{js,json}'",
+    "build": "yarn run lint"
+  },
   "dependencies": {
     "babel-preset-react": "^6.24.1",
     "core-js": "^3.1.4",
@@ -13,5 +19,15 @@
     "redux-thunk": "^2.3.0",
     "seamless-immutable": "^7.1.4",
     "urijs": "^1.19.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-plugin-patternfly-react": "^0.2.3",
+    "prettier": "^1.18.2"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "none",
+    "printWidth": 120
   }
 }
