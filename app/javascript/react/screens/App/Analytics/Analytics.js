@@ -1,58 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Breadcrumb, EmptyState, Button } from 'patternfly-react';
-import Toolbar from '../common/Toolbar';
+import { Breadcrumb } from 'patternfly-react';
+import Toolbar from './components/Toolbar';
+import AnalyticsEmptyState from './screens/AnalyticsEmptyState';
+import AnalyticsSummary from './screens/AnalyticsSummary';
 // import BreadcrumbPageSwitcher from '../common/BreadcrumbPageSwitcher'; // TODO: figure out how to share the breadcrumb switcher with v2v
-import ProcessImprovementSvg from './process-improvement.svg';
 
-const AnalyticsContainer = ({ showEmptyState, children }) => (
-  <div id="migration-analytics" className={showEmptyState ? 'row cards-pf' : ''}>
+const SCREENS = {
+  EMPTY_STATE: 'emptyState',
+  SUMMARY: 'summary'
+};
+
+const AnalyticsContainer = ({ currentScreen, children }) => (
+  <div id="migration-analytics" className={currentScreen === SCREENS.EMPTY_STATE ? 'row cards-pf' : ''}>
     {children}
   </div>
 );
-
 AnalyticsContainer.propTypes = {
-  showEmptyState: PropTypes.bool.isRequired,
+  currentScreen: PropTypes.oneOf(Object.values(SCREENS)),
   children: PropTypes.node.isRequired
 };
 
-const Analytics = ({ showEmptyState = true }) => (
-  <React.Fragment>
-    <Toolbar>
-      <Breadcrumb.Item active>{__('Compute')}</Breadcrumb.Item>
-      <Breadcrumb.Item active>{__('Migration')}</Breadcrumb.Item>
-      <Breadcrumb.Item active>
-        <strong>{__('Migration Analytics')}</strong>
-      </Breadcrumb.Item>
-      {/* <BreadcrumbPageSwitcher activeHref="#/analytics" /> */}
-      {/* TODO: figure out how to share the breadcrumb switcher with v2v */}
-    </Toolbar>
-    <AnalyticsContainer showEmptyState={showEmptyState}>
-      {showEmptyState && (
-        <EmptyState className="full-page-empty">
-          <div className="blank-slate-pf-icon">
-            <ProcessImprovementSvg height="80px" />
-          </div>
-          <EmptyState.Title>
-            {__('Examine your virtual environment using Red Hat Migration Analytics')}
-          </EmptyState.Title>
-          <EmptyState.Info>
-            {__('Get a summarized report of your virtualization providers in CloudForms and collect a detailed inventory that can be further analyzed using the Migration Analytics application on cloud.redhat.com.') /* prettier-ignore */}
-          </EmptyState.Info>
-          <EmptyState.Action>
-            <Button bsStyle="primary" bsSize="large" onClick={() => alert('TODO: modal here')}>
-              {__('Get started')}
-            </Button>
-          </EmptyState.Action>
-        </EmptyState>
-      )}
-      <h6 className="manifest-version">{__('Manifest version: x.y.z 2019-06-10') /* TODO make this real */}</h6>
-    </AnalyticsContainer>
-  </React.Fragment>
-);
+class Analytics extends React.Component {
+  state = { currentScreen: SCREENS.EMPTY_STATE };
 
-Analytics.propTypes = {
-  showEmptyState: PropTypes.bool.isRequired
-};
+  goToSummary = () => this.setState({ currentScreen: SCREENS.SUMMARY });
+
+  renderCurrentScreen = () => {
+    switch (this.state.currentScreen) {
+      case SCREENS.EMPTY_STATE:
+        return <AnalyticsEmptyState onGetStartedClick={this.goToSummary} />;
+      case SCREENS.SUMMARY:
+        return <AnalyticsSummary />;
+      default:
+        return null;
+    }
+  };
+
+  render() {
+    const { currentScreen } = this.state;
+    return (
+      <React.Fragment>
+        <Toolbar>
+          <Breadcrumb.Item active>{__('Compute')}</Breadcrumb.Item>
+          <Breadcrumb.Item active>{__('Migration')}</Breadcrumb.Item>
+          <Breadcrumb.Item active>
+            <strong>{__('Migration Analytics')}</strong>
+          </Breadcrumb.Item>
+          {/* <BreadcrumbPageSwitcher activeHref="#/analytics" /> */}
+          {/* TODO: figure out how to share the breadcrumb switcher with v2v */}
+        </Toolbar>
+        <AnalyticsContainer currentScreen={currentScreen}>
+          {this.renderCurrentScreen()}
+          <h6 className="manifest-version">{__('Manifest version: x.y.z 2019-06-10') /* TODO make this real */}</h6>
+        </AnalyticsContainer>
+      </React.Fragment>
+    );
+  }
+}
 
 export default Analytics;
