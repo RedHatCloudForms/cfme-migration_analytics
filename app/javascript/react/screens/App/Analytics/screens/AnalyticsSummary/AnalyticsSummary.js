@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Spinner } from 'patternfly-react';
+import { PROVIDERS_SUMMARY_REPORT_FILTERS } from '../../constants';
 
-// TODO get a loading state set up
-// TODO find the report via the same filter criteria
 // TODO set up actions for running the report
 // TODO figure out polling / waiting / loading results
 // TODO dump the report data into the view as JSON
@@ -13,11 +13,27 @@ import PropTypes from 'prop-types';
 
 class AnalyticsSummary extends React.Component {
   componentDidMount() {
-    // TODO
+    const { fetchReportsAction } = this.props;
+    fetchReportsAction(PROVIDERS_SUMMARY_REPORT_FILTERS);
   }
 
   render() {
-    return <h2>TODO</h2>;
+    const { providersSummaryReport } = this.props;
+    if (!providersSummaryReport) {
+      return (
+        <div className="large-spinner">
+          <Spinner loading size="lg" inline />
+          <h3 style={{ display: 'inline-block' }}>{__('Examining virtualization providers')}</h3>
+        </div>
+      );
+    }
+
+    return (
+      <React.Fragment>
+        <h1>TODO</h1>
+        <pre>{JSON.stringify(providersSummaryReport, 2)}</pre>
+      </React.Fragment>
+    );
   }
 }
 
@@ -27,7 +43,7 @@ AnalyticsSummary.propTypes = {
     name: PropTypes.string,
     rpt_group: PropTypes.string
   }),
-  fetchProvidersAction: PropTypes.func
+  fetchReportsAction: PropTypes.func
 };
 
 export default AnalyticsSummary;

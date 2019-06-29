@@ -1,19 +1,35 @@
-#migration-analytics.row.cards-pf {
-  overflow: auto;
-  overflow-x: hidden;
-  padding-bottom: 50px;
-  height: 100%;
-}
-
-#migration-analytics.cards-pf .blank-slate-pf {
-  border: none;
-
-  .blank-slate-pf-icon {
-    opacity: 0.4;
+#migration-analytics {
+  &.row.cards-pf {
+    overflow: auto;
+    overflow-x: hidden;
+    padding-bottom: 50px;
+    height: 100%;
   }
-}
 
-.manifest-version {
-  text-align: right;
-  padding: 35px;
+  &.cards-pf .blank-slate-pf {
+    border: none;
+
+    .blank-slate-pf-icon {
+      opacity: 0.4;
+    }
+  }
+
+  .large-spinner {
+    padding: 50px;
+    text-align: center;
+
+    .spinner,
+    h3 {
+      vertical-align: middle;
+    }
+    h3 {
+      margin: 0;
+      padding-left: 10px;
+    }
+  }
+
+  .manifest-version {
+    text-align: right;
+    padding: 35px;
+  }
 }
