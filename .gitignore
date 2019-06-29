@@ -11,3 +11,4 @@ tmp/
 .idea/
 .ruby-version
 /node_modules
+.vscode/
