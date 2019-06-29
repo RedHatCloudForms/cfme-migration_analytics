@@ -17,13 +17,23 @@ class AnalyticsSummary extends React.Component {
     fetchReportsAction(PROVIDERS_SUMMARY_REPORT_FILTERS);
   }
 
+  componentDidUpdate(prevProps) {
+    const { providersSummaryReport, runReportAction, lastProvidersSummaryReportRun } = this.props;
+    if (!prevProps.providersSummaryReport && providersSummaryReport) {
+      runReportAction(providersSummaryReport.href);
+    }
+    if (!prevProps.lastProvidersSummaryReportRun && lastProvidersSummaryReportRun) {
+      console.log('TODO, start polling based on run: ', lastProvidersSummaryReportRun); // TODO
+    }
+  }
+
   render() {
     const { providersSummaryReport } = this.props;
     if (!providersSummaryReport) {
       return (
         <div className="large-spinner">
           <Spinner loading size="lg" inline />
-          <h3 style={{ display: 'inline-block' }}>{__('Examining virtualization providers')}</h3>
+          <h3>{__('Examining virtualization providers')}</h3>
         </div>
       );
     }
@@ -38,12 +48,18 @@ class AnalyticsSummary extends React.Component {
 }
 
 AnalyticsSummary.propTypes = {
+  fetchReportsAction: PropTypes.func,
   providersSummaryReport: PropTypes.shape({
     href: PropTypes.string,
     name: PropTypes.string,
     rpt_group: PropTypes.string
   }),
-  fetchReportsAction: PropTypes.func
+  runReportAction: PropTypes.func,
+  lastProvidersSummaryReportRun: PropTypes.shape({
+    href: PropTypes.string,
+    result_href: PropTypes.string,
+    task_href: PropTypes.string
+  })
 };
 
 export default AnalyticsSummary;
