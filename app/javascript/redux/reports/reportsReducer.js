@@ -1,80 +1,75 @@
 import Immutable from 'seamless-immutable';
 import { FETCH_REPORTS, RUN_REPORT, FETCH_TASK, FETCH_RESULT } from './constants';
 
+const getHandlersForFetchActionsIndexedByHref = (actionType, fetchingHrefsKey, errorKey, payloadsByHrefKey) => {
+  return {
+    initialState: {
+      [fetchingHrefsKey]: [],
+      [errorKey]: null,
+      [payloadsByHrefKey]: {}
+    },
+    actionHandlers: {
+      [`${actionType}_PENDING`]: (state, action) =>
+        state.set(errorKey, null).set(fetchingHrefsKey, [...state[fetchingHrefsKey], action.meta.href]),
+      [`${actionType}_FULFILLED`]: (state, action) =>
+        state
+          .set(errorKey, null)
+          .set(fetchingHrefsKey, state[fetchingHrefsKey].filter(href => href !== action.meta.href))
+          .set(payloadsByHrefKey, { ...state[payloadsByHrefKey], [action.meta.href]: action.payload.data }),
+      [`${FETCH_TASK}_REJECTED`]: (state, action) =>
+        state
+          .set(errorKey, action.payload)
+          .set(fetchingHrefsKey, state[fetchingHrefsKey].filter(href => href !== action.meta.href))
+    }
+  };
+};
+
+const runReport = getHandlersForFetchActionsIndexedByHref(
+  RUN_REPORT,
+  'runningReportHrefs',
+  'errorRunningReport',
+  'reportRunsByHref'
+);
+const fetchTask = getHandlersForFetchActionsIndexedByHref(
+  FETCH_TASK,
+  'fetchingTaskHrefs',
+  'errorFetchingTask',
+  'tasksByHref'
+);
+const fetchResult = getHandlersForFetchActionsIndexedByHref(
+  FETCH_RESULT,
+  'fetchingResultHrefs',
+  'errorFetchingResult',
+  'resultsByHref'
+);
+
 export const initialState = Immutable({
   numReportFetchesPending: 0,
   errorFetchingReports: null,
   reports: [],
-  numReportRunsPending: 0,
-  errorRunningReport: null,
-  reportRuns: [], // TODO index this by id/href instead?
-  fetchingTaskHrefs: [],
-  errorFetchingTask: null,
-  tasksById: {},
-  fetchingResultHrefs: [],
-  errorFetchingResult: null,
-  resultsById: {}
+  ...runReport.initialState,
+  ...fetchTask.initialState,
+  ...fetchResult.initialState
 });
 
+// TODO reset to initial state when the main analytics page mounts? otherwise will we get `reports` building up?
+
+const actionHandlers = {
+  [`${FETCH_REPORTS}_PENDING`]: state =>
+    state.set('numReportFetchesPending', state.numReportFetchesPending + 1).set('errorFetchingReports', null),
+  [`${FETCH_REPORTS}_FULFILLED`]: (state, action) =>
+    state
+      .set('errorFetchingReports', null)
+      .set('numReportFetchesPending', state.numReportFetchesPending - 1)
+      .set('reports', [...state.reports, ...action.payload.data.resources]),
+  [`${FETCH_REPORTS}_REJECTED`]: (state, action) =>
+    state.set('numReportFetchesPending', state.numReportFetchesPending - 1).set('errorFetchingReports', action.payload),
+  ...runReport.actionHandlers,
+  ...fetchTask.actionHandlers,
+  ...fetchResult.actionHandlers
+};
+
 export default (state = initialState, action) => {
-  switch (action.type) {
-    // TODO reset to initial state when the main analytics page mounts? otherwise will we get `reports` building up?
-    case `${FETCH_REPORTS}_PENDING`:
-      return state.set('numReportFetchesPending', state.numReportFetchesPending + 1).set('errorFetchingReports', null);
-    case `${FETCH_REPORTS}_FULFILLED`:
-      return state
-        .set('numReportFetchesPending', state.numReportFetchesPending - 1)
-        .set('errorFetchingReports', null)
-        .set('reports', [...state.reports, ...action.payload.data.resources]);
-    case `${FETCH_REPORTS}_REJECTED`:
-      return state
-        .set('numReportFetchesPending', state.numReportFetchesPending - 1)
-        .set('errorFetchingReports', action.payload);
-
-    case `${RUN_REPORT}_PENDING`:
-      return state.set('numReportRunsPending', state.numReportRunsPending + 1).set('errorRunningReport', null);
-    case `${RUN_REPORT}_FULFILLED`:
-      return state
-        .set('numReportRunsPending', state.numReportRunsPending - 1)
-        .set('errorRunningReport', null)
-        .set('reportRuns', [
-          ...state.reportRuns.filter(run => run.href !== action.payload.data.href),
-          action.payload.data
-        ]);
-    case `${RUN_REPORT}_REJECTED`:
-      return state
-        .set('numReportRunsPending', state.numReportRunsPending - 1)
-        .set('errorRunningReport', action.payload);
-
-    case `${FETCH_TASK}_PENDING`:
-      return state
-        .set('fetchingTaskHrefs', [...state.fetchingTaskHrefs, action.meta.href])
-        .set('errorFetchingTask', null);
-    case `${FETCH_TASK}_FULFILLED`:
-      return state
-        .set('fetchingTaskHrefs', state.fetchingTaskHrefs.filter(href => href !== action.meta.href))
-        .set('errorFetchingTask', null)
-        .set('tasksById', { ...state.tasksById, [action.payload.data.id]: action.payload.data });
-    case `${FETCH_TASK}_REJECTED`:
-      return state
-        .set('fetchingTaskHrefs', state.fetchingTaskHrefs.filter(href => href !== action.meta.href))
-        .set('errorFetchingTask', action.payload);
-
-    case `${FETCH_RESULT}_PENDING`:
-      return state
-        .set('fetchingResultHrefs', [...state.fetchingResultHrefs, action.meta.href])
-        .set('errorFetchingResult', null);
-    case `${FETCH_RESULT}_FULFILLED`:
-      return state
-        .set('fetchingResultHrefs', state.fetchingResultHrefs.filter(href => href !== action.meta.href))
-        .set('errorFetchingResult', null)
-        .set('resultsById', { ...state.resultsById, [action.payload.data.id]: action.payload.data });
-    case `${FETCH_RESULT}_REJECTED`:
-      return state
-        .set('fetchingResultHrefs', state.fetchingResultHrefs.filter(href => href !== action.meta.href))
-        .set('errorFetchingResult', action.payload);
-
-    default:
-      return state;
-  }
+  const handler = actionHandlers[action.type];
+  return handler ? handler(state, action) : state;
 };

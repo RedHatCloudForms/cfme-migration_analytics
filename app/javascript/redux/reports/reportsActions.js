@@ -17,7 +17,8 @@ export const fetchReportsAction = filterValues => dispatch => {
 export const runReportAction = reportHref => dispatch =>
   dispatch({
     type: RUN_REPORT,
-    payload: API.post(new URI(reportHref).toString(), { action: 'run' })
+    payload: API.post(new URI(reportHref).toString(), { action: 'run' }),
+    meta: { href: reportHref }
   });
 
 const basicFetchAction = (type, href) => dispatch =>
