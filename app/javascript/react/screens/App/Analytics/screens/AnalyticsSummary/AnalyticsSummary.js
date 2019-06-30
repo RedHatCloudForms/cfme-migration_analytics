@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Spinner } from 'patternfly-react';
-import { VM_SUMMARY_REPORT_FILTERS } from '../../constants';
+import { VM_SUMMARY_REPORT_FILTERS, FINISHED } from '../../constants';
 
 // TODO set up actions for running the report
 // TODO figure out polling / waiting / loading results
@@ -18,13 +18,34 @@ class AnalyticsSummary extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { vmSummaryReport, runReportAction, lastVmSummaryReportRun } = this.props;
+    const {
+      vmSummaryReport,
+      runReportAction,
+      vmSummaryReportRun,
+      fetchTaskAction,
+      isFetchingVmSummaryReportTask,
+      vmSummaryReportTask
+    } = this.props;
     if (!prevProps.vmSummaryReport && vmSummaryReport) {
+      // Once we have a report ID, run it.
       runReportAction(vmSummaryReport.href);
+      return;
     }
-    if (!prevProps.lastVmSummaryReportRun && lastVmSummaryReportRun) {
-      console.log('TODO, start polling based on run: ', lastVmSummaryReportRun); // TODO
+    if (!prevProps.vmSummaryReportRun && vmSummaryReportRun) {
+      // Once we have a task ID, fetch it.
+      fetchTaskAction(vmSummaryReportRun.task_href);
+      return;
     }
+    if (
+      prevProps.isFetchingVmSummaryReportTask &&
+      !isFetchingVmSummaryReportTask &&
+      vmSummaryReportTask &&
+      vmSummaryReportTask.state !== FINISHED
+    ) {
+      // Once we've fetched the task, if it's not finished, wait and fetch it again.
+      setTimeout(() => fetchTaskAction(vmSummaryReportRun.task_href), 3000);
+    }
+    // TODO: fetch the result
   }
 
   render() {
@@ -55,10 +76,17 @@ AnalyticsSummary.propTypes = {
     rpt_group: PropTypes.string
   }),
   runReportAction: PropTypes.func,
-  lastVmSummaryReportRun: PropTypes.shape({
+  vmSummaryReportRun: PropTypes.shape({
     href: PropTypes.string,
     result_href: PropTypes.string,
     task_href: PropTypes.string
+  }),
+  fetchTaskAction: PropTypes.func,
+  isFetchingVmSummaryReportTask: PropTypes.bool,
+  vmSummaryReportTask: PropTypes.shape({
+    id: PropTypes.string,
+    state: PropTypes.string,
+    status: PropTypes.string
   })
 };
 
