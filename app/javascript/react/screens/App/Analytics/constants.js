@@ -4,3 +4,4 @@ export const VM_SUMMARY_REPORT_FILTERS = {
 };
 
 export const FINISHED = 'Finished';
+export const OK = 'Ok';

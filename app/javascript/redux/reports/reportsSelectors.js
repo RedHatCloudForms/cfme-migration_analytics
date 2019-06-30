@@ -7,3 +7,5 @@ export const selectIsFetchingTaskByRun = ({ fetchingTaskHrefs }, reportRun) =>
   reportRun && fetchingTaskHrefs.includes(reportRun.task_href);
 
 export const selectTaskByRun = ({ tasksById }, reportRun) => reportRun && tasksById[reportRun.task_id];
+
+export const selectResultByRun = ({ resultsById }, reportRun) => reportRun && resultsById[reportRun.result_id];

@@ -10,7 +10,8 @@ import {
   selectReportByFilterValues,
   selectRunByReport,
   selectTaskByRun,
-  selectIsFetchingTaskByRun
+  selectIsFetchingTaskByRun,
+  selectResultByRun
 } from '../../../../../../redux/reports/reportsSelectors';
 import { VM_SUMMARY_REPORT_FILTERS } from '../../constants';
 
@@ -21,7 +22,8 @@ const mapStateToProps = ({ migrationAnalytics: { reports } }) => {
     vmSummaryReport,
     vmSummaryReportRun,
     isFetchingVmSummaryReportTask: selectIsFetchingTaskByRun(reports, vmSummaryReportRun),
-    vmSummaryReportTask: selectTaskByRun(reports, vmSummaryReportRun)
+    vmSummaryReportTask: selectTaskByRun(reports, vmSummaryReportRun),
+    vmSummaryReportResult: selectResultByRun(reports, vmSummaryReportRun)
   };
 };
 

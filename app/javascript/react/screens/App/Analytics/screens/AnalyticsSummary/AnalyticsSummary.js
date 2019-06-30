@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Spinner } from 'patternfly-react';
-import { VM_SUMMARY_REPORT_FILTERS, FINISHED } from '../../constants';
+import { VM_SUMMARY_REPORT_FILTERS, FINISHED, OK } from '../../constants';
 
 // TODO set up actions for running the report
 // TODO figure out polling / waiting / loading results
@@ -12,6 +12,11 @@ import { VM_SUMMARY_REPORT_FILTERS, FINISHED } from '../../constants';
 // TODO next page?
 
 class AnalyticsSummary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.taskFetchTimeout = null;
+  }
+
   componentDidMount() {
     const { fetchReportsAction } = this.props;
     fetchReportsAction(VM_SUMMARY_REPORT_FILTERS);
@@ -24,33 +29,43 @@ class AnalyticsSummary extends React.Component {
       vmSummaryReportRun,
       fetchTaskAction,
       isFetchingVmSummaryReportTask,
-      vmSummaryReportTask
+      vmSummaryReportTask,
+      fetchResultAction
     } = this.props;
+    // Once we have a report ID, run it.
     if (!prevProps.vmSummaryReport && vmSummaryReport) {
-      // Once we have a report ID, run it.
       runReportAction(vmSummaryReport.href);
       return;
     }
+    // Once we have a task ID, fetch it.
     if (!prevProps.vmSummaryReportRun && vmSummaryReportRun) {
-      // Once we have a task ID, fetch it.
       fetchTaskAction(vmSummaryReportRun.task_href);
       return;
     }
+    // If we fetched an unfinished task, wait and fetch it again.
     if (
       prevProps.isFetchingVmSummaryReportTask &&
       !isFetchingVmSummaryReportTask &&
       vmSummaryReportTask &&
       vmSummaryReportTask.state !== FINISHED
     ) {
-      // Once we've fetched the task, if it's not finished, wait and fetch it again.
-      setTimeout(() => fetchTaskAction(vmSummaryReportRun.task_href), 3000);
+      this.taskFetchTimeout = setTimeout(() => fetchTaskAction(vmSummaryReportRun.task_href), 1000);
+      return;
     }
-    // TODO: fetch the result
+    // Once we have a successfully finished task, fetch its result.
+    if (
+      (!prevProps.vmSummaryReportTask || prevProps.vmSummaryReportTask.state !== FINISHED) &&
+      vmSummaryReportTask &&
+      vmSummaryReportTask.state === FINISHED &&
+      vmSummaryReportTask.status === OK
+    ) {
+      fetchResultAction(vmSummaryReportRun.result_href);
+    }
   }
 
   render() {
-    const { vmSummaryReport } = this.props;
-    if (!vmSummaryReport) {
+    const { vmSummaryReportResult } = this.props;
+    if (!vmSummaryReportResult) {
       return (
         <div className="large-spinner">
           <Spinner loading size="lg" inline />
@@ -59,10 +74,12 @@ class AnalyticsSummary extends React.Component {
       );
     }
 
+    // TODO handle case where vmSummaryReportTask has an error
+
     return (
       <React.Fragment>
         <h1>TODO</h1>
-        <pre>{JSON.stringify(vmSummaryReport, 2)}</pre>
+        <pre>{JSON.stringify(vmSummaryReportResult, 2)}</pre>
       </React.Fragment>
     );
   }
@@ -87,6 +104,18 @@ AnalyticsSummary.propTypes = {
     id: PropTypes.string,
     state: PropTypes.string,
     status: PropTypes.string
+  }),
+  fetchResultAction: PropTypes.func,
+  vmSummaryReportResult: PropTypes.shape({
+    result_set: PropTypes.arrayOf(
+      PropTypes.shape({
+        allocated_disk_storage: PropTypes.number,
+        mem_cpu: PropTypes.number,
+        cpu_total_cores: PropTypes.number,
+        'ext_management_system.name': PropTypes.string,
+        'ext_management_system.id': PropTypes.number
+      })
+    )
   })
 };
 
