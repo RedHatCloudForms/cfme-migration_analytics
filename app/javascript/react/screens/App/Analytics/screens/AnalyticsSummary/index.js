@@ -4,11 +4,11 @@ import { fetchReportsAction, runReportAction } from '../../../../../../redux/rep
 import { selectReportByFilterValues, selectRunByReport } from '../../../../../../redux/reports/reportsSelectors';
 import { VM_SUMMARY_REPORT_FILTERS } from '../../constants';
 
-const mapStateToProps = state => {
-  const vmSummaryReport = selectReportByFilterValues(state, VM_SUMMARY_REPORT_FILTERS);
+const mapStateToProps = ({ migrationAnalytics: { reports } }) => {
+  const vmSummaryReport = selectReportByFilterValues(reports, VM_SUMMARY_REPORT_FILTERS);
   return {
     vmSummaryReport,
-    lastVmSummaryReportRun: selectRunByReport(state, vmSummaryReport)
+    lastVmSummaryReportRun: selectRunByReport(reports, vmSummaryReport)
   };
 };
 
