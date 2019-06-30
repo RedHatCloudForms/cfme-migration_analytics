@@ -7,7 +7,7 @@ export const selectReportByFilterValues = (state, filterValues) => {
   return reports.find(report => Object.keys(filterValues).every(key => filterValues[key] === report[key]));
 };
 
-export const selectReportRunByReport = (state, report) => {
+export const selectRunByReport = (state, report) => {
   const {
     migrationAnalytics: {
       reports: { reportRuns }

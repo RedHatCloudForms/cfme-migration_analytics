@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Spinner } from 'patternfly-react';
-import { PROVIDERS_SUMMARY_REPORT_FILTERS } from '../../constants';
+import { VM_SUMMARY_REPORT_FILTERS } from '../../constants';
 
 // TODO set up actions for running the report
 // TODO figure out polling / waiting / loading results
@@ -14,22 +14,22 @@ import { PROVIDERS_SUMMARY_REPORT_FILTERS } from '../../constants';
 class AnalyticsSummary extends React.Component {
   componentDidMount() {
     const { fetchReportsAction } = this.props;
-    fetchReportsAction(PROVIDERS_SUMMARY_REPORT_FILTERS);
+    fetchReportsAction(VM_SUMMARY_REPORT_FILTERS);
   }
 
   componentDidUpdate(prevProps) {
-    const { providersSummaryReport, runReportAction, lastProvidersSummaryReportRun } = this.props;
-    if (!prevProps.providersSummaryReport && providersSummaryReport) {
-      runReportAction(providersSummaryReport.href);
+    const { vmSummaryReport, runReportAction, lastVmSummaryReportRun } = this.props;
+    if (!prevProps.vmSummaryReport && vmSummaryReport) {
+      runReportAction(vmSummaryReport.href);
     }
-    if (!prevProps.lastProvidersSummaryReportRun && lastProvidersSummaryReportRun) {
-      console.log('TODO, start polling based on run: ', lastProvidersSummaryReportRun); // TODO
+    if (!prevProps.lastVmSummaryReportRun && lastVmSummaryReportRun) {
+      console.log('TODO, start polling based on run: ', lastVmSummaryReportRun); // TODO
     }
   }
 
   render() {
-    const { providersSummaryReport } = this.props;
-    if (!providersSummaryReport) {
+    const { vmSummaryReport } = this.props;
+    if (!vmSummaryReport) {
       return (
         <div className="large-spinner">
           <Spinner loading size="lg" inline />
@@ -41,7 +41,7 @@ class AnalyticsSummary extends React.Component {
     return (
       <React.Fragment>
         <h1>TODO</h1>
-        <pre>{JSON.stringify(providersSummaryReport, 2)}</pre>
+        <pre>{JSON.stringify(vmSummaryReport, 2)}</pre>
       </React.Fragment>
     );
   }
@@ -49,13 +49,13 @@ class AnalyticsSummary extends React.Component {
 
 AnalyticsSummary.propTypes = {
   fetchReportsAction: PropTypes.func,
-  providersSummaryReport: PropTypes.shape({
+  vmSummaryReport: PropTypes.shape({
     href: PropTypes.string,
     name: PropTypes.string,
     rpt_group: PropTypes.string
   }),
   runReportAction: PropTypes.func,
-  lastProvidersSummaryReportRun: PropTypes.shape({
+  lastVmSummaryReportRun: PropTypes.shape({
     href: PropTypes.string,
     result_href: PropTypes.string,
     task_href: PropTypes.string

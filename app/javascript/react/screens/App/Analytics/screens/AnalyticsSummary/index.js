@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 import AnalyticsSummary from './AnalyticsSummary';
 import { fetchReportsAction, runReportAction } from '../../../../../../redux/reports/reportsActions';
-import { selectReportByFilterValues, selectReportRunByReport } from '../../../../../../redux/reports/reportsSelectors';
-import { PROVIDERS_SUMMARY_REPORT_FILTERS } from '../../constants';
+import { selectReportByFilterValues, selectRunByReport } from '../../../../../../redux/reports/reportsSelectors';
+import { VM_SUMMARY_REPORT_FILTERS } from '../../constants';
 
 const mapStateToProps = state => {
-  const providersSummaryReport = selectReportByFilterValues(state, PROVIDERS_SUMMARY_REPORT_FILTERS);
+  const vmSummaryReport = selectReportByFilterValues(state, VM_SUMMARY_REPORT_FILTERS);
   return {
-    providersSummaryReport,
-    lastProvidersSummaryReportRun: selectReportRunByReport(state, providersSummaryReport)
+    vmSummaryReport,
+    lastVmSummaryReportRun: selectRunByReport(state, vmSummaryReport)
   };
 };
 
