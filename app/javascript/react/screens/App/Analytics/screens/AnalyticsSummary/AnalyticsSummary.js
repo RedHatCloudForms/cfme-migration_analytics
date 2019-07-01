@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import { Spinner } from 'patternfly-react';
 import { VM_SUMMARY_REPORT_FILTERS, FINISHED, OK } from '../../constants';
 
-// TODO set up actions for running the report
-// TODO figure out polling / waiting / loading results
-// TODO dump the report data into the view as JSON
 // TODO sort out data we need from the mocks and write helpers to calculate it
 // TODO build accordion showing summary data
 // TODO provider selection?
