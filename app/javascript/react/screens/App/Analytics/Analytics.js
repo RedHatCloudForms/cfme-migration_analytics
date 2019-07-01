@@ -4,11 +4,13 @@ import { Breadcrumb } from 'patternfly-react';
 import Toolbar from './components/Toolbar';
 import AnalyticsEmptyState from './screens/AnalyticsEmptyState';
 import AnalyticsSummary from './screens/AnalyticsSummary';
+import AnalyticsProviderSelection from './screens/AnalyticsProviderSelection';
 // import BreadcrumbPageSwitcher from '../common/BreadcrumbPageSwitcher'; // TODO: figure out how to share the breadcrumb switcher with v2v
 
 const SCREENS = {
-  EMPTY_STATE: 'emptyState',
-  SUMMARY: 'summary'
+  EMPTY_STATE: 'EMPTY_STATE',
+  SUMMARY: 'SUMMARY',
+  PROVIDER_SELECTION: 'PROVIDER_SELECTION'
 };
 
 const AnalyticsContainer = ({ currentScreen, children }) => (
@@ -25,13 +27,16 @@ class Analytics extends React.Component {
   state = { currentScreen: SCREENS.EMPTY_STATE };
 
   goToSummary = () => this.setState({ currentScreen: SCREENS.SUMMARY });
+  goToProviderSelection = () => this.setState({ currentScreen: SCREENS.PROVIDER_SELECTION });
 
   renderCurrentScreen = () => {
     switch (this.state.currentScreen) {
       case SCREENS.EMPTY_STATE:
         return <AnalyticsEmptyState onGetStartedClick={this.goToSummary} />;
       case SCREENS.SUMMARY:
-        return <AnalyticsSummary />;
+        return <AnalyticsSummary onCollectInventoryClick={this.goToProviderSelection} />;
+      case SCREENS.PROVIDER_SELECTION:
+        return <AnalyticsProviderSelection onCancelClick={this.goToSummary} />;
       default:
         return null;
     }

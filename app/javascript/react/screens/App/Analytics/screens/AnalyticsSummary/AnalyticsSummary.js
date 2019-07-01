@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Spinner } from 'patternfly-react';
+import { Spinner, Button } from 'patternfly-react';
 import { VM_SUMMARY_REPORT_FILTERS, FINISHED, OK } from '../../constants';
 import SummaryAccordion from './components/SummaryAccordion';
 
@@ -75,7 +75,7 @@ class AnalyticsSummary extends React.Component {
   }
 
   render() {
-    const { summaryData } = this.props;
+    const { summaryData, onCollectInventoryClick } = this.props;
     if (!summaryData) {
       return (
         <div className="large-spinner">
@@ -87,7 +87,12 @@ class AnalyticsSummary extends React.Component {
 
     // TODO handle case where vmSummaryReportTask has an error
 
-    return <SummaryAccordion summaryData={summaryData} />;
+    return (
+      <React.Fragment>
+        <SummaryAccordion summaryData={summaryData} />
+        <Button onClick={onCollectInventoryClick}>{__('Collect Inventory Data')}</Button>
+      </React.Fragment>
+    );
   }
 }
 
@@ -124,7 +129,8 @@ AnalyticsSummary.propTypes = {
     )
   }),
   calculateSummaryDataAction: PropTypes.func,
-  summaryData: SummaryAccordion.propTypes.summaryData
+  summaryData: SummaryAccordion.propTypes.summaryData,
+  onCollectInventoryClick: PropTypes.func
 };
 
 export default AnalyticsSummary;

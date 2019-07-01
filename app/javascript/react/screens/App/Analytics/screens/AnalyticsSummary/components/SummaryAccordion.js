@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ListView, Grid, Button } from 'patternfly-react';
+import { ListView, Grid } from 'patternfly-react';
 import SummaryTable from './SummaryTable';
 
 const SummaryAccordion = ({ summaryData }) => {
@@ -28,7 +28,6 @@ const SummaryAccordion = ({ summaryData }) => {
           </ListView.Item>
         ))}
       </ListView>
-      <Button onClick={() => alert('TODO')}>{__('Collect Inventory Data')}</Button>
     </div>
   );
 };
