@@ -1,5 +1,8 @@
 #migration-analytics {
+  margin-top: 15px;
+
   &.row.cards-pf {
+    margin-top: 0;
     overflow: auto;
     overflow-x: hidden;
     padding-bottom: 50px;
@@ -31,8 +34,6 @@
   }
 
   .reports-summary {
-    margin-top: 15px;
-
     .environment-summary {
       margin-left: 16px;
     }
@@ -48,6 +49,10 @@
     .list-view-pf-expand {
       margin-top: 25px;
     }
+  }
+
+  .footer-buttons button {
+    margin-right: 10px;
   }
 
   .manifest-version {
