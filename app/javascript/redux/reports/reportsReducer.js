@@ -1,5 +1,6 @@
 import Immutable from 'seamless-immutable';
 import { FETCH_REPORTS, RUN_REPORT, FETCH_TASK, FETCH_RESULT } from './constants';
+import { concatPreservingUniqueIds } from './helpers';
 
 const getHandlersForFetchActionsIndexedByHref = (actionType, fetchingHrefsKey, errorKey, payloadsByHrefKey) => {
   return {
@@ -52,8 +53,6 @@ export const initialState = Immutable({
   ...fetchResult.initialState
 });
 
-// TODO reset to initial state when the main analytics page mounts? otherwise will we get `reports` building up?
-
 const actionHandlers = {
   [`${FETCH_REPORTS}_PENDING`]: state =>
     state.set('numReportFetchesPending', state.numReportFetchesPending + 1).set('errorFetchingReports', null),
@@ -61,7 +60,7 @@ const actionHandlers = {
     state
       .set('errorFetchingReports', null)
       .set('numReportFetchesPending', state.numReportFetchesPending - 1)
-      .set('reports', [...state.reports, ...action.payload.data.resources]),
+      .set('reports', concatPreservingUniqueIds(state.reports, action.payload.data.resources)),
   [`${FETCH_REPORTS}_REJECTED`]: (state, action) =>
     state.set('numReportFetchesPending', state.numReportFetchesPending - 1).set('errorFetchingReports', action.payload),
   ...runReport.actionHandlers,
