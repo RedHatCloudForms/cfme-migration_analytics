@@ -13,13 +13,13 @@ import {
   selectIsFetchingTaskByRun,
   selectResultByRun
 } from '../../../../../../redux/reports/reportsSelectors';
-import { processReportResultsAction } from '../../redux/analyticsActions';
+import { calculateSummaryDataAction } from '../../redux/analyticsActions';
 import { VM_SUMMARY_REPORT_FILTERS } from '../../constants';
 
 const mapStateToProps = ({
   migrationAnalytics: {
     reports,
-    analytics: { processedSummaryData }
+    analytics: { summaryData }
   }
 }) => {
   const vmSummaryReport = selectReportByFilterValues(reports, VM_SUMMARY_REPORT_FILTERS);
@@ -30,11 +30,11 @@ const mapStateToProps = ({
     isFetchingVmSummaryReportTask: selectIsFetchingTaskByRun(reports, vmSummaryReportRun),
     vmSummaryReportTask: selectTaskByRun(reports, vmSummaryReportRun),
     vmSummaryReportResult: selectResultByRun(reports, vmSummaryReportRun),
-    processedSummaryData
+    summaryData
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchReportsAction, runReportAction, fetchTaskAction, fetchResultAction, processReportResultsAction }
+  { fetchReportsAction, runReportAction, fetchTaskAction, fetchResultAction, calculateSummaryDataAction }
 )(AnalyticsSummary);

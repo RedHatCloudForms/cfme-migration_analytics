@@ -29,7 +29,7 @@ class AnalyticsSummary extends React.Component {
       vmSummaryReportTask,
       fetchResultAction,
       vmSummaryReportResult,
-      processReportResultsAction
+      calculateSummaryDataAction
     } = this.props;
 
     // Once we've found the report href, run it.
@@ -69,13 +69,13 @@ class AnalyticsSummary extends React.Component {
 
     // Once we have a report result, process it for rendering.
     if (!prevProps.vmSummaryReportResult && vmSummaryReportResult) {
-      processReportResultsAction(vmSummaryReportResult);
+      calculateSummaryDataAction(vmSummaryReportResult);
     }
   }
 
   render() {
-    const { processedSummaryData } = this.props;
-    if (!processedSummaryData) {
+    const { summaryData } = this.props;
+    if (!summaryData) {
       return (
         <div className="large-spinner">
           <Spinner loading size="lg" inline />
@@ -89,7 +89,7 @@ class AnalyticsSummary extends React.Component {
     return (
       <React.Fragment>
         <h1>TODO</h1>
-        <pre>{JSON.stringify(processedSummaryData, 2)}</pre>
+        <pre>{JSON.stringify(summaryData, 2)}</pre>
       </React.Fragment>
     );
   }
@@ -127,8 +127,26 @@ AnalyticsSummary.propTypes = {
       })
     )
   }),
-  processReportResultsAction: PropTypes.func,
-  processedSummaryData: PropTypes.object // TODO replace with shape
+  calculateSummaryDataAction: PropTypes.func,
+  summaryData: PropTypes.shape({
+    total: PropTypes.shape({
+      numProviders: PropTypes.number,
+      numHypervisors: PropTypes.number,
+      numVms: PropTypes.number,
+      allocatedDiskSpace: PropTypes.number,
+      allocatedMemory: PropTypes.number,
+      numCpuCores: PropTypes.number
+    }),
+    providers: PropTypes.arrayOf(
+      PropTypes.shape({
+        numHypervisors: PropTypes.number,
+        numVms: PropTypes.number,
+        allocatedDiskSpace: PropTypes.number,
+        allocatedMemory: PropTypes.number,
+        numCpuCores: PropTypes.number
+      })
+    )
+  })
 };
 
 export default AnalyticsSummary;

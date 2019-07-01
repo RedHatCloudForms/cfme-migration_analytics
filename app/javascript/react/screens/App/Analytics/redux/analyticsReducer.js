@@ -1,15 +1,15 @@
 import Immutable from 'seamless-immutable';
-import { PROCESS_SUMMARY_DATA } from './constants';
+import { CALCULATE_SUMMARY_DATA } from './constants';
 import { functionLookupReducer } from '../../../../../redux/helpers';
-import { processReportResults } from './helpers';
+import { calculateSummaryData } from './helpers';
 
 export const initialState = Immutable({
-  processedSummaryData: null
+  summaryData: null
 });
 
 const actionHandlers = {
-  [PROCESS_SUMMARY_DATA]: (state, action) =>
-    state.set('processedSummaryData', processReportResults(action.vmSummaryReportResult))
+  [CALCULATE_SUMMARY_DATA]: (state, action) =>
+    state.set('summaryData', calculateSummaryData(action.vmSummaryReportResult))
 };
 
 export default functionLookupReducer(initialState, actionHandlers);

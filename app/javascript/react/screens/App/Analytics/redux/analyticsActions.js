@@ -1,7 +1,7 @@
-import { PROCESS_SUMMARY_DATA } from './constants';
+import { CALCULATE_SUMMARY_DATA } from './constants';
 
-export const processReportResultsAction = vmSummaryReportResult => dispatch =>
+export const calculateSummaryDataAction = vmSummaryReportResult => dispatch =>
   dispatch({
-    type: PROCESS_SUMMARY_DATA,
+    type: CALCULATE_SUMMARY_DATA,
     vmSummaryReportResult
   });
