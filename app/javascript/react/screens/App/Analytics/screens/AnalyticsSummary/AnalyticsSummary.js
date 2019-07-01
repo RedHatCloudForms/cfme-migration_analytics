@@ -19,7 +19,7 @@ class AnalyticsSummary extends React.Component {
 
   componentDidMount() {
     const { fetchReportsAction } = this.props;
-    fetchReportsAction(VM_SUMMARY_REPORT_FILTERS);
+    fetchReportsAction(VM_SUMMARY_REPORT_FILTERS); // Kicks off the chain of action calls in componentDidUpdate
   }
 
   componentDidUpdate(prevProps) {
@@ -30,18 +30,23 @@ class AnalyticsSummary extends React.Component {
       fetchTaskAction,
       isFetchingVmSummaryReportTask,
       vmSummaryReportTask,
-      fetchResultAction
+      fetchResultAction,
+      vmSummaryReportResult,
+      processReportResultsAction
     } = this.props;
-    // Once we have a report ID, run it.
+
+    // Once we've found the report href, run it.
     if (!prevProps.vmSummaryReport && vmSummaryReport) {
       runReportAction(vmSummaryReport.href);
       return;
     }
-    // Once we have a task ID, fetch it.
+
+    // Once we have a task href for the running report, fetch it.
     if (!prevProps.vmSummaryReportRun && vmSummaryReportRun) {
       fetchTaskAction(vmSummaryReportRun.task_href);
       return;
     }
+
     // If we fetched an unfinished task, wait and fetch it again.
     if (
       prevProps.isFetchingVmSummaryReportTask &&
@@ -52,6 +57,7 @@ class AnalyticsSummary extends React.Component {
       this.taskFetchTimeout = setTimeout(() => fetchTaskAction(vmSummaryReportRun.task_href), 1000);
       return;
     }
+
     // Once we have a successfully finished task, fetch its result.
     if (
       (!prevProps.vmSummaryReportTask || prevProps.vmSummaryReportTask.state !== FINISHED) &&
@@ -59,13 +65,20 @@ class AnalyticsSummary extends React.Component {
       vmSummaryReportTask.state === FINISHED &&
       vmSummaryReportTask.status === OK
     ) {
+      clearTimeout(this.fetchTaskTimeout); // Just in case.
       fetchResultAction(vmSummaryReportRun.result_href);
+      return;
+    }
+
+    // Once we have a report result, process it for rendering.
+    if (!prevProps.vmSummaryReportResult && vmSummaryReportResult) {
+      processReportResultsAction(vmSummaryReportResult);
     }
   }
 
   render() {
-    const { vmSummaryReportResult } = this.props;
-    if (!vmSummaryReportResult) {
+    const { processedSummaryData } = this.props;
+    if (!processedSummaryData) {
       return (
         <div className="large-spinner">
           <Spinner loading size="lg" inline />
@@ -79,7 +92,7 @@ class AnalyticsSummary extends React.Component {
     return (
       <React.Fragment>
         <h1>TODO</h1>
-        <pre>{JSON.stringify(vmSummaryReportResult, 2)}</pre>
+        <pre>{JSON.stringify(processedSummaryData, 2)}</pre>
       </React.Fragment>
     );
   }
@@ -116,7 +129,9 @@ AnalyticsSummary.propTypes = {
         'ext_management_system.id': PropTypes.number
       })
     )
-  })
+  }),
+  processReportResultsAction: PropTypes.func,
+  processedSummaryData: PropTypes.object // TODO replace with shape
 };
 
 export default AnalyticsSummary;
