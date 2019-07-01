@@ -1,29 +1,7 @@
 import Immutable from 'seamless-immutable';
+import { functionLookupReducer, getHandlersForFetchActionsIndexedByHref } from '../helpers';
 import { FETCH_REPORTS, RUN_REPORT, FETCH_TASK, FETCH_RESULT } from './constants';
 import { concatPreservingUniqueIds } from './helpers';
-
-const getHandlersForFetchActionsIndexedByHref = (actionType, fetchingHrefsKey, errorKey, payloadsByHrefKey) => {
-  return {
-    initialState: {
-      [fetchingHrefsKey]: [],
-      [errorKey]: null,
-      [payloadsByHrefKey]: {}
-    },
-    actionHandlers: {
-      [`${actionType}_PENDING`]: (state, action) =>
-        state.set(errorKey, null).set(fetchingHrefsKey, [...state[fetchingHrefsKey], action.meta.href]),
-      [`${actionType}_FULFILLED`]: (state, action) =>
-        state
-          .set(errorKey, null)
-          .set(fetchingHrefsKey, state[fetchingHrefsKey].filter(href => href !== action.meta.href))
-          .set(payloadsByHrefKey, { ...state[payloadsByHrefKey], [action.meta.href]: action.payload.data }),
-      [`${FETCH_TASK}_REJECTED`]: (state, action) =>
-        state
-          .set(errorKey, action.payload)
-          .set(fetchingHrefsKey, state[fetchingHrefsKey].filter(href => href !== action.meta.href))
-    }
-  };
-};
 
 const runReport = getHandlersForFetchActionsIndexedByHref(
   RUN_REPORT,
@@ -68,7 +46,4 @@ const actionHandlers = {
   ...fetchResult.actionHandlers
 };
 
-export default (state = initialState, action) => {
-  const handler = actionHandlers[action.type];
-  return handler ? handler(state, action) : state;
-};
+export default functionLookupReducer(initialState, actionHandlers);
