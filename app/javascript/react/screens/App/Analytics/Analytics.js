@@ -5,12 +5,14 @@ import Toolbar from './components/Toolbar';
 import AnalyticsEmptyState from './screens/AnalyticsEmptyState';
 import AnalyticsSummary from './screens/AnalyticsSummary';
 import AnalyticsProviderSelection from './screens/AnalyticsProviderSelection';
+import AnalyticsDataCollection from './screens/AnalyticsDataCollection';
 // import BreadcrumbPageSwitcher from '../common/BreadcrumbPageSwitcher'; // TODO: figure out how to share the breadcrumb switcher with v2v
 
 const SCREENS = {
   EMPTY_STATE: 'EMPTY_STATE',
   SUMMARY: 'SUMMARY',
-  PROVIDER_SELECTION: 'PROVIDER_SELECTION'
+  PROVIDER_SELECTION: 'PROVIDER_SELECTION',
+  DATA_COLLECTION: 'DATA_COLLECTION'
 };
 
 const AnalyticsContainer = ({ currentScreen, children }) => (
@@ -28,18 +30,18 @@ class Analytics extends React.Component {
 
   goToSummary = () => this.setState({ currentScreen: SCREENS.SUMMARY });
   goToProviderSelection = () => this.setState({ currentScreen: SCREENS.PROVIDER_SELECTION });
+  goToDataCollection = () => this.setState({ currentScreen: SCREENS.DATA_COLLECTION });
 
   renderCurrentScreen = () => {
-    switch (this.state.currentScreen) {
-      case SCREENS.EMPTY_STATE:
-        return <AnalyticsEmptyState onGetStartedClick={this.goToSummary} />;
-      case SCREENS.SUMMARY:
-        return <AnalyticsSummary onCollectInventoryClick={this.goToProviderSelection} />;
-      case SCREENS.PROVIDER_SELECTION:
-        return <AnalyticsProviderSelection onCancelClick={this.goToSummary} />;
-      default:
-        return null;
-    }
+    const screens = {
+      [SCREENS.EMPTY_STATE]: <AnalyticsEmptyState onGetStartedClick={this.goToSummary} />,
+      [SCREENS.SUMMARY]: <AnalyticsSummary onCollectInventoryClick={this.goToProviderSelection} />,
+      [SCREENS.PROVIDER_SELECTION]: (
+        <AnalyticsProviderSelection onContinueClick={this.goToDataCollection} onCancelClick={this.goToSummary} />
+      ),
+      [SCREENS.DATA_COLLECTION]: <AnalyticsDataCollection />
+    };
+    return screens[this.state.currentScreen];
   };
 
   render() {

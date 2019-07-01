@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TypeAheadSelect, Button } from 'patternfly-react';
 
-const AnalyticsProviderSelection = ({ summaryData, onCancelClick }) => (
+const AnalyticsProviderSelection = ({ summaryData, onContinueClick, onCancelClick }) => (
   <React.Fragment>
     <p>{__('Select providers for which inventory data will be collected.')}</p>
     <TypeAheadSelect
@@ -25,7 +25,7 @@ const AnalyticsProviderSelection = ({ summaryData, onCancelClick }) => (
       {__('To configure Smart State Analysis ..... ')}
     </p>
     <div className="footer-buttons">
-      <Button>{__('Continue')}</Button>
+      <Button onClick={onContinueClick}>{__('Continue')}</Button>
       <Button onClick={onCancelClick}>{__('Cancel')}</Button>
     </div>
   </React.Fragment>
@@ -40,6 +40,7 @@ AnalyticsProviderSelection.propTypes = {
       })
     )
   }),
+  onContinueClick: PropTypes.func,
   onCancelClick: PropTypes.func
 };
 
