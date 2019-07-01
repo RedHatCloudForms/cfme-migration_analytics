@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Spinner } from 'patternfly-react';
 import { VM_SUMMARY_REPORT_FILTERS, FINISHED, OK } from '../../constants';
+import SummaryAccordion from './components/SummaryAccordion';
 
 // TODO sort out data we need from the mocks and write helpers to calculate it
 // TODO build accordion showing summary data
@@ -86,12 +87,7 @@ class AnalyticsSummary extends React.Component {
 
     // TODO handle case where vmSummaryReportTask has an error
 
-    return (
-      <React.Fragment>
-        <h1>TODO</h1>
-        <pre>{JSON.stringify(summaryData, 2)}</pre>
-      </React.Fragment>
-    );
+    return <SummaryAccordion summaryData={summaryData} />;
   }
 }
 
@@ -128,25 +124,7 @@ AnalyticsSummary.propTypes = {
     )
   }),
   calculateSummaryDataAction: PropTypes.func,
-  summaryData: PropTypes.shape({
-    total: PropTypes.shape({
-      numProviders: PropTypes.number,
-      numHypervisors: PropTypes.number,
-      numVms: PropTypes.number,
-      allocatedDiskSpace: PropTypes.number,
-      allocatedMemory: PropTypes.number,
-      numCpuCores: PropTypes.number
-    }),
-    providers: PropTypes.arrayOf(
-      PropTypes.shape({
-        numHypervisors: PropTypes.number,
-        numVms: PropTypes.number,
-        allocatedDiskSpace: PropTypes.number,
-        allocatedMemory: PropTypes.number,
-        numCpuCores: PropTypes.number
-      })
-    )
-  })
+  summaryData: SummaryAccordion.propTypes.summaryData
 };
 
 export default AnalyticsSummary;

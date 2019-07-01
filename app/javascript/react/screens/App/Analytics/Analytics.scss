@@ -30,6 +30,26 @@
     }
   }
 
+  .reports-summary {
+    margin-top: 15px;
+
+    .environment-summary {
+      margin-left: 16px;
+    }
+
+    table {
+      padding-top: 10px;
+
+      td {
+        padding: 5px 32px;
+      }
+    }
+
+    .list-view-pf-expand {
+      margin-top: 25px;
+    }
+  }
+
   .manifest-version {
     text-align: right;
     padding: 35px;
