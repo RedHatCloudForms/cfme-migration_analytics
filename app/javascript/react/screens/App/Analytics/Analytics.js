@@ -39,7 +39,7 @@ class Analytics extends React.Component {
       [SCREENS.PROVIDER_SELECTION]: (
         <AnalyticsProviderSelection onContinueClick={this.goToDataCollection} onCancelClick={this.goToSummary} />
       ),
-      [SCREENS.DATA_COLLECTION]: <AnalyticsDataCollection />
+      [SCREENS.DATA_COLLECTION]: <AnalyticsDataCollection onCancelClick={this.goToProviderSelection} />
     };
     return screens[this.state.currentScreen];
   };

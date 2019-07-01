@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Spinner, Button } from 'patternfly-react';
 
-const AnalyticsDataCollection = () => (
+const AnalyticsDataCollection = ({ onCancelClick }) => (
   <React.Fragment>
-    <h1>TODO</h1>
+    <div className="large-spinner">
+      <Spinner loading size="lg" inline />
+      <h3>{__('Collecting inventory data')}</h3>
+    </div>
+    <Button onClick={onCancelClick}>{__('Cancel')}</Button>
   </React.Fragment>
 );
 
-AnalyticsDataCollection.propTypes = {};
+AnalyticsDataCollection.propTypes = {
+  onCancelClick: PropTypes.func
+};
 
 export default AnalyticsDataCollection;
