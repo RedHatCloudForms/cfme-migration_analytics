@@ -8,8 +8,7 @@ export const initialState = Immutable({
 });
 
 const actionHandlers = {
-  [CALCULATE_SUMMARY_DATA]: (state, action) =>
-    state.set('summaryData', calculateSummaryData(action.vmSummaryReportResult))
+  [CALCULATE_SUMMARY_DATA]: (state, action) => state.set('summaryData', calculateSummaryData(action.results))
 };
 
 export default functionLookupReducer(initialState, actionHandlers);
