@@ -30,26 +30,28 @@ const SummaryAccordion = ({ summaryData }) => (
   </div>
 );
 
-SummaryAccordion.propTypes = {
-  summaryData: PropTypes.shape({
-    total: PropTypes.shape({
-      numProviders: PropTypes.number,
+export const summaryDataShape = PropTypes.shape({
+  total: PropTypes.shape({
+    numProviders: PropTypes.number,
+    numHypervisors: PropTypes.number,
+    numVms: PropTypes.number,
+    allocatedDiskSpace: PropTypes.number,
+    allocatedMemory: PropTypes.number,
+    numCpuCores: PropTypes.number
+  }),
+  providers: PropTypes.arrayOf(
+    PropTypes.shape({
       numHypervisors: PropTypes.number,
       numVms: PropTypes.number,
       allocatedDiskSpace: PropTypes.number,
       allocatedMemory: PropTypes.number,
       numCpuCores: PropTypes.number
-    }),
-    providers: PropTypes.arrayOf(
-      PropTypes.shape({
-        numHypervisors: PropTypes.number,
-        numVms: PropTypes.number,
-        allocatedDiskSpace: PropTypes.number,
-        allocatedMemory: PropTypes.number,
-        numCpuCores: PropTypes.number
-      })
-    )
-  }).isRequired
+    })
+  )
+});
+
+SummaryAccordion.propTypes = {
+  summaryData: summaryDataShape.isRequired
 };
 
 export default SummaryAccordion;

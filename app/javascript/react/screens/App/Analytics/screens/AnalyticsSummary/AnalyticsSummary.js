@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Spinner, Button } from 'patternfly-react';
 import { VM_SUMMARY_REPORT_FILTERS, ENV_SUMMARY_REPORT_FILTERS, FINISHED, OK } from '../../constants';
-import SummaryAccordion from './components/SummaryAccordion';
+import SummaryAccordion, { summaryDataShape } from './components/SummaryAccordion';
 
 // TODO provider selection?
 // TODO next page?
@@ -124,16 +124,16 @@ const reportTaskShape = PropTypes.shape({
 
 AnalyticsSummary.propTypes = {
   fetchReportsAction: PropTypes.func.isRequired,
-  vmSummaryReport: reportShape.isRequired,
-  envSummaryReport: reportShape.isRequired,
+  vmSummaryReport: reportShape,
+  envSummaryReport: reportShape,
   runReportAction: PropTypes.func.isRequired,
-  vmSummaryReportRun: reportRunShape.isRequired,
-  envSummaryReportRun: reportRunShape.isRequired,
+  vmSummaryReportRun: reportRunShape,
+  envSummaryReportRun: reportRunShape,
   fetchTaskAction: PropTypes.func.isRequired,
-  isFetchingVmSummaryReportTask: PropTypes.bool.isRequired,
-  isFetchingEnvSummaryReportTask: PropTypes.bool.isRequired,
-  vmSummaryReportTask: reportTaskShape.isRequired,
-  envSummaryReportTask: reportTaskShape.isRequired,
+  isFetchingVmSummaryReportTask: PropTypes.bool,
+  isFetchingEnvSummaryReportTask: PropTypes.bool,
+  vmSummaryReportTask: reportTaskShape,
+  envSummaryReportTask: reportTaskShape,
   fetchResultAction: PropTypes.func.isRequired,
   vmSummaryReportResult: PropTypes.shape({
     result_set: PropTypes.arrayOf(
@@ -145,7 +145,7 @@ AnalyticsSummary.propTypes = {
         'ext_management_system.id': PropTypes.number
       })
     )
-  }).isRequired,
+  }),
   envSummaryReportResult: PropTypes.shape({
     result_set: PropTypes.arrayOf(
       PropTypes.shape({
@@ -156,10 +156,24 @@ AnalyticsSummary.propTypes = {
         'ext_management_system.id': PropTypes.number
       })
     )
-  }).isRequired,
+  }),
   calculateSummaryDataAction: PropTypes.func.isRequired,
-  summaryData: SummaryAccordion.propTypes.summaryData.isRequired,
+  summaryData: summaryDataShape,
   onCollectInventoryClick: PropTypes.func.isRequired
+};
+
+AnalyticsSummary.defaultProps = {
+  vmSummaryReport: null,
+  envSummaryReport: null,
+  vmSummaryReportRun: null,
+  envSummaryReportRun: null,
+  isFetchingVmSummaryReportTask: false,
+  isFetchingEnvSummaryReportTask: false,
+  vmSummaryReportTask: null,
+  envSummaryReportTask: null,
+  vmSummaryReportResult: null,
+  envSummaryReportResult: null,
+  summaryData: null
 };
 
 export default AnalyticsSummary;
