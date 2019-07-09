@@ -21,7 +21,7 @@ const AnalyticsContainer = ({ currentScreen, children }) => (
   </div>
 );
 AnalyticsContainer.propTypes = {
-  currentScreen: PropTypes.oneOf(Object.values(SCREENS)),
+  currentScreen: PropTypes.oneOf(Object.values(SCREENS)).isRequired,
   children: PropTypes.node.isRequired
 };
 

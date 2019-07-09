@@ -13,7 +13,7 @@ const AnalyticsDataCollection = ({ onCancelClick }) => (
 );
 
 AnalyticsDataCollection.propTypes = {
-  onCancelClick: PropTypes.func
+  onCancelClick: PropTypes.func.isRequired
 };
 
 export default AnalyticsDataCollection;

@@ -123,18 +123,18 @@ const reportTaskShape = PropTypes.shape({
 });
 
 AnalyticsSummary.propTypes = {
-  fetchReportsAction: PropTypes.func,
-  vmSummaryReport: reportShape,
-  envSummaryReport: reportShape,
-  runReportAction: PropTypes.func,
-  vmSummaryReportRun: reportRunShape,
-  envSummaryReportRun: reportRunShape,
-  fetchTaskAction: PropTypes.func,
-  isFetchingVmSummaryReportTask: PropTypes.bool,
-  isFetchingEnvSummaryReportTask: PropTypes.bool,
-  vmSummaryReportTask: reportTaskShape,
-  envSummaryReportTask: reportTaskShape,
-  fetchResultAction: PropTypes.func,
+  fetchReportsAction: PropTypes.func.isRequired,
+  vmSummaryReport: reportShape.isRequired,
+  envSummaryReport: reportShape.isRequired,
+  runReportAction: PropTypes.func.isRequired,
+  vmSummaryReportRun: reportRunShape.isRequired,
+  envSummaryReportRun: reportRunShape.isRequired,
+  fetchTaskAction: PropTypes.func.isRequired,
+  isFetchingVmSummaryReportTask: PropTypes.bool.isRequired,
+  isFetchingEnvSummaryReportTask: PropTypes.bool.isRequired,
+  vmSummaryReportTask: reportTaskShape.isRequired,
+  envSummaryReportTask: reportTaskShape.isRequired,
+  fetchResultAction: PropTypes.func.isRequired,
   vmSummaryReportResult: PropTypes.shape({
     result_set: PropTypes.arrayOf(
       PropTypes.shape({
@@ -145,7 +145,7 @@ AnalyticsSummary.propTypes = {
         'ext_management_system.id': PropTypes.number
       })
     )
-  }),
+  }).isRequired,
   envSummaryReportResult: PropTypes.shape({
     result_set: PropTypes.arrayOf(
       PropTypes.shape({
@@ -156,10 +156,10 @@ AnalyticsSummary.propTypes = {
         'ext_management_system.id': PropTypes.number
       })
     )
-  }),
-  calculateSummaryDataAction: PropTypes.func,
-  summaryData: SummaryAccordion.propTypes.summaryData,
-  onCollectInventoryClick: PropTypes.func
+  }).isRequired,
+  calculateSummaryDataAction: PropTypes.func.isRequired,
+  summaryData: SummaryAccordion.propTypes.summaryData.isRequired,
+  onCollectInventoryClick: PropTypes.func.isRequired
 };
 
 export default AnalyticsSummary;
