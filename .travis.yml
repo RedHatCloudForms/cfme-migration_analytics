@@ -6,7 +6,7 @@ matrix:
     node_js:
     - '8' # current stable
     cache: yarn
-    script: yarn test --runInBand
+    script: yarn test
   - name: "Ruby: 2.4.5"
     language: ruby
     rvm:
@@ -23,4 +23,3 @@ matrix:
     addons:
       postgresql: '10'
     install: bin/setup
-    
