@@ -7,19 +7,4 @@ matrix:
     - '8' # current stable
     cache: yarn
     script: yarn test
-  - name: "Ruby: 2.4.5"
-    language: ruby
-    rvm:
-    - 2.4.5
-    cache: bundler
-    addons:
-      postgresql: '10'
-    install: bin/setup
-  - name: "Ruby: 2.5.5"
-    language: ruby
-    rvm:
-    - 2.5.5
-    cache: bundler
-    addons:
-      postgresql: '10'
-    install: bin/setup
+# TODO: add Ruby checks here
