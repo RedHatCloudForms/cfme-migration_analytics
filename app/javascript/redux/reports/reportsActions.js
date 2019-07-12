@@ -1,18 +1,10 @@
 import URI from 'urijs';
 import API from '../../common/API';
 import { FETCH_REPORTS, REPORTS_URL, RUN_REPORT, FETCH_TASK, FETCH_RESULT } from './constants';
+import { fetchExpandedResourcesAction } from '../helpers';
 
-export const fetchReportsAction = filterValues => dispatch => {
-  const uri = new URI(REPORTS_URL);
-  const apiFilters = Object.keys(filterValues).map(key => `${key}='${filterValues[key]}'`);
-  uri.addSearch('filter[]', apiFilters);
-  uri.addSearch('expand', 'resources');
-  uri.addSearch('attributes', 'href,name,rpt_group');
-  return dispatch({
-    type: FETCH_REPORTS,
-    payload: API.get(uri.toString())
-  });
-};
+export const fetchReportsAction = filterValues =>
+  fetchExpandedResourcesAction(FETCH_REPORTS, REPORTS_URL, filterValues, ['href', 'name', 'rpt_group']);
 
 export const runReportAction = reportHref => dispatch =>
   dispatch({

@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Spinner, Button } from 'patternfly-react';
-import { VM_SUMMARY_REPORT_FILTERS, ENV_SUMMARY_REPORT_FILTERS, FINISHED, OK } from '../../constants';
+import {
+  VM_SUMMARY_REPORT_FILTERS,
+  ENV_SUMMARY_REPORT_FILTERS,
+  FINISHED,
+  OK,
+  VMWARE_PROVIDERS_FILTERS,
+  PROVIDER_REFRESH_ATTRIBUTES
+} from '../../constants';
 import SummaryAccordion, { summaryDataShape } from './components/SummaryAccordion';
 
 // TODO provider selection?
@@ -14,14 +21,19 @@ class AnalyticsSummary extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchReportsAction } = this.props;
+    const { fetchProvidersAction, fetchReportsAction } = this.props;
     // Kick off the chain of action calls in componentDidUpdate
+    fetchProvidersAction(VMWARE_PROVIDERS_FILTERS, PROVIDER_REFRESH_ATTRIBUTES);
     fetchReportsAction(VM_SUMMARY_REPORT_FILTERS);
     fetchReportsAction(ENV_SUMMARY_REPORT_FILTERS);
   }
 
   componentDidUpdate(prevProps) {
     const { vmSummaryReportResult, envSummaryReportResult, calculateSummaryDataAction } = this.props;
+
+    // TODO poll for providers until no providersAwaitingRefresh remain, and then proceed to the other handlers below
+    console.log('isFetchingProviders', this.props.isFetchingProviders);
+    console.log('providersAwaitingRefresh', this.props.providersAwaitingRefresh);
 
     this.handleUpdateForReport({
       prevReport: prevProps.vmSummaryReport,
@@ -123,6 +135,18 @@ const reportTaskShape = PropTypes.shape({
 });
 
 AnalyticsSummary.propTypes = {
+  fetchProvidersAction: PropTypes.func.isRequired,
+  isFetchingProviders: PropTypes.bool,
+  providersAwaitingRefresh: PropTypes.arrayOf(
+    PropTypes.shape({
+      href: PropTypes.string,
+      id: PropTypes.string,
+      type: PropTypes.string,
+      name: PropTypes.string,
+      last_refresh_error: PropTypes.string,
+      last_refresh_date: PropTypes.string
+    })
+  ),
   fetchReportsAction: PropTypes.func.isRequired,
   vmSummaryReport: reportShape,
   envSummaryReport: reportShape,
@@ -163,6 +187,8 @@ AnalyticsSummary.propTypes = {
 };
 
 AnalyticsSummary.defaultProps = {
+  isFetchingProviders: false,
+  providersAwaitingRefresh: null,
   vmSummaryReport: null,
   envSummaryReport: null,
   vmSummaryReportRun: null,

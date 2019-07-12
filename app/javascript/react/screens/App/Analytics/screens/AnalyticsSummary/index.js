@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 import AnalyticsSummary from './AnalyticsSummary';
+import { fetchProvidersAction } from '../../../../../../redux/providers/providersActions';
+import { selectProvidersAwaitingRefresh } from '../../../../../../redux/providers/providersSelectors';
 import {
   fetchReportsAction,
   runReportAction,
@@ -18,6 +20,7 @@ import { VM_SUMMARY_REPORT_FILTERS, ENV_SUMMARY_REPORT_FILTERS } from '../../con
 
 const mapStateToProps = ({
   migrationAnalytics: {
+    providers,
     reports,
     analytics: { summaryData }
   }
@@ -27,6 +30,8 @@ const mapStateToProps = ({
   const vmSummaryReportRun = selectRunByReport(reports, vmSummaryReport);
   const envSummaryReportRun = selectRunByReport(reports, envSummaryReport);
   return {
+    isFetchingProviders: providers.isFetchingProviders,
+    providersAwaitingRefresh: selectProvidersAwaitingRefresh(providers),
     vmSummaryReport,
     envSummaryReport,
     vmSummaryReportRun,
@@ -43,5 +48,12 @@ const mapStateToProps = ({
 
 export default connect(
   mapStateToProps,
-  { fetchReportsAction, runReportAction, fetchTaskAction, fetchResultAction, calculateSummaryDataAction }
+  {
+    fetchProvidersAction,
+    fetchReportsAction,
+    runReportAction,
+    fetchTaskAction,
+    fetchResultAction,
+    calculateSummaryDataAction
+  }
 )(AnalyticsSummary);
