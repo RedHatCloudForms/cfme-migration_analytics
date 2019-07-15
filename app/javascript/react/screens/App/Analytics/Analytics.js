@@ -60,10 +60,7 @@ class Analytics extends React.Component {
           {/* <BreadcrumbPageSwitcher activeHref="#/analytics" /> */}
           {/* TODO: figure out how to share the breadcrumb switcher with v2v */}
         </Toolbar>
-        <AnalyticsContainer currentScreen={currentScreen}>
-          {this.renderCurrentScreen()}
-          <h6 className="manifest-version">{__('Manifest version: x.y.z 2019-06-10') /* TODO make this real */}</h6>
-        </AnalyticsContainer>
+        <AnalyticsContainer currentScreen={currentScreen}>{this.renderCurrentScreen()}</AnalyticsContainer>
       </React.Fragment>
     );
   }

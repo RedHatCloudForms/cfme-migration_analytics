@@ -212,13 +212,13 @@ class AnalyticsSummary extends React.Component {
           iconName="error-circle-o"
           title={__('Failed to run summary report')}
           message={
-            <p>
+            <React.Fragment>
               {__('Task failed: ')}
               {taskWithError.name}
               <br />
               {__('Error message: ')}
               {taskWithError.message}
-            </p>
+            </React.Fragment>
           }
           buttonText={__('Start over')}
           onClick={this.startOver}
