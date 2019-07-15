@@ -1,5 +1,6 @@
-export const selectReportByFilterValues = ({ reports }, filterValues) =>
-  reports.find(report => Object.keys(filterValues).every(key => filterValues[key] === report[key]));
+import { findResource } from '../helpers';
+
+export const selectReportByFilterValues = ({ reports }, filterValues) => findResource(reports, filterValues);
 
 export const selectRunByReport = ({ reportRunsByHref }, report) => report && reportRunsByHref[report.href];
 

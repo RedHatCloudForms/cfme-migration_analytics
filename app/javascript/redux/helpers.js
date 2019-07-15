@@ -19,7 +19,8 @@ export const getHandlersForFetchResourcesActions = (actionType, isFetchingKey, e
         .set(errorKey, null)
         .set(isFetchingKey, false)
         .set(resourcesKey, action.payload.data.resources),
-    [`${actionType}_REJECTED`]: (state, action) => state.set(errorKey, action.payload).set(isFetchingKey, false)
+    [`${actionType}_REJECTED`]: (state, action) =>
+      state.set(errorKey, action.payload.data.error).set(isFetchingKey, false)
   }
 });
 
@@ -39,13 +40,22 @@ export const getHandlersForFetchActionsIndexedByHref = (actionType, fetchingHref
         .set(payloadsByHrefKey, { ...state[payloadsByHrefKey], [action.meta.href]: action.payload.data }),
     [`${actionType}_REJECTED`]: (state, action) =>
       state
-        .set(errorKey, action.payload)
+        .set(errorKey, action.payload.data.error)
         .set(fetchingHrefsKey, state[fetchingHrefsKey].filter(href => href !== action.meta.href))
   }
 });
 
 export const formatApiFilterValues = filterValues =>
   Object.keys(filterValues).map(key => `${key}='${filterValues[key]}'`);
+
+const resourceMatchesFilters = (resource, filterValues) =>
+  Object.keys(filterValues).every(key => filterValues[key] === resource[key]);
+
+export const filterResources = (resources, filterValues) =>
+  resources && resources.filter(resource => resourceMatchesFilters(resource, filterValues));
+
+export const findResource = (resources, filterValues) =>
+  resources && resources.find(resource => resourceMatchesFilters(resource, filterValues));
 
 export const fetchExpandedResourcesAction = (type, href, filterValues, attributes) => dispatch => {
   const uri = new URI(href);

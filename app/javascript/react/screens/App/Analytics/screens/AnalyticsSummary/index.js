@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
 import AnalyticsSummary from './AnalyticsSummary';
 import { fetchProvidersAction } from '../../../../../../redux/providers/providersActions';
-import { selectProvidersAwaitingRefresh } from '../../../../../../redux/providers/providersSelectors';
+import {
+  selectProvidersByFilterValues,
+  selectProvidersAwaitingRefresh,
+  selectProvidersWithRefreshErrors
+} from '../../../../../../redux/providers/providersSelectors';
 import {
   fetchReportsAction,
   runReportAction,
@@ -16,7 +20,8 @@ import {
   selectResultByRun
 } from '../../../../../../redux/reports/reportsSelectors';
 import { calculateSummaryDataAction } from '../../redux/analyticsActions';
-import { VM_SUMMARY_REPORT_FILTERS, ENV_SUMMARY_REPORT_FILTERS } from '../../constants';
+import { resetAllStateAction } from '../../../../../../redux/common/commonActions';
+import { VM_SUMMARY_REPORT_FILTERS, ENV_SUMMARY_REPORT_FILTERS, VMWARE_PROVIDERS_FILTERS } from '../../constants';
 
 const mapStateToProps = ({
   migrationAnalytics: {
@@ -31,7 +36,10 @@ const mapStateToProps = ({
   const envSummaryReportRun = selectRunByReport(reports, envSummaryReport);
   return {
     isFetchingProviders: providers.isFetchingProviders,
+    errorFetchingProviders: providers.errorFetchingProviders,
+    providers: selectProvidersByFilterValues(providers, VMWARE_PROVIDERS_FILTERS),
     providersAwaitingRefresh: selectProvidersAwaitingRefresh(providers),
+    providersWithRefreshErrors: selectProvidersWithRefreshErrors(providers),
     vmSummaryReport,
     envSummaryReport,
     vmSummaryReportRun,
@@ -54,6 +62,7 @@ export default connect(
     runReportAction,
     fetchTaskAction,
     fetchResultAction,
-    calculateSummaryDataAction
+    calculateSummaryDataAction,
+    resetAllStateAction
   }
 )(AnalyticsSummary);
