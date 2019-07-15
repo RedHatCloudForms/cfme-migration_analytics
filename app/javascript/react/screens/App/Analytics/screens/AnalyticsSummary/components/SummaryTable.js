@@ -41,7 +41,7 @@ SummaryTable.propTypes = {
     allocatedDiskSpace: PropTypes.number,
     allocatedMemory: PropTypes.number,
     numCpuCores: PropTypes.number
-  })
+  }).isRequired
 };
 
 export default SummaryTable;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Spinner, Button } from 'patternfly-react';
 import { VM_SUMMARY_REPORT_FILTERS, ENV_SUMMARY_REPORT_FILTERS, FINISHED, OK } from '../../constants';
-import SummaryAccordion from './components/SummaryAccordion';
+import SummaryAccordion, { summaryDataShape } from './components/SummaryAccordion';
 
 // TODO provider selection?
 // TODO next page?
@@ -123,18 +123,18 @@ const reportTaskShape = PropTypes.shape({
 });
 
 AnalyticsSummary.propTypes = {
-  fetchReportsAction: PropTypes.func,
+  fetchReportsAction: PropTypes.func.isRequired,
   vmSummaryReport: reportShape,
   envSummaryReport: reportShape,
-  runReportAction: PropTypes.func,
+  runReportAction: PropTypes.func.isRequired,
   vmSummaryReportRun: reportRunShape,
   envSummaryReportRun: reportRunShape,
-  fetchTaskAction: PropTypes.func,
+  fetchTaskAction: PropTypes.func.isRequired,
   isFetchingVmSummaryReportTask: PropTypes.bool,
   isFetchingEnvSummaryReportTask: PropTypes.bool,
   vmSummaryReportTask: reportTaskShape,
   envSummaryReportTask: reportTaskShape,
-  fetchResultAction: PropTypes.func,
+  fetchResultAction: PropTypes.func.isRequired,
   vmSummaryReportResult: PropTypes.shape({
     result_set: PropTypes.arrayOf(
       PropTypes.shape({
@@ -157,9 +157,23 @@ AnalyticsSummary.propTypes = {
       })
     )
   }),
-  calculateSummaryDataAction: PropTypes.func,
-  summaryData: SummaryAccordion.propTypes.summaryData,
-  onCollectInventoryClick: PropTypes.func
+  calculateSummaryDataAction: PropTypes.func.isRequired,
+  summaryData: summaryDataShape,
+  onCollectInventoryClick: PropTypes.func.isRequired
+};
+
+AnalyticsSummary.defaultProps = {
+  vmSummaryReport: null,
+  envSummaryReport: null,
+  vmSummaryReportRun: null,
+  envSummaryReportRun: null,
+  isFetchingVmSummaryReportTask: false,
+  isFetchingEnvSummaryReportTask: false,
+  vmSummaryReportTask: null,
+  envSummaryReportTask: null,
+  vmSummaryReportResult: null,
+  envSummaryReportResult: null,
+  summaryData: null
 };
 
 export default AnalyticsSummary;

@@ -3,25 +3,23 @@ export const functionLookupReducer = (initialState, actionHandlers) => (state = 
   return handler ? handler(state, action) : state;
 };
 
-export const getHandlersForFetchActionsIndexedByHref = (actionType, fetchingHrefsKey, errorKey, payloadsByHrefKey) => {
-  return {
-    initialState: {
-      [fetchingHrefsKey]: [],
-      [errorKey]: null,
-      [payloadsByHrefKey]: {}
-    },
-    actionHandlers: {
-      [`${actionType}_PENDING`]: (state, action) =>
-        state.set(errorKey, null).set(fetchingHrefsKey, [...state[fetchingHrefsKey], action.meta.href]),
-      [`${actionType}_FULFILLED`]: (state, action) =>
-        state
-          .set(errorKey, null)
-          .set(fetchingHrefsKey, state[fetchingHrefsKey].filter(href => href !== action.meta.href))
-          .set(payloadsByHrefKey, { ...state[payloadsByHrefKey], [action.meta.href]: action.payload.data }),
-      [`${actionType}_REJECTED`]: (state, action) =>
-        state
-          .set(errorKey, action.payload)
-          .set(fetchingHrefsKey, state[fetchingHrefsKey].filter(href => href !== action.meta.href))
-    }
-  };
-};
+export const getHandlersForFetchActionsIndexedByHref = (actionType, fetchingHrefsKey, errorKey, payloadsByHrefKey) => ({
+  initialState: {
+    [fetchingHrefsKey]: [],
+    [errorKey]: null,
+    [payloadsByHrefKey]: {}
+  },
+  actionHandlers: {
+    [`${actionType}_PENDING`]: (state, action) =>
+      state.set(errorKey, null).set(fetchingHrefsKey, [...state[fetchingHrefsKey], action.meta.href]),
+    [`${actionType}_FULFILLED`]: (state, action) =>
+      state
+        .set(errorKey, null)
+        .set(fetchingHrefsKey, state[fetchingHrefsKey].filter(href => href !== action.meta.href))
+        .set(payloadsByHrefKey, { ...state[payloadsByHrefKey], [action.meta.href]: action.payload.data }),
+    [`${actionType}_REJECTED`]: (state, action) =>
+      state
+        .set(errorKey, action.payload)
+        .set(fetchingHrefsKey, state[fetchingHrefsKey].filter(href => href !== action.meta.href))
+  }
+});

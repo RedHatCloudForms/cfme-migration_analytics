@@ -10,7 +10,7 @@ const AnalyticsProviderSelection = ({ summaryData, onContinueClick, onCancelClic
       multiple
       clearButton
       options={summaryData.providers}
-      labelKey={'name'}
+      labelKey="name"
       placeholder={__('Select...')}
       emptyLabel={__('No matches found.')}
       highlightOnlyResult
@@ -39,9 +39,9 @@ AnalyticsProviderSelection.propTypes = {
         name: PropTypes.string
       })
     )
-  }),
-  onContinueClick: PropTypes.func,
-  onCancelClick: PropTypes.func
+  }).isRequired,
+  onContinueClick: PropTypes.func.isRequired,
+  onCancelClick: PropTypes.func.isRequired
 };
 
 export default AnalyticsProviderSelection;

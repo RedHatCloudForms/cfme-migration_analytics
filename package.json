@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "test": "yarn run lint",
     "lint": "eslint app/javascript",
     "lint:fix": "eslint --fix app/javascript",
     "prettier": "prettier --write 'app/javascript/**/*.js' '*.{js,json}'",
