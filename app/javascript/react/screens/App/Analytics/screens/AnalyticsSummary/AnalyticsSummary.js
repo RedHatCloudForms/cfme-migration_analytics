@@ -14,6 +14,8 @@ import SummaryAccordion, { summaryDataShape } from './components/SummaryAccordio
 import { someProvidersExist, noRefreshErrorsExist, someProvidersAwaitingRefresh, providersRefreshed } from './helpers';
 import LargeInlineSpinner from './components/LargeInlineSpinner';
 import EmptyStateWithButton from './components/EmptyStateWithButton';
+import ProviderRefreshErrors from './components/ProviderRefreshErrors';
+import ReportTaskError from './components/ReportTaskError';
 
 class AnalyticsSummary extends React.Component {
   constructor(props) {
@@ -146,6 +148,7 @@ class AnalyticsSummary extends React.Component {
       errorFetchingProviders,
       providers,
       providersWithRefreshErrors,
+      errorFetchingReports,
       vmSummaryReportTask,
       envSummaryReportTask,
       providersAwaitingRefresh,
@@ -178,27 +181,19 @@ class AnalyticsSummary extends React.Component {
 
     if (providersWithRefreshErrors && providersWithRefreshErrors.length > 0) {
       return (
+        <ProviderRefreshErrors
+          providersWithRefreshErrors={providersWithRefreshErrors}
+          onStartOverClick={this.startOver}
+        />
+      );
+    }
+
+    if (errorFetchingReports) {
+      return (
         <EmptyStateWithButton
           iconName="error-circle-o"
-          title={__('Failed to refresh providers')}
-          message={
-            <React.Fragment>
-              {__('Failed to refresh relationships and power states for the following providers:')}
-              {providersWithRefreshErrors.map(provider => (
-                <React.Fragment key={provider.id}>
-                  <br />
-                  <br />
-                  {__('Name: ')}
-                  {provider.name}
-                  &nbsp;&nbsp;
-                  <a href={`/ems_infra/${provider.id}`}>{__('View provider')}</a>
-                  <br />
-                  {__('Error: ')}
-                  {provider.last_refresh_error}
-                </React.Fragment>
-              ))}
-            </React.Fragment>
-          }
+          title={__('Failed to fetch reports')}
+          message={errorFetchingReports.message}
           buttonText={__('Start over')}
           onClick={this.startOver}
         />
@@ -207,23 +202,7 @@ class AnalyticsSummary extends React.Component {
 
     const taskWithError = [vmSummaryReportTask, envSummaryReportTask].find(task => task && task.status === ERROR);
     if (taskWithError) {
-      return (
-        <EmptyStateWithButton
-          iconName="error-circle-o"
-          title={__('Failed to run summary report')}
-          message={
-            <React.Fragment>
-              {__('Task failed: ')}
-              {taskWithError.name}
-              <br />
-              {__('Error message: ')}
-              {taskWithError.message}
-            </React.Fragment>
-          }
-          buttonText={__('Start over')}
-          onClick={this.startOver}
-        />
-      );
+      return <ReportTaskError taskWithError={taskWithError} onStartOverClick={this.startOver} />;
     }
 
     if (isFetchingProviders || (providersAwaitingRefresh && providersAwaitingRefresh.length > 0)) {
@@ -243,6 +222,9 @@ class AnalyticsSummary extends React.Component {
   }
 }
 
+const errorShape = PropTypes.shape({
+  message: PropTypes.string
+});
 const providerShape = PropTypes.shape({
   href: PropTypes.string,
   id: PropTypes.string,
@@ -270,13 +252,12 @@ const reportTaskShape = PropTypes.shape({
 AnalyticsSummary.propTypes = {
   fetchProvidersAction: PropTypes.func.isRequired,
   isFetchingProviders: PropTypes.bool,
-  errorFetchingProviders: PropTypes.shape({
-    message: PropTypes.string
-  }),
+  errorFetchingProviders: errorShape,
   providers: PropTypes.arrayOf(providerShape),
   providersAwaitingRefresh: PropTypes.arrayOf(providerShape),
   providersWithRefreshErrors: PropTypes.arrayOf(providerShape),
   fetchReportsAction: PropTypes.func.isRequired,
+  errorFetchingReports: errorShape,
   vmSummaryReport: reportShape,
   envSummaryReport: reportShape,
   runReportAction: PropTypes.func.isRequired,
@@ -323,6 +304,7 @@ AnalyticsSummary.defaultProps = {
   providers: null,
   providersAwaitingRefresh: null,
   providersWithRefreshErrors: null,
+  errorFetchingReports: null,
   vmSummaryReport: null,
   envSummaryReport: null,
   vmSummaryReportRun: null,

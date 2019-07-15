@@ -40,6 +40,7 @@ const mapStateToProps = ({
     providers: selectProvidersByFilterValues(providers, VMWARE_PROVIDERS_FILTERS),
     providersAwaitingRefresh: selectProvidersAwaitingRefresh(providers),
     providersWithRefreshErrors: selectProvidersWithRefreshErrors(providers),
+    errorFetchingReports: reports.errorFetchingReports,
     vmSummaryReport,
     envSummaryReport,
     vmSummaryReportRun,
