@@ -20,9 +20,13 @@ const AnalyticsProviderSelection = ({ summaryData, onContinueClick, onCancelClic
     <p>
       <strong>{__('Note:')}</strong>
       &nbsp;
-      {__('Smart State Analysis is not configured. Inventory results will not include operating system introspection.')}
+      {__('If you need to collect workload introspection data, you must configure and run Smart State Analysis on these providers before you continue.') /* prettier-ignore */}
       <br />
-      {__('To configure Smart State Analysis ..... ')}
+      {__('Workload introspection data is required for the Workload Migration Inventory Report and for the Workload Migration Summary Report.') /* prettier-ignore */}
+      <br />
+      {__('See product documentation for instructions to configure and run Smart State Analysis.')}
+      &nbsp;
+      <a href="/miq_task">{__('Progress of Smart State Analysis tasks can be monitored on the Tasks page.')}</a>
     </p>
     <div className="footer-buttons">
       <Button onClick={onContinueClick}>{__('Continue')}</Button>
