@@ -1,15 +1,17 @@
 import { connect } from 'react-redux';
 import AnalyticsProviderSelection from './AnalyticsProviderSelection';
+import { selectProvidersAction } from '../../redux/analyticsActions';
 
 const mapStateToProps = ({
   migrationAnalytics: {
-    analytics: { summaryData }
+    analytics: { summaryData, selectedProviders }
   }
 }) => ({
-  summaryData
+  summaryData,
+  selectedProviders
 });
 
 export default connect(
   mapStateToProps,
-  {}
+  { selectProvidersAction }
 )(AnalyticsProviderSelection);
