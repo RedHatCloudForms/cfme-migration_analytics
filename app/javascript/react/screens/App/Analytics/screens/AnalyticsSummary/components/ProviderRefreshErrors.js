@@ -13,12 +13,10 @@ const ProviderRefreshErrors = ({ providersWithRefreshErrors, onStartOverClick })
           <React.Fragment key={provider.id}>
             <br />
             <br />
-            {__('Name: ')}
-            {provider.name}
+            <strong>{provider.name}</strong>
             &nbsp;&nbsp;
             <a href={`/ems_infra/${provider.id}`}>{__('View provider')}</a>
             <br />
-            {__('Error: ')}
             {provider.last_refresh_error}
           </React.Fragment>
         ))}

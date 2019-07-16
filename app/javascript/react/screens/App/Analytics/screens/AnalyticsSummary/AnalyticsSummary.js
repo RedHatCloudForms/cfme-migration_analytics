@@ -207,8 +207,12 @@ class AnalyticsSummary extends React.Component {
       return <ReportTaskError taskWithError={taskWithError} onStartOverClick={this.startOver} />;
     }
 
-    if (isFetchingProviders || (providersAwaitingRefresh && providersAwaitingRefresh.length > 0)) {
-      return <LargeInlineSpinner message={__('Checking provider refresh status')} />;
+    if (providersAwaitingRefresh && providersAwaitingRefresh.length > 0) {
+      return <LargeInlineSpinner message={__('Waiting for provider refresh')} />;
+    }
+
+    if (isFetchingProviders) {
+      return <LargeInlineSpinner message={__('Checking providers')} />;
     }
 
     if (!summaryData) {
