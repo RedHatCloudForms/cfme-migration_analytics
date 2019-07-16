@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EmptyStateWithButton from './EmptyStateWithButton';
 
-const ProviderRefreshErrors = ({ providersWithRefreshErrors, onStartOverClick }) => (
+const ProviderRefreshErrors = ({ providersWithRefreshErrors, onRetryClick }) => (
   <EmptyStateWithButton
     iconName="error-circle-o"
     title={__('Failed to refresh providers')}
@@ -22,8 +22,8 @@ const ProviderRefreshErrors = ({ providersWithRefreshErrors, onStartOverClick })
         ))}
       </React.Fragment>
     }
-    buttonText={__('Start over')}
-    onClick={onStartOverClick}
+    buttonText={__('Try again')}
+    onClick={onRetryClick}
   />
 );
 
@@ -35,7 +35,7 @@ ProviderRefreshErrors.propTypes = {
       last_refresh_error: PropTypes.string
     })
   ).isRequired,
-  onStartOverClick: PropTypes.func.isRequired
+  onRetryClick: PropTypes.func.isRequired
 };
 
 export default ProviderRefreshErrors;

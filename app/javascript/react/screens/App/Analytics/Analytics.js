@@ -28,7 +28,6 @@ AnalyticsContainer.propTypes = {
 class Analytics extends React.Component {
   state = { currentScreen: SCREENS.EMPTY_STATE };
 
-  goToEmptyState = () => this.setState({ currentScreen: SCREENS.EMPTY_STATE });
   goToSummary = () => this.setState({ currentScreen: SCREENS.SUMMARY });
   goToProviderSelection = () => this.setState({ currentScreen: SCREENS.PROVIDER_SELECTION });
   goToDataCollection = () => this.setState({ currentScreen: SCREENS.DATA_COLLECTION });
@@ -36,9 +35,7 @@ class Analytics extends React.Component {
   renderCurrentScreen = () => {
     const screens = {
       [SCREENS.EMPTY_STATE]: <AnalyticsEmptyState onGetStartedClick={this.goToSummary} />,
-      [SCREENS.SUMMARY]: (
-        <AnalyticsSummary onCollectInventoryClick={this.goToProviderSelection} onStartOverClick={this.goToEmptyState} />
-      ),
+      [SCREENS.SUMMARY]: <AnalyticsSummary onCollectInventoryClick={this.goToProviderSelection} />,
       [SCREENS.PROVIDER_SELECTION]: (
         <AnalyticsProviderSelection onContinueClick={this.goToDataCollection} onCancelClick={this.goToSummary} />
       ),

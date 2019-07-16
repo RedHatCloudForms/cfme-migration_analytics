@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EmptyStateWithButton from './EmptyStateWithButton';
 
-const ReportTaskError = ({ taskWithError, onStartOverClick }) => (
+const ReportTaskError = ({ taskWithError, onRetryClick }) => (
   <EmptyStateWithButton
     iconName="error-circle-o"
     title={__('Failed to run summary report')}
@@ -15,8 +15,8 @@ const ReportTaskError = ({ taskWithError, onStartOverClick }) => (
         {taskWithError.message}
       </React.Fragment>
     }
-    buttonText={__('Start over')}
-    onClick={onStartOverClick}
+    buttonText={__('Try again')}
+    onClick={onRetryClick}
   />
 );
 
@@ -25,7 +25,7 @@ ReportTaskError.propTypes = {
     name: PropTypes.string,
     message: PropTypes.string
   }).isRequired,
-  onStartOverClick: PropTypes.func.isRequired
+  onRetryClick: PropTypes.func.isRequired
 };
 
 export default ReportTaskError;

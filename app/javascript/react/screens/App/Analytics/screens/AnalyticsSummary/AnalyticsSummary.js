@@ -25,12 +25,10 @@ class AnalyticsSummary extends React.Component {
   }
 
   componentDidMount() {
-    const { providers, vmSummaryReport, envSummaryReport, fetchReportsAction } = this.props;
+    const { providers, vmSummaryReport, envSummaryReport } = this.props;
     if (!providers || !vmSummaryReport || !envSummaryReport) {
       // Kick off the chain of action calls in componentDidUpdate
-      this.fetchProviders();
-      fetchReportsAction(VM_SUMMARY_REPORT_FILTERS);
-      fetchReportsAction(ENV_SUMMARY_REPORT_FILTERS);
+      this.doInitialFetch();
     }
   }
 
@@ -77,6 +75,18 @@ class AnalyticsSummary extends React.Component {
   }
 
   fetchProviders = () => this.props.fetchProvidersAction(VMWARE_PROVIDERS_FILTERS, PROVIDER_REFRESH_ATTRIBUTES);
+
+  doInitialFetch = () => {
+    const { fetchReportsAction } = this.props;
+    this.fetchProviders();
+    fetchReportsAction(VM_SUMMARY_REPORT_FILTERS);
+    fetchReportsAction(ENV_SUMMARY_REPORT_FILTERS);
+  };
+
+  retry = () => {
+    this.props.resetAllStateAction();
+    this.doInitialFetch();
+  };
 
   handleUpdateForProviders = prevProps => {
     const { isFetchingProviders } = this.props;
@@ -139,11 +149,6 @@ class AnalyticsSummary extends React.Component {
     }
   };
 
-  startOver = () => {
-    this.props.resetAllStateAction();
-    this.props.onStartOverClick();
-  };
-
   render() {
     const {
       isFetchingProviders,
@@ -183,10 +188,7 @@ class AnalyticsSummary extends React.Component {
 
     if (providersWithRefreshErrors && providersWithRefreshErrors.length > 0) {
       return (
-        <ProviderRefreshErrors
-          providersWithRefreshErrors={providersWithRefreshErrors}
-          onStartOverClick={this.startOver}
-        />
+        <ProviderRefreshErrors providersWithRefreshErrors={providersWithRefreshErrors} onRetryClick={this.retry} />
       );
     }
 
@@ -196,15 +198,15 @@ class AnalyticsSummary extends React.Component {
           iconName="error-circle-o"
           title={__('Failed to fetch reports')}
           message={errorFetchingReports.message}
-          buttonText={__('Start over')}
-          onClick={this.startOver}
+          buttonText={__('Try again')}
+          onClick={this.retry}
         />
       );
     }
 
     const taskWithError = [vmSummaryReportTask, envSummaryReportTask].find(task => task && task.status === ERROR);
     if (taskWithError) {
-      return <ReportTaskError taskWithError={taskWithError} onStartOverClick={this.startOver} />;
+      return <ReportTaskError taskWithError={taskWithError} onRetryClick={this.retry} />;
     }
 
     if (providersAwaitingRefresh && providersAwaitingRefresh.length > 0) {
@@ -300,8 +302,7 @@ AnalyticsSummary.propTypes = {
   calculateSummaryDataAction: PropTypes.func.isRequired,
   summaryData: summaryDataShape,
   onCollectInventoryClick: PropTypes.func.isRequired,
-  resetAllStateAction: PropTypes.func.isRequired,
-  onStartOverClick: PropTypes.func.isRequired
+  resetAllStateAction: PropTypes.func.isRequired
 };
 
 AnalyticsSummary.defaultProps = {
