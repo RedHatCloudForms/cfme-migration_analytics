@@ -55,8 +55,33 @@
     margin-right: 10px;
   }
 
-  .manifest-version {
-    text-align: right;
-    padding: 35px;
+  .data-collection-status {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+
+    > div {
+      display: inline-block;
+      margin: 0 8px;
+    }
+
+    .checkmark {
+      font-size: 48px;
+      margin-top: 10px;
+      color: $color-pf-green;
+    }
+
+    h3.beside-spinner {
+      margin: 8px 0 30px 0;
+    }
+
+    .buttons {
+      margin-top: 20px;
+
+      button {
+        display: block;
+        margin: 15px 0;
+      }
+    }
   }
 }

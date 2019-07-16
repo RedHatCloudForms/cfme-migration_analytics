@@ -25,11 +25,13 @@ class AnalyticsSummary extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchReportsAction } = this.props;
-    // Kick off the chain of action calls in componentDidUpdate
-    this.fetchProviders();
-    fetchReportsAction(VM_SUMMARY_REPORT_FILTERS);
-    fetchReportsAction(ENV_SUMMARY_REPORT_FILTERS);
+    const { providers, vmSummaryReport, envSummaryReport, fetchReportsAction } = this.props;
+    if (!providers || !vmSummaryReport || !envSummaryReport) {
+      // Kick off the chain of action calls in componentDidUpdate
+      this.fetchProviders();
+      fetchReportsAction(VM_SUMMARY_REPORT_FILTERS);
+      fetchReportsAction(ENV_SUMMARY_REPORT_FILTERS);
+    }
   }
 
   componentDidUpdate(prevProps) {
