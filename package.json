@@ -1,13 +1,17 @@
 {
+  "name": "cfme-migration_analytics",
+  "version": "0.0.0",
   "scripts": {
-    "test": "yarn run lint",
-    "lint": "eslint app/javascript",
-    "lint:fix": "eslint --fix app/javascript",
+    "test": "yarn run lint && jest",
+    "test:watch": "jest --watchAll",
+    "test:current": "jest --watch",
     "prettier": "prettier --write 'app/javascript/**/*.js' '*.{js,json}'",
-    "build": "yarn run prettier && yarn run lint"
+    "build": "yarn run prettier && yarn run lint",
+    "stylelint": "stylelint 'app/**/*.scss'",
+    "lint": "eslint app/javascript",
+    "lint:fix": "eslint --fix app/javascript"
   },
   "dependencies": {
-    "babel-preset-react": "^6.24.1",
     "core-js": "^3.1.4",
     "filesize": "^4.1.2",
     "patternfly-react": "^2.36.2",
@@ -23,9 +27,40 @@
     "urijs": "^1.19.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.3.5",
     "eslint": "^6.0.1",
     "eslint-plugin-patternfly-react": "^0.2.3",
-    "prettier": "^1.18.2"
+    "jest": "^24.8.0",
+    "jest-cli": "^24.8.0",
+    "prettier": "^1.18.2",
+    "sprintf-js": "^1.1.2",
+    "stylelint": "^10.1.0",
+    "stylelint-config-standard": "^18.3.0"
+  },
+  "jest": {
+    "setupFiles": [
+      "raf/polyfill",
+      "./.jest-setup.js",
+      "./localStorageMock.js"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(png|gif|css|scss)$": "identity-obj-proxy"
+    },
+    "globals": {
+      "API": {}
+    },
+    "testURL": "http://localhost",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "prettier": {
     "singleQuote": true,
