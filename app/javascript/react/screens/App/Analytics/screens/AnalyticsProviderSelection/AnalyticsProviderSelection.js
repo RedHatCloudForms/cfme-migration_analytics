@@ -61,7 +61,7 @@ const AnalyticsProviderSelection = ({
             <p>
               {__('See product documentation for instructions to configure and run SmartState Analysis.')}
               <br />
-              <a href="/miq_task">{__('Progress of Smart State Analysis tasks can be monitored on the Tasks page.')}</a>
+              <a href="/miq_task">{__('Progress of SmartState Analysis tasks can be monitored on the Tasks page.')}</a>
             </p>
           </div>
         )}

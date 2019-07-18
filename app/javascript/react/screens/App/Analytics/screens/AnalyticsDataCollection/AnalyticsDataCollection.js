@@ -6,6 +6,7 @@ class AnalyticsDataCollection extends React.Component {
   state = { mockLoaded: false };
 
   componentDidMount() {
+    // TODO: replace this placeholder with a real call to the data collector
     setTimeout(() => this.setState({ mockLoaded: true }), 3000);
   }
 
