@@ -67,3 +67,5 @@ export const fetchExpandedResourcesAction = (type, href, filterValues, attribute
     payload: API.get(uri.toString())
   });
 };
+
+export const simpleActionWithProperties = (type, properties) => dispatch => dispatch({ type, ...properties });

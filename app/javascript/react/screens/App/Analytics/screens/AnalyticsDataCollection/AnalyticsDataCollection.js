@@ -15,7 +15,7 @@ class AnalyticsDataCollection extends React.Component {
 
     if (!mockLoaded) {
       return (
-        <div className="data-collection-status">
+        <div className="data-collection-status icon-with-content">
           <Spinner loading size="lg" inline />
           <div>
             <h3 className="beside-spinner">{__('Collecting inventory data')}</h3>
@@ -26,7 +26,7 @@ class AnalyticsDataCollection extends React.Component {
     }
 
     return (
-      <div className="data-collection-status">
+      <div className="data-collection-status icon-with-content">
         <Icon className="checkmark" type="fa" name="check" />
         <div>
           <h3>{__('Inventory collection complete')}</h3>
