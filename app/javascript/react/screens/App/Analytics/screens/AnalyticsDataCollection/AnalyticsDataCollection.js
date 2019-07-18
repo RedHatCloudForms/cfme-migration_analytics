@@ -10,7 +10,7 @@ class AnalyticsDataCollection extends React.Component {
   }
 
   render() {
-    const { onCancelClick } = this.props;
+    const { onCancelClick, onReturnClick } = this.props;
     const { mockLoaded } = this.state;
 
     if (!mockLoaded) {
@@ -41,7 +41,7 @@ class AnalyticsDataCollection extends React.Component {
             >
               {__('Download Inventory File')}
             </Button>
-            <Button onClick={onCancelClick}>{__('Return to Summary')}</Button>
+            <Button onClick={onReturnClick}>{__('Return to Summary')}</Button>
           </div>
         </div>
       </div>
@@ -50,7 +50,8 @@ class AnalyticsDataCollection extends React.Component {
 }
 
 AnalyticsDataCollection.propTypes = {
-  onCancelClick: PropTypes.func.isRequired
+  onCancelClick: PropTypes.func.isRequired,
+  onReturnClick: PropTypes.func.isRequired
 };
 
 export default AnalyticsDataCollection;
