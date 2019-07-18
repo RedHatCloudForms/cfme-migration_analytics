@@ -224,7 +224,9 @@ class AnalyticsSummary extends React.Component {
     return (
       <React.Fragment>
         <SummaryAccordion summaryData={summaryData} />
-        <Button onClick={onCollectInventoryClick}>{__('Collect Inventory Data')}</Button>
+        <Button bsStyle="primary" onClick={onCollectInventoryClick}>
+          {__('Collect Inventory Data')}
+        </Button>
       </React.Fragment>
     );
   }

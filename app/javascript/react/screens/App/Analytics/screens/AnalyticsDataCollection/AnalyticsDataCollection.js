@@ -37,6 +37,7 @@ class AnalyticsDataCollection extends React.Component {
           </p>
           <div className="buttons">
             <Button
+              bsStyle="primary"
               onClick={() => alert('This is a placeholder. The data collection feature is still in development.')}
             >
               {__('Download Inventory File')}

@@ -37,7 +37,7 @@ const AnalyticsProviderSelection = ({
       <a href="/miq_task">{__('Progress of Smart State Analysis tasks can be monitored on the Tasks page.')}</a>
     </p>
     <div className="footer-buttons">
-      <Button onClick={onContinueClick} disabled={selectedProviders.length === 0}>
+      <Button bsStyle="primary" onClick={onContinueClick} disabled={selectedProviders.length === 0}>
         {__('Continue')}
       </Button>
       <Button onClick={onCancelClick}>{__('Cancel')}</Button>
