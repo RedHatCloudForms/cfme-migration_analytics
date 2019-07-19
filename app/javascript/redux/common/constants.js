@@ -1,0 +1,1 @@
+export const RESET_ALL_STATE = 'MA_RESET_ALL_STATE';

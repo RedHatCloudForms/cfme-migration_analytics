@@ -2,6 +2,7 @@ import Immutable from 'seamless-immutable';
 import { functionLookupReducer, getHandlersForFetchActionsIndexedByHref } from '../helpers';
 import { FETCH_REPORTS, RUN_REPORT, FETCH_TASK, FETCH_RESULT } from './constants';
 import { concatPreservingUniqueIds } from './helpers';
+import { RESET_ALL_STATE } from '../common/constants';
 
 const runReport = getHandlersForFetchActionsIndexedByHref(
   RUN_REPORT,
@@ -40,10 +41,13 @@ const actionHandlers = {
       .set('numReportFetchesPending', state.numReportFetchesPending - 1)
       .set('reports', concatPreservingUniqueIds(state.reports, action.payload.data.resources)),
   [`${FETCH_REPORTS}_REJECTED`]: (state, action) =>
-    state.set('numReportFetchesPending', state.numReportFetchesPending - 1).set('errorFetchingReports', action.payload),
+    state
+      .set('numReportFetchesPending', state.numReportFetchesPending - 1)
+      .set('errorFetchingReports', action.payload.data.error),
   ...runReport.actionHandlers,
   ...fetchTask.actionHandlers,
-  ...fetchResult.actionHandlers
+  ...fetchResult.actionHandlers,
+  [RESET_ALL_STATE]: () => initialState
 };
 
 export default functionLookupReducer(initialState, actionHandlers);

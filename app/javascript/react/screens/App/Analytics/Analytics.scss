@@ -55,8 +55,49 @@
     margin-right: 10px;
   }
 
-  .manifest-version {
-    text-align: right;
-    padding: 35px;
+  .detailed-data-selection {
+    margin-top: 15px;
+  }
+
+  .icon-with-content {
+    display: flex;
+
+    &.data-collection-status {
+      justify-content: center;
+      padding: 50px;
+    }
+
+    &.smart-state-info {
+      padding-bottom: 10px;
+    }
+
+    > .pficon.p-aligned {
+      margin-top: 3px;
+    }
+
+    > div,
+    > p {
+      display: inline-block;
+      margin: 0 8px;
+    }
+
+    .checkmark {
+      font-size: 48px;
+      margin-top: 10px;
+      color: $color-pf-green;
+    }
+
+    h3.beside-spinner {
+      margin: 8px 0 30px 0;
+    }
+
+    .buttons {
+      margin-top: 20px;
+
+      button {
+        display: block;
+        margin: 15px 0;
+      }
+    }
   }
 }

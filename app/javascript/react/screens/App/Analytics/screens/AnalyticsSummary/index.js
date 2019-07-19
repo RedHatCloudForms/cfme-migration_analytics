@@ -1,5 +1,11 @@
 import { connect } from 'react-redux';
 import AnalyticsSummary from './AnalyticsSummary';
+import { fetchProvidersAction } from '../../../../../../redux/providers/providersActions';
+import {
+  selectProvidersByFilterValues,
+  selectProvidersAwaitingRefresh,
+  selectProvidersWithRefreshErrors
+} from '../../../../../../redux/providers/providersSelectors';
 import {
   fetchReportsAction,
   runReportAction,
@@ -14,10 +20,12 @@ import {
   selectResultByRun
 } from '../../../../../../redux/reports/reportsSelectors';
 import { calculateSummaryDataAction } from '../../redux/analyticsActions';
-import { VM_SUMMARY_REPORT_FILTERS, ENV_SUMMARY_REPORT_FILTERS } from '../../constants';
+import { resetAllStateAction } from '../../../../../../redux/common/commonActions';
+import { VM_SUMMARY_REPORT_FILTERS, ENV_SUMMARY_REPORT_FILTERS, VMWARE_PROVIDERS_FILTERS } from '../../constants';
 
 const mapStateToProps = ({
   migrationAnalytics: {
+    providers,
     reports,
     analytics: { summaryData }
   }
@@ -27,6 +35,12 @@ const mapStateToProps = ({
   const vmSummaryReportRun = selectRunByReport(reports, vmSummaryReport);
   const envSummaryReportRun = selectRunByReport(reports, envSummaryReport);
   return {
+    isFetchingProviders: providers.isFetchingProviders,
+    errorFetchingProviders: providers.errorFetchingProviders,
+    providers: selectProvidersByFilterValues(providers, VMWARE_PROVIDERS_FILTERS),
+    providersAwaitingRefresh: selectProvidersAwaitingRefresh(providers),
+    providersWithRefreshErrors: selectProvidersWithRefreshErrors(providers),
+    errorFetchingReports: reports.errorFetchingReports,
     vmSummaryReport,
     envSummaryReport,
     vmSummaryReportRun,
@@ -43,5 +57,13 @@ const mapStateToProps = ({
 
 export default connect(
   mapStateToProps,
-  { fetchReportsAction, runReportAction, fetchTaskAction, fetchResultAction, calculateSummaryDataAction }
+  {
+    fetchProvidersAction,
+    fetchReportsAction,
+    runReportAction,
+    fetchTaskAction,
+    fetchResultAction,
+    calculateSummaryDataAction,
+    resetAllStateAction
+  }
 )(AnalyticsSummary);
