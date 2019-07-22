@@ -1,3 +1,9 @@
-// TODO add unit tests for Toolbar.js
+import React from 'react';
+import { shallow } from 'enzyme';
+import Toolbar from '../Toolbar';
 
-it('works', () => expect(true).toBe(true));
+describe('Toolbar component', () => {
+  test('renders correctly', () => {
+    expect(shallow(<Toolbar>Children Here</Toolbar>)).toMatchSnapshot();
+  });
+});

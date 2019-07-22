@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { EmptyState, Button } from 'patternfly-react';
-import ProcessImprovementSvg from '../components/process-improvement.svg';
+import ProcessImprovementSvg from './components/process-improvement.svg';
 
 const AnalyticsEmptyState = ({ onGetStartedClick }) => (
   <EmptyState className="full-page-empty">
