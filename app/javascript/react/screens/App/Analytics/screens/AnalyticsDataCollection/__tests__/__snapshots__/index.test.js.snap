@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Data collection screen should mount with mapStateToProps reduced 1`] = `
+Object {
+  "onCancelClick": [Function],
+  "onReturnClick": [Function],
+}
+`;

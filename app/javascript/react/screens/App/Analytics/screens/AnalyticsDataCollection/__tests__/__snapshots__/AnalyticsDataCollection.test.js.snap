@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Data collection screen renders a success message after payload is loaded 1`] = `
+<div
+  className="data-collection-status icon-with-content"
+>
+  <Icon
+    className="checkmark"
+    name="check"
+    type="fa"
+  />
+  <div>
+    <h3>
+      Inventory collection complete
+    </h3>
+    <p>
+      0 VMs examined
+      <br />
+      Inventory data saved as: placeholder/path/filename.json
+    </p>
+    <div
+      className="buttons"
+    >
+      <Button
+        active={false}
+        block={false}
+        bsClass="btn"
+        bsStyle="primary"
+        disabled={false}
+        onClick={[Function]}
+      >
+        Download Inventory File
+      </Button>
+      <Button
+        active={false}
+        block={false}
+        bsClass="btn"
+        bsStyle="default"
+        disabled={false}
+        onClick={[MockFunction]}
+      >
+        Return to Summary
+      </Button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Data collection screen renders with a spinner initially 1`] = `
+<div
+  className="data-collection-status icon-with-content"
+>
+  <Spinner
+    className=""
+    inline={true}
+    inverse={false}
+    loading={true}
+    size="lg"
+  />
+  <div>
+    <h3
+      className="beside-spinner"
+    >
+      Collecting inventory data
+    </h3>
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsStyle="default"
+      disabled={false}
+      onClick={[MockFunction]}
+    >
+      Cancel
+    </Button>
+  </div>
+</div>
+`;

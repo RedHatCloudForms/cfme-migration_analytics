@@ -5,7 +5,7 @@ import { applyMiddleware, createStore } from 'redux';
 
 import createReducers from './createReducers';
 
-let middleware = [thunkMiddleware, promiseMiddleware()];
+let middleware = [thunkMiddleware, promiseMiddleware];
 
 if (process.env.NODE_ENV !== 'production' && !global.__testing__) {
   middleware = [...middleware, createLogger()];
