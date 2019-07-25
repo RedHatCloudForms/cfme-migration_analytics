@@ -4,7 +4,7 @@ module Cfme
       isolate_namespace Cfme::MigrationAnalytics
 
       def self.vmdb_plugin?
-        true
+        false # TODO: this should be changed back to true when we re-enable the menu entry below
       end
 
       def self.plugin_name
