@@ -17,3 +17,9 @@ export const mountWithTestStore = (reducers, initialState, children) => {
   const store = generateStore({ migrationAnalytics: combineReducers(reducers) }, { migrationAnalytics: initialState });
   return mount(<Provider store={store}>{children}</Provider>);
 };
+
+export const mockDispatch = actionCreator => {
+  const dispatch = jest.fn();
+  actionCreator(dispatch);
+  return dispatch.mock.calls[0][0];
+};
