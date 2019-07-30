@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Empty state screen renders correctly 1`] = `
-<AnalyticsEmptyState>
+<AnalyticsEmptyState
+  onGetStartedClick={[Function]}
+>
   <EmptyState
     className="full-page-empty"
   >
@@ -61,10 +63,12 @@ exports[`Empty state screen renders correctly 1`] = `
             bsSize="large"
             bsStyle="primary"
             disabled={false}
+            onClick={[Function]}
           >
             <button
               className="btn btn-lg btn-primary"
               disabled={false}
+              onClick={[Function]}
               type="button"
             >
               Get started
