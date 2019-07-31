@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Data collection screen should mount with mapStateToProps reduced 1`] = `
+Object {
+  "detailedDataSelected": false,
+  "onCancelClick": [Function],
+  "onContinueClick": [Function],
+  "selectDetailedDataAction": [Function],
+  "selectProvidersAction": [Function],
+  "selectedProviders": Array [
+    Object {
+      "id": 1,
+      "name": "Provider 1",
+    },
+  ],
+  "summaryData": Object {
+    "providers": Array [
+      Object {
+        "id": 1,
+        "name": "Provider 1",
+      },
+      Object {
+        "id": 2,
+        "name": "Provider 2",
+      },
+    ],
+  },
+}
+`;
