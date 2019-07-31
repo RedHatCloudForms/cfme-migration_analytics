@@ -1,3 +1,3 @@
 // TODO add unit tests for SummaryTable.js
 
-it('works', () => expect(true).toBe(true));
+test.todo('add unit tests here');
