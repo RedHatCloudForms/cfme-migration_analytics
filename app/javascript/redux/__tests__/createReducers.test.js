@@ -1,3 +1,8 @@
-// TODO add unit tests for createReducers.js
+import createReducers from '../createReducers';
 
-test.todo('add unit tests here');
+describe('create reducers', () => {
+  test('produces a properly combined initial state', () => {
+    const initialState = createReducers().migrationAnalytics();
+    expect(initialState).toMatchSnapshot();
+  });
+});

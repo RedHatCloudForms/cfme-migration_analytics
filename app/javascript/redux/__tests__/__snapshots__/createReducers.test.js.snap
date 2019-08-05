@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create reducers produces a properly combined initial state 1`] = `
+Object {
+  "analytics": Object {
+    "detailedDataSelected": false,
+    "selectedProviders": Array [],
+    "summaryData": null,
+  },
+  "providers": Object {
+    "errorFetchingProviders": null,
+    "isFetchingProviders": false,
+    "providers": null,
+  },
+  "reports": Object {
+    "errorFetchingReports": null,
+    "errorFetchingResult": null,
+    "errorFetchingTask": null,
+    "errorRunningReport": null,
+    "fetchingResultHrefs": Array [],
+    "fetchingTaskHrefs": Array [],
+    "numReportFetchesPending": 0,
+    "reportRunsByHref": Object {},
+    "reports": Array [],
+    "resultsByHref": Object {},
+    "runningReportHrefs": Array [],
+    "tasksByHref": Object {},
+  },
+}
+`;
