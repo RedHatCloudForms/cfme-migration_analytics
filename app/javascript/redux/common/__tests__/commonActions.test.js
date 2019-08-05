@@ -1,3 +1,16 @@
-// TODO add unit tests for commonActions.js
+import { mockStore } from '../../../common/testReduxHelpers';
+import { resetAllStateAction } from '../commonActions';
+import { RESET_ALL_STATE } from '../constants';
 
-test.todo('add unit tests here');
+const store = mockStore();
+
+afterEach(() => {
+  store.clearActions();
+});
+
+describe('common actions', () => {
+  test('reset all state action', () => {
+    store.dispatch(resetAllStateAction());
+    expect(store.getActions()).toEqual([{ type: RESET_ALL_STATE }]);
+  });
+});
