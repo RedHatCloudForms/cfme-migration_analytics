@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`report task error renders correctly 1`] = `
+<EmptyStateWithButton
+  buttonText="Try again"
+  href={null}
+  iconName="error-circle-o"
+  iconType="pf"
+  message={
+    <React.Fragment>
+      Task failed: 
+      task name here
+      <br />
+      Error message: 
+      some error message
+    </React.Fragment>
+  }
+  onClick={[MockFunction]}
+  title="Failed to run summary report"
+/>
+`;

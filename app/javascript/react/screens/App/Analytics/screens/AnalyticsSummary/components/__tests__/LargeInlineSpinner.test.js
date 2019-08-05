@@ -1,3 +1,10 @@
-// TODO add unit tests for LargeInlineSpinner.js
+import React from 'react';
+import { shallow } from 'enzyme';
+import LargeInlineSpinner from '../LargeInlineSpinner';
 
-test.todo('add unit tests here');
+describe('large inline spinner', () => {
+  test('renders correctly', () => {
+    const component = shallow(<LargeInlineSpinner message="Loading stuff" />);
+    expect(component).toMatchSnapshot();
+  });
+});
