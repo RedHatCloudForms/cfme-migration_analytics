@@ -1,0 +1,9 @@
+:collections:
+  :migration_analytics_manifest:
+    :description: Migration Analytics Manifest
+    :options:
+    - :arbitrary_resource_path
+    - :collection
+    :identifier: migration_analytics_manifest
+    :verbs:
+    - :get
