@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`analytics summary screen renders correctly when providers are missing 1`] = `
+<EmptyStateWithButton
+  buttonText="Configure Infrastructure Providers"
+  href="/ems_infra/show_list"
+  iconName="add-circle-o"
+  iconType="pf"
+  message="Before collecting analytics data, you must have at least one VMware provider configured."
+  onClick={[Function]}
+  title="Missing Providers"
+/>
+`;
+
+exports[`analytics summary screen renders correctly when summary data is ready 1`] = `
+<Fragment>
+  <SummaryAccordion
+    summaryData={
+      Object {
+        "mock": "summary data",
+      }
+    }
+  />
+  <Button
+    active={false}
+    block={false}
+    bsClass="btn"
+    bsStyle="primary"
+    disabled={false}
+    onClick={[MockFunction]}
+  >
+    Collect Inventory Data
+  </Button>
+</Fragment>
+`;
+
+exports[`analytics summary screen renders correctly when there are errors refreshing providers 1`] = `
+<ProviderRefreshErrors
+  onRetryClick={[Function]}
+  providersWithRefreshErrors={
+    Array [
+      Object {
+        "mock": "provider",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`analytics summary screen renders correctly when there are providers awaiting refresh 1`] = `
+<LargeInlineSpinner
+  message="Waiting for provider refresh"
+/>
+`;
+
+exports[`analytics summary screen renders correctly when there is an error fetching providers 1`] = `
+<EmptyStateWithButton
+  buttonText="Try again"
+  href={null}
+  iconName="error-circle-o"
+  iconType="pf"
+  message="dummy error message"
+  onClick={[Function]}
+  title="Failed to fetch providers"
+/>
+`;
+
+exports[`analytics summary screen renders correctly when there is an error fetching reports 1`] = `
+<EmptyStateWithButton
+  buttonText="Try again"
+  href={null}
+  iconName="error-circle-o"
+  iconType="pf"
+  message="dummy error message"
+  onClick={[Function]}
+  title="Failed to fetch reports"
+/>
+`;
+
+exports[`analytics summary screen renders correctly when there is an error running the VM report 1`] = `
+<ReportTaskError
+  onRetryClick={[Function]}
+  taskWithError={
+    Object {
+      "mock": "task",
+      "status": "Error",
+    }
+  }
+/>
+`;
+
+exports[`analytics summary screen renders correctly when there is an error running the environment report 1`] = `
+<ReportTaskError
+  onRetryClick={[Function]}
+  taskWithError={
+    Object {
+      "mock": "task",
+      "status": "Error",
+    }
+  }
+/>
+`;
+
+exports[`analytics summary screen renders correctly while fetching providers 1`] = `
+<LargeInlineSpinner
+  message="Checking providers"
+/>
+`;
+
+exports[`analytics summary screen renders correctly while running reports with no errors (default props) 1`] = `
+<LargeInlineSpinner
+  message="Examining virtualization providers"
+/>
+`;

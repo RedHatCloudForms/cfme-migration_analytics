@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`summary accordion renders correctly 1`] = `
+<div
+  className="reports-summary"
+>
+  <p>
+    CloudForms discovered the following information:
+  </p>
+  <div
+    className="environment-summary"
+  >
+    <h2>
+      Environment Summary
+    </h2>
+    <SummaryTable
+      data={
+        Object {
+          "mock": "data",
+        }
+      }
+    />
+  </div>
+  <ListView
+    className=""
+  >
+    <ListViewItem
+      actions={null}
+      additionalInfo={null}
+      checkboxInput={null}
+      compoundExpand={false}
+      compoundExpanded={false}
+      description="Provider Summary"
+      heading={null}
+      hideCloseIcon={false}
+      initExpanded={false}
+      leftContent={
+        <ListViewIcon
+          className=""
+          name="server-group"
+          size="sm"
+          type="pf"
+        />
+      }
+      onCloseCompoundExpand={[Function]}
+      onExpand={[Function]}
+      onExpandClose={[Function]}
+      stacked={true}
+    >
+      <Row
+        bsClass="row"
+        componentClass="div"
+      >
+        <Col
+          bsClass="col"
+          componentClass="div"
+          sm={11}
+        >
+          <SummaryTable
+            data={
+              Object {
+                "mock": "data",
+              }
+            }
+          />
+        </Col>
+      </Row>
+    </ListViewItem>
+    <ListViewItem
+      actions={null}
+      additionalInfo={null}
+      checkboxInput={null}
+      compoundExpand={false}
+      compoundExpanded={false}
+      description="Provider Summary"
+      heading={null}
+      hideCloseIcon={false}
+      initExpanded={false}
+      leftContent={
+        <ListViewIcon
+          className=""
+          name="server-group"
+          size="sm"
+          type="pf"
+        />
+      }
+      onCloseCompoundExpand={[Function]}
+      onExpand={[Function]}
+      onExpandClose={[Function]}
+      stacked={true}
+    >
+      <Row
+        bsClass="row"
+        componentClass="div"
+      >
+        <Col
+          bsClass="col"
+          componentClass="div"
+          sm={11}
+        >
+          <SummaryTable
+            data={
+              Object {
+                "mock": "data",
+              }
+            }
+          />
+        </Col>
+      </Row>
+    </ListViewItem>
+  </ListView>
+</div>
+`;

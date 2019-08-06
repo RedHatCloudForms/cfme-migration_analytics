@@ -14,6 +14,7 @@ const AnalyticsProviderSelection = ({
   <Form>
     <p>{__('Select providers for which inventory data will be collected.')}</p>
     <TypeAheadSelect
+      id="providers-select-typeahead"
       inputProps={{ id: 'providers-select' }}
       options={summaryData.providers}
       selected={selectedProviders}

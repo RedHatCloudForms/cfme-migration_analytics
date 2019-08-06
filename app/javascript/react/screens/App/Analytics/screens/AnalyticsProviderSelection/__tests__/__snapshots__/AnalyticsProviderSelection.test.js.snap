@@ -1,0 +1,221 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`analytics provider selection screen renders correctly with basic data selected 1`] = `
+<Form
+  bsClass="form"
+  componentClass="form"
+  horizontal={false}
+  inline={false}
+>
+  <p>
+    Select providers for which inventory data will be collected.
+  </p>
+  <TypeaheadContainer(WrappedTypeahead)
+    a11yNumResults={[Function]}
+    a11yNumSelected={[Function]}
+    align="justify"
+    allowNew={false}
+    autoFocus={false}
+    caseSensitive={false}
+    clearButton={true}
+    defaultInputValue=""
+    defaultOpen={false}
+    defaultSelected={Array []}
+    disabled={false}
+    dropup={false}
+    emptyLabel="No matches found."
+    filterBy={Array []}
+    flip={false}
+    highlightOnlyResult={true}
+    id="providers-select-typeahead"
+    ignoreDiacritics={true}
+    inputProps={
+      Object {
+        "id": "providers-select",
+      }
+    }
+    isInvalid={false}
+    isLoading={false}
+    isValid={false}
+    labelKey="name"
+    maxResults={100}
+    minLength={0}
+    multiple={true}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onInputChange={[Function]}
+    onKeyDown={[Function]}
+    onPaginate={[Function]}
+    options={
+      Array [
+        Object {
+          "id": 1,
+          "name": "Provider 1",
+        },
+        Object {
+          "id": 2,
+          "name": "Provider 2",
+        },
+      ]
+    }
+    paginate={true}
+    paginationText="Display additional results..."
+    placeholder="Select..."
+    selectHintOnEnter={true}
+    selected={Array []}
+  />
+  <br />
+  <FormGroup
+    bsClass="form-group"
+    className="detailed-data-selection"
+  >
+    <ControlLabel
+      bsClass="control-label"
+      srOnly={false}
+    >
+      Inventory data needed
+    </ControlLabel>
+    <Radio
+      bsClass="radio"
+      checked={true}
+      disabled={false}
+      inline={false}
+      onChange={[Function]}
+      title=""
+    >
+      Basic data
+      <ul>
+        <li>
+          High level information including number of VMs and hypervisors.
+        </li>
+        <li>
+          Necessary to calculate an initial migration savings estimate.
+        </li>
+        <li>
+          Data may or may not include SmartState Analysis results.
+        </li>
+      </ul>
+    </Radio>
+    <Radio
+      bsClass="radio"
+      checked={false}
+      disabled={false}
+      inline={false}
+      onChange={[Function]}
+      title=""
+    >
+      Detailed data
+      <ul>
+        <li>
+          Detailed analysis of individual VMs including host, operating system, files, and running services.
+        </li>
+        <li>
+          Necessary for creating workload inventory and workload summary reports.
+        </li>
+        <li>
+          Requires that SmartState Analysis be run on each VM. This can take several hours depending on the number of VMs in the selected providers.
+        </li>
+      </ul>
+    </Radio>
+  </FormGroup>
+  <div
+    className="footer-buttons"
+  >
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsStyle="primary"
+      disabled={true}
+      onClick={[MockFunction]}
+    >
+      Continue
+    </Button>
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsStyle="default"
+      disabled={false}
+      onClick={[MockFunction]}
+    >
+      Cancel
+    </Button>
+  </div>
+</Form>
+`;
+
+exports[`analytics provider selection screen renders radio buttons section correctly with detailed data selected 1`] = `
+<FormGroup
+  bsClass="form-group"
+  className="detailed-data-selection"
+>
+  <ControlLabel
+    bsClass="control-label"
+    srOnly={false}
+  >
+    Inventory data needed
+  </ControlLabel>
+  <Radio
+    bsClass="radio"
+    checked={false}
+    disabled={false}
+    inline={false}
+    onChange={[Function]}
+    title=""
+  >
+    Basic data
+    <ul>
+      <li>
+        High level information including number of VMs and hypervisors.
+      </li>
+      <li>
+        Necessary to calculate an initial migration savings estimate.
+      </li>
+      <li>
+        Data may or may not include SmartState Analysis results.
+      </li>
+    </ul>
+  </Radio>
+  <Radio
+    bsClass="radio"
+    checked={true}
+    disabled={false}
+    inline={false}
+    onChange={[Function]}
+    title=""
+  >
+    Detailed data
+    <ul>
+      <li>
+        Detailed analysis of individual VMs including host, operating system, files, and running services.
+      </li>
+      <li>
+        Necessary for creating workload inventory and workload summary reports.
+      </li>
+      <li>
+        Requires that SmartState Analysis be run on each VM. This can take several hours depending on the number of VMs in the selected providers.
+      </li>
+    </ul>
+    <div
+      className="icon-with-content smart-state-info"
+    >
+      <Icon
+        className="p-aligned"
+        name="warning-triangle-o"
+        type="pf"
+      />
+      <p>
+        See product documentation for instructions to configure and run SmartState Analysis.
+        <br />
+        <a
+          href="/miq_task"
+        >
+          Progress of SmartState Analysis tasks can be monitored on the Tasks page.
+        </a>
+      </p>
+    </div>
+  </Radio>
+</FormGroup>
+`;

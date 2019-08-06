@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`calculate summary data helper returns base case without errors when results are empty 1`] = `
+Object {
+  "providers": Array [],
+  "total": Object {
+    "allocatedDiskSpace": 0,
+    "allocatedMemory": 0,
+    "numCpuCores": 0,
+    "numHypervisors": 0,
+    "numProviders": 0,
+    "numVms": 0,
+  },
+}
+`;
+
+exports[`calculate summary data helper returns correct sums 1`] = `
+Object {
+  "providers": Array [
+    Object {
+      "allocatedDiskSpace": 4000,
+      "allocatedMemory": 2000,
+      "id": 1,
+      "name": "provider 1",
+      "numCpuCores": 2,
+      "numHypervisors": 1,
+      "numVms": 2,
+    },
+    Object {
+      "allocatedDiskSpace": 2000,
+      "allocatedMemory": 1000,
+      "id": 2,
+      "name": "provider 2",
+      "numCpuCores": 1,
+      "numHypervisors": 2,
+      "numVms": 1,
+    },
+  ],
+  "total": Object {
+    "allocatedDiskSpace": 6000,
+    "allocatedMemory": 3000,
+    "numCpuCores": 3,
+    "numHypervisors": 3,
+    "numProviders": 2,
+    "numVms": 3,
+  },
+}
+`;

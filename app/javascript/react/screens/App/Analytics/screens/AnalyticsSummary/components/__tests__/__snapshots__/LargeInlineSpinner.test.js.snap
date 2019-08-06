@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`large inline spinner renders correctly 1`] = `
+<div
+  className="large-spinner"
+>
+  <Spinner
+    className=""
+    inline={true}
+    inverse={false}
+    loading={true}
+    size="lg"
+  />
+  <h3>
+    Loading stuff
+  </h3>
+</div>
+`;

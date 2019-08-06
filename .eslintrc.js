@@ -8,7 +8,7 @@ module.exports = {
     $: true,
     __: true,
     n__: true,
-    stf: true,
+    sprintf: true,
     ManageIQ: true
   },
   extends: ['plugin:patternfly-react/recommended'],

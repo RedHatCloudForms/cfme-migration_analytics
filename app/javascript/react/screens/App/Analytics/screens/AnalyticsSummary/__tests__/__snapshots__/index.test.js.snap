@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`some component should mount with mapStateToProps reduced 1`] = `
+Object {
+  "calculateSummaryDataAction": [Function],
+  "envSummaryReport": null,
+  "envSummaryReportResult": null,
+  "envSummaryReportRun": null,
+  "envSummaryReportTask": null,
+  "errorFetchingProviders": null,
+  "errorFetchingReports": null,
+  "fetchProvidersAction": [Function],
+  "fetchReportsAction": [Function],
+  "fetchResultAction": [Function],
+  "fetchTaskAction": [Function],
+  "isFetchingEnvSummaryReportTask": false,
+  "isFetchingProviders": true,
+  "isFetchingVmSummaryReportTask": false,
+  "providers": null,
+  "providersAwaitingRefresh": null,
+  "providersWithRefreshErrors": null,
+  "resetAllStateAction": [Function],
+  "runReportAction": [Function],
+  "summaryData": null,
+  "vmSummaryReport": null,
+  "vmSummaryReportResult": null,
+  "vmSummaryReportRun": null,
+  "vmSummaryReportTask": null,
+}
+`;
