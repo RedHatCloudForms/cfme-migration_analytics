@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`provider refresh errors renders correctly 1`] = `
+<EmptyStateWithButton
+  buttonText="Try again"
+  href={null}
+  iconName="error-circle-o"
+  iconType="pf"
+  message={
+    <React.Fragment>
+      Failed to refresh relationships and power states for the following providers:
+      <React.Fragment>
+        <br />
+        <br />
+        <strong>
+          Provider 1
+        </strong>
+          
+        <a
+          href="/ems_infra/1"
+        >
+          View provider
+        </a>
+        <br />
+        some error here
+      </React.Fragment>
+      <React.Fragment>
+        <br />
+        <br />
+        <strong>
+          Provider 2
+        </strong>
+          
+        <a
+          href="/ems_infra/2"
+        >
+          View provider
+        </a>
+        <br />
+        some error here
+      </React.Fragment>
+    </React.Fragment>
+  }
+  onClick={[MockFunction]}
+  title="Failed to refresh providers"
+/>
+`;

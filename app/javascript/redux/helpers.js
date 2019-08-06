@@ -1,17 +1,18 @@
+import Immutable from 'seamless-immutable';
 import URI from 'urijs';
 import API from '../common/API';
 
 export const functionLookupReducer = (initialState, actionHandlers) => (state = initialState, action) => {
-  const handler = actionHandlers[action.type];
+  const handler = action && actionHandlers[action.type];
   return handler ? handler(state, action) : state;
 };
 
 export const getHandlersForFetchResourcesActions = (actionType, isFetchingKey, errorKey, resourcesKey) => ({
-  initialState: {
+  initialState: Immutable({
     [isFetchingKey]: false,
     [errorKey]: null,
     [resourcesKey]: null
-  },
+  }),
   actionHandlers: {
     [`${actionType}_PENDING`]: state => state.set(errorKey, null).set(isFetchingKey, true),
     [`${actionType}_FULFILLED`]: (state, action) =>
@@ -25,11 +26,11 @@ export const getHandlersForFetchResourcesActions = (actionType, isFetchingKey, e
 });
 
 export const getHandlersForFetchActionsIndexedByHref = (actionType, fetchingHrefsKey, errorKey, payloadsByHrefKey) => ({
-  initialState: {
+  initialState: Immutable({
     [fetchingHrefsKey]: [],
     [errorKey]: null,
     [payloadsByHrefKey]: {}
-  },
+  }),
   actionHandlers: {
     [`${actionType}_PENDING`]: (state, action) =>
       state.set(errorKey, null).set(fetchingHrefsKey, [...state[fetchingHrefsKey], action.meta.href]),

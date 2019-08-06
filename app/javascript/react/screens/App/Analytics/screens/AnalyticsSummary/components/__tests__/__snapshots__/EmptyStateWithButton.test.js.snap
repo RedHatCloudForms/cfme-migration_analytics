@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`empty state with button renders correctly 1`] = `
+<EmptyState
+  className=""
+>
+  <EmptyStateIcon
+    className=""
+    name="add-circle-o"
+    type="pf"
+  />
+  <EmptyStateTitle
+    className=""
+  >
+    Title Goes Here
+  </EmptyStateTitle>
+  <EmptyStateInfo
+    className=""
+  >
+    Message goes here
+  </EmptyStateInfo>
+  <EmptyStateAction
+    className=""
+    secondary={false}
+  >
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsSize="large"
+      bsStyle="primary"
+      disabled={false}
+      href={null}
+      onClick={[MockFunction]}
+    >
+      Click me
+    </Button>
+  </EmptyStateAction>
+</EmptyState>
+`;

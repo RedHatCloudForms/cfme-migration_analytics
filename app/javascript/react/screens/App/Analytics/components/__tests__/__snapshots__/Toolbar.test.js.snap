@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolbar component renders correctly 1`] = `
+<Row
+  bsClass="row"
+  className="toolbar-pf"
+  componentClass="div"
+  style={
+    Object {
+      "paddingTop": 0,
+    }
+  }
+>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    xs={12}
+  >
+    <Breadcrumb
+      style={
+        Object {
+          "marginBottom": 8,
+        }
+      }
+      title={false}
+    >
+      Children Here
+    </Breadcrumb>
+  </Col>
+</Row>
+`;

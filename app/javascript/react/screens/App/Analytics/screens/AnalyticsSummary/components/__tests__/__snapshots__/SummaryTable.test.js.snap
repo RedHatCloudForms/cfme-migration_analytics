@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`summary table renders correctly 1`] = `
+<table>
+  <tbody>
+    <SummaryRow
+      name="Number of VMware providers"
+      value={2}
+    />
+    <SummaryRow
+      name="Number of ESXi hypervisors (2 socket servers) discovered"
+      value={3}
+    />
+    <SummaryRow
+      name="Number of VMs on discovered hypervisors"
+      value={10}
+    />
+    <SummaryRow
+      name="Total disk space allocated for discovered VMs"
+      value="10 GB"
+    />
+    <SummaryRow
+      name="Total memory allocated for discovered VMs"
+      value="16 GB"
+    />
+    <SummaryRow
+      name="Total vCPU cores allocated for discovered VMs"
+      value={20}
+    />
+  </tbody>
+</table>
+`;
+
+exports[`summary table renders correctly 2`] = `
+<tr>
+  <td>
+    Number of VMware providers
+  </td>
+  <td>
+    2
+  </td>
+</tr>
+`;

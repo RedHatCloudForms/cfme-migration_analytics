@@ -1,0 +1,19 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "browsers": ["> 1%", "last 2 versions", "Firefox ESR", "IE 10", "IE 11"]
+        }
+      }
+    ],
+    "@babel/react"
+  ],
+  "plugins": ["@babel/plugin-proposal-class-properties", "@babel/plugin-transform-object-assign"],
+  "env": {
+    "test": {
+      "plugins": []
+    }
+  }
+}
