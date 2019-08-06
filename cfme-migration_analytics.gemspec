@@ -1,5 +1,7 @@
 $:.push File.expand_path("../lib", __FILE__)
 
+require "json"
+
 # Maintain your gem's version:
 require "cfme/migration_analytics/version"
 
