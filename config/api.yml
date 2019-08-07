@@ -7,3 +7,7 @@
     :identifier: migration_analytics_manifest
     :verbs:
     - :get
+    :collection_actions:
+      :get:
+      - :name: read
+        :identifier: red_hat_cloud_services
