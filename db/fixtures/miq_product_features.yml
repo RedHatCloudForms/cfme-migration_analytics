@@ -1,0 +1,6 @@
+---
+# Red Hat Migration Analytics
+- :name: Red Hat Migration Analytics
+  :description: Everything under Red Hat Migration Analytics
+  :feature_type: node
+  :identifier: red_hat_migration_analytics

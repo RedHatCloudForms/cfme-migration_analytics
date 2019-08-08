@@ -10,4 +10,4 @@
     :collection_actions:
       :get:
       - :name: read
-        :identifier: red_hat_cloud_services
+        :identifier: red_hat_migration_analytics
