@@ -3,8 +3,8 @@ class MigrationAnalyticsController < ApplicationController
   after_action :cleanup_action
 
   def index
-    @layout = 'migration_analytics'
-    @page_title = _('Migration Analytics')
+    @layout = "migration_analytics"
+    @page_title = _("Migration Analytics")
   end
 
   helper do
