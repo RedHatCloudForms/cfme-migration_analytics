@@ -1,13 +1,17 @@
 :collections:
-  :migration_analytics_manifest:
+  :red_hat_migration_analytics:
     :description: Migration Analytics Manifest
     :options:
     - :arbitrary_resource_path
     - :collection
-    :identifier: migration_analytics_manifest
+    :identifier: red_hat_migration_analytics
     :verbs:
     - :get
+    - :post
     :collection_actions:
       :get:
       - :name: read
+        :identifier: red_hat_migration_analytics
+      :post:
+      - :name: bundle
         :identifier: red_hat_migration_analytics
