@@ -17,6 +17,10 @@ const SCREENS = {
 class Analytics extends React.Component {
   state = { currentScreen: SCREENS.EMPTY_STATE };
 
+  componentDidMount() {
+    // this.props.fetchManifestInfoAction();
+  }
+
   goToSummary = () => this.setState({ currentScreen: SCREENS.SUMMARY });
   goToProviderSelection = () => this.setState({ currentScreen: SCREENS.PROVIDER_SELECTION });
   goToDataCollection = () => this.setState({ currentScreen: SCREENS.DATA_COLLECTION });

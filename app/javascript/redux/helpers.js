@@ -7,11 +7,17 @@ export const functionLookupReducer = (initialState, actionHandlers) => (state = 
   return handler ? handler(state, action) : state;
 };
 
-export const getHandlersForFetchResourcesActions = (actionType, isFetchingKey, errorKey, resourcesKey) => ({
+export const getHandlersForBasicFetchActions = (
+  actionType,
+  isFetchingKey,
+  errorKey,
+  resourceKey,
+  getResource = data => data
+) => ({
   initialState: Immutable({
     [isFetchingKey]: false,
     [errorKey]: null,
-    [resourcesKey]: null
+    [resourceKey]: null
   }),
   actionHandlers: {
     [`${actionType}_PENDING`]: state => state.set(errorKey, null).set(isFetchingKey, true),
@@ -19,11 +25,14 @@ export const getHandlersForFetchResourcesActions = (actionType, isFetchingKey, e
       state
         .set(errorKey, null)
         .set(isFetchingKey, false)
-        .set(resourcesKey, action.payload.data.resources),
+        .set(resourceKey, getResource(action.payload.data)),
     [`${actionType}_REJECTED`]: (state, action) =>
       state.set(errorKey, action.payload.data.error).set(isFetchingKey, false)
   }
 });
+
+export const getHandlersForFetchResourcesActions = (actionType, isFetchingKey, errorKey, resourcesKey) =>
+  getHandlersForBasicFetchActions(actionType, isFetchingKey, errorKey, resourcesKey, data => data.resources);
 
 export const getHandlersForFetchActionsIndexedByHref = (actionType, fetchingHrefsKey, errorKey, payloadsByHrefKey) => ({
   initialState: Immutable({
@@ -57,6 +66,13 @@ export const filterResources = (resources, filterValues) =>
 
 export const findResource = (resources, filterValues) =>
   resources && resources.find(resource => resourceMatchesFilters(resource, filterValues));
+
+export const basicFetchAction = (type, href) => dispatch =>
+  dispatch({
+    type,
+    payload: API.get(new URI(href).toString()),
+    meta: { href }
+  });
 
 export const fetchExpandedResourcesAction = (type, href, filterValues, attributes) => dispatch => {
   const uri = new URI(href);
