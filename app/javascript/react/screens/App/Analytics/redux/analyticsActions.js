@@ -1,5 +1,13 @@
-import { CALCULATE_SUMMARY_DATA, SELECT_PROVIDERS, SELECT_DETAILED_DATA } from './constants';
-import { simpleActionWithProperties } from '../../../../../redux/helpers';
+import {
+  CALCULATE_SUMMARY_DATA,
+  SELECT_PROVIDERS,
+  SELECT_DETAILED_DATA,
+  FETCH_MANIFEST_INFO,
+  MANIFEST_INFO_URL
+} from './constants';
+import { simpleActionWithProperties, basicFetchAction } from '../../../../../redux/helpers';
+
+export const fetchManifestInfoAction = () => basicFetchAction(FETCH_MANIFEST_INFO, MANIFEST_INFO_URL);
 
 export const calculateSummaryDataAction = results => simpleActionWithProperties(CALCULATE_SUMMARY_DATA, { results });
 

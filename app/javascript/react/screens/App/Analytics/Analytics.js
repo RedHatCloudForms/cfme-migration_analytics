@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Breadcrumb } from 'patternfly-react';
 import Toolbar from './components/Toolbar';
 import AnalyticsEmptyState from './screens/AnalyticsEmptyState';
@@ -18,7 +19,7 @@ class Analytics extends React.Component {
   state = { currentScreen: SCREENS.EMPTY_STATE };
 
   componentDidMount() {
-    // this.props.fetchManifestInfoAction();
+    this.props.fetchManifestInfoAction();
   }
 
   goToSummary = () => this.setState({ currentScreen: SCREENS.SUMMARY });
@@ -40,6 +41,7 @@ class Analytics extends React.Component {
   };
 
   render() {
+    const { manifestInfo } = this.props;
     const { currentScreen } = this.state;
     const onEmptyState = currentScreen === SCREENS.EMPTY_STATE;
     return (
@@ -56,12 +58,28 @@ class Analytics extends React.Component {
         <div id="migration-analytics" className={onEmptyState ? 'row cards-pf' : ''}>
           {this.renderCurrentScreen()}
         </div>
-        <h6 id="migration-analytics-manifest-version" className={onEmptyState ? 'on-empty-state' : ''}>
-          Manifest Version: x.y.z
-        </h6>
+        {manifestInfo && (
+          <h6 id="migration-analytics-manifest-version" className={onEmptyState ? 'on-empty-state' : ''}>
+            {__('Manifest version:')}
+            &nbsp;
+            {manifestInfo.manifest_version}
+          </h6>
+        )}
       </React.Fragment>
     );
   }
 }
+
+Analytics.propTypes = {
+  fetchManifestInfoAction: PropTypes.func.isRequired,
+  manifestInfo: PropTypes.shape({
+    manifest_version: PropTypes.string,
+    using_default_manifest: PropTypes.bool
+  })
+};
+
+Analytics.defaultProps = {
+  manifestInfo: null
+};
 
 export default Analytics;
