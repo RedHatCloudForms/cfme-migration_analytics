@@ -2,20 +2,17 @@ module Api
   class RedHatMigrationAnalyticsController < BaseController
     def index
       check_feature_enabled
-      manifest_path = Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
-      manifest = self.class.load_manifest(manifest_path)
-
+      manifest = load_manifest
       res = {
-        :path => manifest_path,
-        :body => manifest,
+        :manifest_version => manifest[:version],
+        :using_default_manifest => manifest[:using_default]
       }
-      render_resource :migration_analytics_manifest, res
+      render_resource :red_hat_migration_analytics, res
     end
 
     def bundle_collection(type, data)
       check_feature_enabled
-      manifest_path = Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
-      manifest = self.class.load_manifest(manifest_path)
+      manifest = load_manifest[:body]
       provider_ids = data["provider_ids"]
       provider_ids = provider_ids.uniq if provider_ids
       raise "Must specify a list of provider ids via \"provider_ids\"" if provider_ids.blank?
@@ -38,6 +35,18 @@ module Api
         raise ActionController::RoutingError, 'Feature Not Enabled'
       end
     end
+    
+    def load_manifest
+      # TODO: check for a valid user-provided manifest before defaulting to default-manifest.json
+      manifest_path = Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
+      manifest = self.class.parse_manifest(manifest_path)
+      {
+        :path => manifest_path,
+        :body => manifest,
+        :version => manifest["manifest"]["version"],
+        :using_default => true
+      }
+    end
 
     def find_provider_ids(type)
       providers, _ = collection_search(false, :providers, collection_class(:providers))
@@ -45,7 +54,7 @@ module Api
     end
 
     class << self
-      def load_manifest(path)
+      def parse_manifest(path)
         Vmdb::Settings.filter_passwords!(JSON.parse(File.read(path)))
       rescue JSON::ParserError
         nil
