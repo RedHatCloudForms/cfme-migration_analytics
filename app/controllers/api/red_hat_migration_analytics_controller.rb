@@ -32,7 +32,7 @@ module Api
     private
 
     def load_manifest(path)
-      JSON.parse(File.read(path))
+      Vmdb::Settings.filter_passwords!(JSON.parse(File.read(path)))
     rescue JSON::ParserError
       nil
     end
