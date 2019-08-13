@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Breadcrumb } from 'patternfly-react';
 import Toolbar from './components/Toolbar';
 import AnalyticsEmptyState from './screens/AnalyticsEmptyState';
@@ -13,16 +12,6 @@ const SCREENS = {
   SUMMARY: 'SUMMARY',
   PROVIDER_SELECTION: 'PROVIDER_SELECTION',
   DATA_COLLECTION: 'DATA_COLLECTION'
-};
-
-const AnalyticsContainer = ({ currentScreen, children }) => (
-  <div id="migration-analytics" className={currentScreen === SCREENS.EMPTY_STATE ? 'row cards-pf' : ''}>
-    {children}
-  </div>
-);
-AnalyticsContainer.propTypes = {
-  currentScreen: PropTypes.oneOf(Object.values(SCREENS)).isRequired,
-  children: PropTypes.node.isRequired
 };
 
 class Analytics extends React.Component {
@@ -48,6 +37,7 @@ class Analytics extends React.Component {
 
   render() {
     const { currentScreen } = this.state;
+    const onEmptyState = currentScreen === SCREENS.EMPTY_STATE;
     return (
       <React.Fragment>
         <Toolbar>
@@ -59,7 +49,12 @@ class Analytics extends React.Component {
           {/* <BreadcrumbPageSwitcher activeHref="#/analytics" /> */}
           {/* TODO: figure out how to share the breadcrumb switcher with v2v */}
         </Toolbar>
-        <AnalyticsContainer currentScreen={currentScreen}>{this.renderCurrentScreen()}</AnalyticsContainer>
+        <div id="migration-analytics" className={onEmptyState ? 'row cards-pf' : ''}>
+          {this.renderCurrentScreen()}
+        </div>
+        <h6 id="migration-analytics-manifest-version" className={onEmptyState ? 'on-empty-state' : ''}>
+          Manifest Version: x.y.z
+        </h6>
       </React.Fragment>
     );
   }
