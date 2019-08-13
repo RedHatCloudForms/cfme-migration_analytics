@@ -1,5 +1,5 @@
 module Api
-  class MigrationAnalyticsManifestController < BaseController
+  class RedHatMigrationAnalyticsController < BaseController
     def index
       manifest_path = Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
       manifest = load_manifest(manifest_path)
