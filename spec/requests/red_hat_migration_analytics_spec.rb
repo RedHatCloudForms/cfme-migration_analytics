@@ -11,7 +11,7 @@ describe "Red Hat  Migration Analytics Manifest API" do
 
       allow(Cfme::CloudServices::InventorySync).to receive("bundle_queue").with(@user.userid, manifest, [ems1.id]) { task.id }
 
-      post(api_red_hat_cloud_service_providers_url,
+      post(api_red_hat_migration_analytics_url,
            :params => {
              "action"       => "bundle",
              "provider_ids" => [ems1.id]
