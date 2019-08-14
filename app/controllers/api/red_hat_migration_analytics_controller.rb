@@ -1,6 +1,7 @@
 module Api
   class RedHatMigrationAnalyticsController < BaseController
     def index
+      check_feature_enabled
       manifest_path = Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
       manifest = self.class.load_manifest(manifest_path)
 
@@ -12,6 +13,7 @@ module Api
     end
 
     def bundle_collection(type, data)
+      check_feature_enabled
       manifest_path = Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
       manifest = self.class.load_manifest(manifest_path)
       provider_ids = data["provider_ids"]
@@ -30,6 +32,12 @@ module Api
     end
 
     private
+
+    def check_feature_enabled
+      unless Settings.prototype.migration_analytics.enabled
+        raise ActionController::RoutingError, 'Feature Not Enabled'
+      end
+    end
 
     def find_provider_ids(type)
       providers, _ = collection_search(false, :providers, collection_class(:providers))
