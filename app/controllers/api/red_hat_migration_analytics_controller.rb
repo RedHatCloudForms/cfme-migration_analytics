@@ -32,7 +32,7 @@ module Api
     private
 
     def find_provider_ids(type)
-      providers, _ = collection_search(false, type, collection_class(type))
+      providers, _ = collection_search(false, :providers, collection_class(:providers))
       providers ? providers.ids.sort : []
     end
 
