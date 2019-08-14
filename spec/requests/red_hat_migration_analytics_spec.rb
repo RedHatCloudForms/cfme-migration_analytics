@@ -15,6 +15,21 @@ describe "Red Hat  Migration Analytics Manifest API" do
         expect(response).to have_http_status(:ok)
         expect(response.parsed_body["body"]).to match(a_hash_including("cfme_version"=>"5.11"))
       end
+
+      it "filters out passwords from the manifest" do
+        malicious_manifest = {
+          "password"      => nil,
+          "amazon_secret" => nil,
+          "ssh_key_data"  => nil
+        }
+
+        expect(Api::RedHatMigrationAnalyticsController).to receive(:load_manifest).and_return(malicious_manifest)
+
+        get(api_red_hat_migration_analytics_url)
+
+        expect(response).to have_http_status(:ok)
+        expect(response.parsed_body["body"]).to eq({})
+      end
     end
   end
 

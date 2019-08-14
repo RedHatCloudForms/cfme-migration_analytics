@@ -2,7 +2,7 @@ module Api
   class RedHatMigrationAnalyticsController < BaseController
     def index
       manifest_path = Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
-      manifest = load_manifest(manifest_path)
+      manifest = self.class.load_manifest(manifest_path)
 
       res = {
         :path => manifest_path,
@@ -13,7 +13,7 @@ module Api
 
     def bundle_collection(type, data)
       manifest_path = Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
-      manifest = load_manifest(manifest_path)
+      manifest = self.class.load_manifest(manifest_path)
       provider_ids = data["provider_ids"]
       provider_ids = provider_ids.uniq if provider_ids
       raise "Must specify a list of provider ids via \"provider_ids\"" if provider_ids.blank?
@@ -31,15 +31,17 @@ module Api
 
     private
 
-    def load_manifest(path)
-      Vmdb::Settings.filter_passwords!(JSON.parse(File.read(path)))
-    rescue JSON::ParserError
-      nil
-    end
-
     def find_provider_ids(type)
       providers, _ = collection_search(false, type, collection_class(type))
       providers ? providers.ids.sort : []
+    end
+
+    class << self
+      def load_manifest(path)
+        Vmdb::Settings.filter_passwords!(JSON.parse(File.read(path)))
+      rescue JSON::ParserError
+        nil
+      end
     end
   end
 end
