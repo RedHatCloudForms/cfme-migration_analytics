@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Breadcrumb } from 'patternfly-react';
+import { Breadcrumb, noop } from 'patternfly-react';
 import Toolbar from './components/Toolbar';
 import AnalyticsEmptyState from './screens/AnalyticsEmptyState';
 import AnalyticsSummary from './screens/AnalyticsSummary';
@@ -71,7 +71,7 @@ class Analytics extends React.Component {
 }
 
 Analytics.propTypes = {
-  fetchManifestInfoAction: PropTypes.func.isRequired,
+  fetchManifestInfoAction: PropTypes.func,
   manifestInfo: PropTypes.shape({
     manifest_version: PropTypes.string,
     using_default_manifest: PropTypes.bool
@@ -79,6 +79,7 @@ Analytics.propTypes = {
 };
 
 Analytics.defaultProps = {
+  fetchManifestInfoAction: noop,
   manifestInfo: null
 };
 
