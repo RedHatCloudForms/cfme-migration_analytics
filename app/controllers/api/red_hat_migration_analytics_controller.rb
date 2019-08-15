@@ -12,7 +12,7 @@ module Api
 
     def bundle_collection(type, data)
       check_feature_enabled
-      manifest = self.class.load_manifest[:body]
+      manifest = self.class.parse_manifest[:body]
       provider_ids = data["provider_ids"]
       provider_ids = provider_ids.uniq if provider_ids
       raise "Must specify a list of provider ids via \"provider_ids\"" if provider_ids.blank?
