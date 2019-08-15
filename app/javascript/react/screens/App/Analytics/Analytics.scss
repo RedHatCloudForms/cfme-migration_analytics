@@ -57,6 +57,10 @@
 
   .detailed-data-selection {
     margin-top: 15px;
+
+    li {
+      list-style: disc outside none;
+    }
   }
 
   .icon-with-content {
