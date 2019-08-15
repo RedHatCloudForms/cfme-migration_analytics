@@ -42,8 +42,11 @@ describe "Red Hat  Migration Analytics Manifest API" do
       ems1 = FactoryBot.create(:ems_vmware, :name => "sample vmware1")
 
       expect(Api::RedHatMigrationAnalyticsController).to receive(:load_manifest).and_return(manifest)
+
+      expected_targets = [["ExtManagementSystem", ems1.id]]
+      expected_tempdir = Rails.root.join("public", "migration_analytics")
       allow(Cfme::CloudServices::InventorySync).to receive("bundle_queue")
-        .with(@user.userid, manifest, [["ExtManagementSystem", ems1.id]]) { task.id }
+        .with(@user.userid, manifest, expected_targets, expected_tempdir) { task.id }
 
       post(api_red_hat_migration_analytics_url,
            :params => {
