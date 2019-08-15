@@ -79,7 +79,7 @@ const AnalyticsProviderSelection = ({
 );
 
 const providerShape = PropTypes.shape({
-  id: PropTypes.number,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string
 });
 
