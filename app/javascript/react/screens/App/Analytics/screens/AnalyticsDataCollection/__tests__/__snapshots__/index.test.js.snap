@@ -2,7 +2,19 @@
 
 exports[`Data collection screen should mount with mapStateToProps reduced 1`] = `
 Object {
+  "bundleError": null,
+  "bundleTaskHref": null,
+  "fetchBundleTaskAction": [Function],
+  "isBundleTaskFinished": null,
+  "isFetchingBundleTask": false,
+  "isPayloadReady": false,
+  "numVms": null,
   "onCancelClick": [Function],
   "onReturnClick": [Function],
+  "payloadPath": null,
+  "payloadUrl": null,
+  "resetDataCollectionStateAction": [Function],
+  "selectedProviders": Array [],
+  "startInventoryBundleAction": [Function],
 }
 `;
