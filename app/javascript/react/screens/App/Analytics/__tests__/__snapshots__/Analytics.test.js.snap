@@ -1,17 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Analytics root component renders container with cards-pf class for empty state 1`] = `
-<div
-  className="row cards-pf"
-  id="migration-analytics"
->
-  <AnalyticsEmptyState
-    onGetStartedClick={[Function]}
-  />
-</div>
-`;
-
-exports[`Analytics root component renders container without cards-pf class for other screens 1`] = `
+exports[`Analytics root component renders container without cards-pf class when not on empty state screen 1`] = `
 <div
   className=""
   id="migration-analytics"
@@ -43,12 +32,13 @@ exports[`Analytics root component renders toolbar and empty state correctly 1`] 
       </strong>
     </BreadcrumbItem>
   </Toolbar>
-  <AnalyticsContainer
-    currentScreen="EMPTY_STATE"
+  <div
+    className="row cards-pf"
+    id="migration-analytics"
   >
     <AnalyticsEmptyState
       onGetStartedClick={[Function]}
     />
-  </AnalyticsContainer>
+  </div>
 </Fragment>
 `;
