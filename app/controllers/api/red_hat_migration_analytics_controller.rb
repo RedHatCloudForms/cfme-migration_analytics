@@ -2,7 +2,7 @@ module Api
   class RedHatMigrationAnalyticsController < BaseController
     def index
       check_feature_enabled
-      manifest = self.class.load_manifest
+      manifest = self.class.parse_manifest
       res = {
         :manifest_version => manifest[:version],
         :using_default_manifest => manifest[:using_default]
@@ -42,10 +42,10 @@ module Api
     end
 
     class << self
-      def load_manifest
+      def parse_manifest
         # TODO: check for a valid user-provided manifest before defaulting to default-manifest.json
         manifest_path = Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
-        manifest = parse_manifest(manifest_path)
+        manifest = Vmdb::Settings.filter_passwords!(load_manifest(manifest_path))
         {
           :path => manifest_path,
           :body => manifest,
@@ -54,8 +54,8 @@ module Api
         }
       end
 
-      def parse_manifest(path)
-        Vmdb::Settings.filter_passwords!(JSON.parse(File.read(path)))
+      def load_manifest(path)
+        JSON.parse(File.read(path))
       rescue JSON::ParserError
         nil
       end
