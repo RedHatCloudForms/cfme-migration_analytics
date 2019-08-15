@@ -13,5 +13,16 @@ export const selectIsPayloadReady = ({ isStartingBundle, bundleTask }, { bundleE
 
 export const selectBundleTaskHref = ({ bundleStartResult }) => bundleStartResult && bundleStartResult.task_href;
 
+export const selectNumVms = ({ summaryData, selectedProviders }) => {
+  const selectedProviderIds = selectedProviders.map(provider => provider.id);
+  return (
+    summaryData &&
+    summaryData.providers &&
+    summaryData.providers
+      .filter(provider => selectedProviderIds.includes(provider.id))
+      .reduce((sum, provider) => sum + provider.numVms, 0)
+  );
+};
+
 export const selectPayloadPath = ({ bundleTask }) =>
   bundleTask && bundleTask.context_data && bundleTask.context_data.payload_path;

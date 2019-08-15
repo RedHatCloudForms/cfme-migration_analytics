@@ -33,7 +33,7 @@ class AnalyticsDataCollection extends React.Component {
   }
 
   render() {
-    const { bundleError, isPayloadReady, onCancelClick, payloadPath, onReturnClick } = this.props;
+    const { bundleError, isPayloadReady, onCancelClick, numVms, payloadPath, onReturnClick } = this.props;
 
     if (bundleError) {
       // TODO format this better
@@ -58,11 +58,13 @@ class AnalyticsDataCollection extends React.Component {
         <div>
           <h3>{__('Inventory collection complete')}</h3>
           <p>
-            {__('0 VMs examined') /* TODO sum from summaryData */}
+            {numVms}
+            &nbsp;
+            {__('VMs examined')}
             <br />
             {__('Inventory data saved at:')}
-            &nbsp;
-            {payloadPath}
+            <br />
+            <span className="payload-path">{payloadPath}</span>
           </p>
           <div className="buttons">
             <Button
@@ -90,6 +92,7 @@ AnalyticsDataCollection.propTypes = {
   fetchBundleTaskAction: PropTypes.func,
   isFetchingBundleTask: PropTypes.bool,
   isBundleTaskFinished: PropTypes.bool,
+  numVms: PropTypes.number,
   payloadPath: PropTypes.string,
   onCancelClick: PropTypes.func.isRequired,
   onReturnClick: PropTypes.func.isRequired
@@ -104,6 +107,7 @@ AnalyticsDataCollection.defaultProps = {
   fetchBundleTaskAction: noop,
   isFetchingBundleTask: false,
   isBundleTaskFinished: false,
+  numVms: null,
   payloadPath: null
 };
 

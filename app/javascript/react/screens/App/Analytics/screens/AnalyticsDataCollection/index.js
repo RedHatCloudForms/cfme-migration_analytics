@@ -6,7 +6,8 @@ import {
   selectBundleError,
   selectBundleTaskHref,
   selectIsBundleTaskFinished,
-  selectPayloadPath
+  selectPayloadPath,
+  selectNumVms
 } from '../../redux/analyticsSelectors';
 
 const mapStateToProps = ({ migrationAnalytics: { analytics } }) => {
@@ -19,6 +20,7 @@ const mapStateToProps = ({ migrationAnalytics: { analytics } }) => {
     isFetchingBundleTask: analytics.isFetchingBundleTask,
     isBundleTaskFinished,
     isPayloadReady: selectIsPayloadReady(analytics, { bundleError, isBundleTaskFinished }),
+    numVms: selectNumVms(analytics),
     payloadPath: selectPayloadPath(analytics)
   };
 };
