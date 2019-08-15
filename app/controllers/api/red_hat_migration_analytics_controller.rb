@@ -49,7 +49,7 @@ module Api
         {
           :path => manifest_path,
           :body => manifest,
-          :version => manifest["manifest"]["version"],
+          :version => manifest.dig("manifest", "version"),
           :using_default => true
         }
       end
