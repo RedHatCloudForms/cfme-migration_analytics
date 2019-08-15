@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Breadcrumb } from 'patternfly-react';
+import { Breadcrumb, noop } from 'patternfly-react';
 import Toolbar from './components/Toolbar';
 import AnalyticsEmptyState from './screens/AnalyticsEmptyState';
 import AnalyticsSummary from './screens/AnalyticsSummary';
@@ -15,18 +15,12 @@ const SCREENS = {
   DATA_COLLECTION: 'DATA_COLLECTION'
 };
 
-const AnalyticsContainer = ({ currentScreen, children }) => (
-  <div id="migration-analytics" className={currentScreen === SCREENS.EMPTY_STATE ? 'row cards-pf' : ''}>
-    {children}
-  </div>
-);
-AnalyticsContainer.propTypes = {
-  currentScreen: PropTypes.oneOf(Object.values(SCREENS)).isRequired,
-  children: PropTypes.node.isRequired
-};
-
 class Analytics extends React.Component {
   state = { currentScreen: SCREENS.EMPTY_STATE };
+
+  componentDidMount() {
+    this.props.fetchManifestInfoAction();
+  }
 
   goToSummary = () => this.setState({ currentScreen: SCREENS.SUMMARY });
   goToProviderSelection = () => this.setState({ currentScreen: SCREENS.PROVIDER_SELECTION });
@@ -47,7 +41,9 @@ class Analytics extends React.Component {
   };
 
   render() {
+    const { manifestInfo } = this.props;
     const { currentScreen } = this.state;
+    const onEmptyState = currentScreen === SCREENS.EMPTY_STATE;
     return (
       <React.Fragment>
         <Toolbar>
@@ -59,10 +55,32 @@ class Analytics extends React.Component {
           {/* <BreadcrumbPageSwitcher activeHref="#/analytics" /> */}
           {/* TODO: figure out how to share the breadcrumb switcher with v2v */}
         </Toolbar>
-        <AnalyticsContainer currentScreen={currentScreen}>{this.renderCurrentScreen()}</AnalyticsContainer>
+        <div id="migration-analytics" className={onEmptyState ? 'row cards-pf' : ''}>
+          {this.renderCurrentScreen()}
+        </div>
+        {manifestInfo && (
+          <h6 id="migration-analytics-manifest-version" className={onEmptyState ? 'on-empty-state' : ''}>
+            {__('Manifest version:')}
+            &nbsp;
+            {manifestInfo.manifest_version}
+          </h6>
+        )}
       </React.Fragment>
     );
   }
 }
+
+Analytics.propTypes = {
+  fetchManifestInfoAction: PropTypes.func,
+  manifestInfo: PropTypes.shape({
+    manifest_version: PropTypes.string,
+    using_default_manifest: PropTypes.bool
+  })
+};
+
+Analytics.defaultProps = {
+  fetchManifestInfoAction: noop,
+  manifestInfo: null
+};
 
 export default Analytics;

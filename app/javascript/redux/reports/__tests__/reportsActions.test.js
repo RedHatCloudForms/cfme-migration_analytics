@@ -1,10 +1,8 @@
 import { fetchReportsAction, runReportAction, fetchTaskAction, fetchResultAction } from '../reportsActions';
-import { fetchExpandedResourcesAction } from '../../helpers';
+import * as helpers from '../../helpers';
 import { FETCH_REPORTS, REPORTS_URL, RUN_REPORT, FETCH_TASK, FETCH_RESULT } from '../constants';
 import { mockStore } from '../../../common/testReduxHelpers';
 import { mockRequest, mockReset } from '../../../common/mockRequests';
-
-jest.mock('../../helpers');
 
 const store = mockStore();
 
@@ -15,6 +13,7 @@ afterEach(() => {
 
 describe('reports actions', () => {
   test('fetch reports action', () => {
+    const fetchExpandedResourcesAction = jest.spyOn(helpers, 'fetchExpandedResourcesAction');
     fetchReportsAction({ type: 'foo' });
     expect(fetchExpandedResourcesAction).toHaveBeenCalledWith(FETCH_REPORTS, REPORTS_URL, { type: 'foo' }, [
       'href',

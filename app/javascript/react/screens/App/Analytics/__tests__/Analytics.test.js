@@ -40,14 +40,9 @@ describe('Analytics root component', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('renders container with cards-pf class for empty state', () => {
-    const component = shallow(<Analytics />);
-    expect(component.find('AnalyticsContainer').dive()).toMatchSnapshot();
-  });
-
-  test('renders container without cards-pf class for other screens', () => {
+  test('renders container without cards-pf class when not on empty state screen', () => {
     const component = shallowSummaryScreen();
-    expect(component.find('AnalyticsContainer').dive()).toMatchSnapshot();
+    expect(component.find('#migration-analytics')).toMatchSnapshot();
   });
 
   test('renders summary after clicking Get Started from empty state', () => {
