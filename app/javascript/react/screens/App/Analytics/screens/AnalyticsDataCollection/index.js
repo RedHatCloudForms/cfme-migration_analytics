@@ -1,6 +1,10 @@
 import { connect } from 'react-redux';
 import AnalyticsDataCollection from './AnalyticsDataCollection';
-import { startInventoryBundleAction, fetchBundleTaskAction } from '../../redux/analyticsActions';
+import {
+  startInventoryBundleAction,
+  fetchBundleTaskAction,
+  resetDataCollectionStateAction
+} from '../../redux/analyticsActions';
 import {
   selectIsPayloadReady,
   selectBundleError,
@@ -9,10 +13,12 @@ import {
   selectPayloadPath,
   selectNumVms
 } from '../../redux/analyticsSelectors';
+import { getPayloadUrl } from './helpers';
 
 const mapStateToProps = ({ migrationAnalytics: { analytics } }) => {
   const bundleError = selectBundleError(analytics);
   const isBundleTaskFinished = selectIsBundleTaskFinished(analytics);
+  const payloadPath = selectPayloadPath(analytics);
   return {
     selectedProviders: analytics.selectedProviders,
     bundleError,
@@ -21,11 +27,12 @@ const mapStateToProps = ({ migrationAnalytics: { analytics } }) => {
     isBundleTaskFinished,
     isPayloadReady: selectIsPayloadReady(analytics, { bundleError, isBundleTaskFinished }),
     numVms: selectNumVms(analytics),
-    payloadPath: selectPayloadPath(analytics)
+    payloadPath,
+    payloadUrl: getPayloadUrl(payloadPath)
   };
 };
 
 export default connect(
   mapStateToProps,
-  { startInventoryBundleAction, fetchBundleTaskAction }
+  { startInventoryBundleAction, fetchBundleTaskAction, resetDataCollectionStateAction }
 )(AnalyticsDataCollection);

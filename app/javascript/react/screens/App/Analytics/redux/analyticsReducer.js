@@ -5,7 +5,8 @@ import {
   SELECT_DETAILED_DATA,
   FETCH_MANIFEST_INFO,
   START_INVENTORY_BUNDLE,
-  FETCH_BUNDLE_TASK
+  FETCH_BUNDLE_TASK,
+  RESET_DATA_COLLECTION_STATE
 } from './constants';
 import { functionLookupReducer, getHandlersForBasicFetchActions } from '../../../../../redux/helpers';
 import { calculateSummaryData } from './helpers';
@@ -48,6 +49,11 @@ const actionHandlers = {
   [SELECT_DETAILED_DATA]: (state, action) => state.set('detailedDataSelected', action.detailedDataSelected),
   ...startInventoryBundle.actionHandlers,
   ...fetchBundleTask.actionHandlers,
+  [RESET_DATA_COLLECTION_STATE]: state =>
+    Immutable.merge(state, {
+      ...startInventoryBundle.initialState,
+      ...fetchBundleTask.initialState
+    }),
   [RESET_ALL_STATE]: () => initialState
 };
 

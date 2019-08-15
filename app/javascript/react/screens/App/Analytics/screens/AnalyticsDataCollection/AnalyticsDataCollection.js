@@ -8,6 +8,11 @@ class AnalyticsDataCollection extends React.Component {
     this.fetchBundleTaskTimeout = null;
   }
 
+  clearTimer = () => {
+    clearTimeout(this.fetchBundleTaskTimeout);
+    this.fetchBundleTaskTimeout = null;
+  };
+
   componentDidMount() {
     const { startInventoryBundleAction, selectedProviders } = this.props;
     startInventoryBundleAction(selectedProviders.map(provider => provider.id));
@@ -27,13 +32,18 @@ class AnalyticsDataCollection extends React.Component {
     }
 
     if (!prevProps.isBundleTaskFinished && isBundleTaskFinished) {
-      clearTimeout(this.fetchBundleTaskTimeout); // Just in case.
-      this.fetchBundleTaskTimeout = null;
+      this.clearTimer(); // Just in case.
     }
   }
 
+  componentWillUnmount() {
+    // If the user clicks Cancel before the task is complete, prevent unmounted renders.
+    this.clearTimer();
+    this.props.resetDataCollectionStateAction();
+  }
+
   render() {
-    const { bundleError, isPayloadReady, onCancelClick, numVms, payloadPath, onReturnClick } = this.props;
+    const { bundleError, isPayloadReady, onCancelClick, numVms, payloadPath, payloadUrl, onReturnClick } = this.props;
 
     if (bundleError) {
       // TODO format this better
@@ -67,11 +77,8 @@ class AnalyticsDataCollection extends React.Component {
             <span className="payload-path">{payloadPath}</span>
           </p>
           <div className="buttons">
-            <Button
-              bsStyle="primary"
-              onClick={() => alert('This is a placeholder. The data collection feature is still in development.')}
-            >
-              {__('Download Inventory File')}
+            <Button bsStyle="primary" href={payloadUrl} disabled={!payloadUrl}>
+              {payloadUrl ? __('Download Inventory File') : __('Download Not Available')}
             </Button>
             <Button onClick={onReturnClick}>{__('Return to Summary')}</Button>
           </div>
@@ -94,8 +101,10 @@ AnalyticsDataCollection.propTypes = {
   isBundleTaskFinished: PropTypes.bool,
   numVms: PropTypes.number,
   payloadPath: PropTypes.string,
+  payloadUrl: PropTypes.string,
   onCancelClick: PropTypes.func.isRequired,
-  onReturnClick: PropTypes.func.isRequired
+  onReturnClick: PropTypes.func.isRequired,
+  resetDataCollectionStateAction: PropTypes.func
 };
 
 AnalyticsDataCollection.defaultProps = {
@@ -108,7 +117,9 @@ AnalyticsDataCollection.defaultProps = {
   isFetchingBundleTask: false,
   isBundleTaskFinished: false,
   numVms: null,
-  payloadPath: null
+  payloadPath: null,
+  payloadUrl: null,
+  resetDataCollectionStateAction: noop
 };
 
 export default AnalyticsDataCollection;

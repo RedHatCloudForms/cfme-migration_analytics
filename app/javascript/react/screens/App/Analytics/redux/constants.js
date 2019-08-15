@@ -4,6 +4,7 @@ export const SELECT_PROVIDERS = 'MA_SELECT_PROVIDERS';
 export const SELECT_DETAILED_DATA = 'MA_SELECT_DETAILED_DATA';
 export const START_INVENTORY_BUNDLE = 'MA_START_INVENTORY_BUNDLE';
 export const FETCH_BUNDLE_TASK = 'MA_FETCH_BUNDLE_TASK';
+export const RESET_DATA_COLLECTION_STATE = 'MA_RESET_DATA_COLLECTION_STATE';
 
 export const MANIFEST_INFO_URL = '/api/red_hat_migration_analytics';
 export const INVENTORY_BUNDLE_URL = '/api/red_hat_migration_analytics';

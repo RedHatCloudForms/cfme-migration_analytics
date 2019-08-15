@@ -8,7 +8,8 @@ import {
   MANIFEST_INFO_URL,
   START_INVENTORY_BUNDLE,
   INVENTORY_BUNDLE_URL,
-  FETCH_BUNDLE_TASK
+  FETCH_BUNDLE_TASK,
+  RESET_DATA_COLLECTION_STATE
 } from './constants';
 import { simpleActionWithProperties, basicFetchAction } from '../../../../../redux/helpers';
 
@@ -32,3 +33,5 @@ export const startInventoryBundleAction = providerIds => dispatch =>
   });
 
 export const fetchBundleTaskAction = taskHref => basicFetchAction(FETCH_BUNDLE_TASK, taskHref);
+
+export const resetDataCollectionStateAction = () => dispatch => dispatch({ type: RESET_DATA_COLLECTION_STATE });
