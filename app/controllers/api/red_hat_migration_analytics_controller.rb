@@ -15,7 +15,7 @@ module Api
       manifest = self.class.parse_manifest[:body]
 
       provider_ids = data["provider_ids"]
-      provider_ids = provider_ids.uniq if provider_ids
+      provider_ids = provider_ids.map(&:to_i).uniq if provider_ids
       raise "Must specify a list of provider ids via \"provider_ids\"" if provider_ids.blank?
       invalid_provider_ids = provider_ids - find_provider_ids(type)
       raise "Invalid provider ids #{invalid_provider_ids.sort.join(', ')} specified" if invalid_provider_ids.present?
