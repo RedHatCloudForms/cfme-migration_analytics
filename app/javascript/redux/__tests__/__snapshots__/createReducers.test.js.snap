@@ -4,6 +4,9 @@ exports[`create reducers produces a properly combined initial state 1`] = `
 Object {
   "analytics": Object {
     "detailedDataSelected": false,
+    "errorFetchingManifestInfo": null,
+    "isFetchingManifestInfo": false,
+    "manifestInfo": null,
     "selectedProviders": Array [],
     "summaryData": null,
   },

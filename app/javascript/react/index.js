@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import Analytics from './screens/App/Analytics/Analytics';
+import Analytics from './screens/App/Analytics';
 import createReducers from '../redux/createReducers';
 
 class App extends React.Component {

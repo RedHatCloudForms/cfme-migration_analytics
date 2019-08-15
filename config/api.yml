@@ -1,6 +1,6 @@
 :collections:
   :red_hat_migration_analytics:
-    :description: Migration Analytics Manifest
+    :description: Red Hat Migration Analytics
     :options:
     - :arbitrary_resource_path
     - :collection
