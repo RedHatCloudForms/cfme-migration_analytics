@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Spinner, Button, Icon, noop } from 'patternfly-react';
+import EmptyStateWithButton from '../../components/EmptyStateWithButton';
 
 class AnalyticsDataCollection extends React.Component {
   constructor(props) {
@@ -46,8 +47,15 @@ class AnalyticsDataCollection extends React.Component {
     const { bundleError, isPayloadReady, onCancelClick, numVms, payloadPath, payloadUrl, onReturnClick } = this.props;
 
     if (bundleError) {
-      // TODO format this better
-      return <h1>Error collecting inventory data: {bundleError}</h1>;
+      return (
+        <EmptyStateWithButton
+          iconName="error-circle-o"
+          title={__('Failed to collect inventory data')}
+          message={bundleError}
+          buttonText={__('Cancel')}
+          onClick={onCancelClick}
+        />
+      );
     }
 
     if (!isPayloadReady) {
