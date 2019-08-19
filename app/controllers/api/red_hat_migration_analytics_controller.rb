@@ -47,14 +47,17 @@ module Api
 
     class << self
       def parse_manifest
-        # TODO: check for a valid user-provided manifest before defaulting to default-manifest.json
-        manifest_path = Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
+        default_manifest_path = Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
+        user_manifest_path    = Pathname.new("/opt/rh/cfme-migration_analytics/manifest.json")
+        manifest_path         = user_manifest_path.exist? ? user_manifest_path : default_manifest_path
+
         manifest = Vmdb::Settings.filter_passwords!(load_manifest(manifest_path))
+
         {
-          :path => manifest_path,
-          :body => manifest,
-          :version => manifest.dig("manifest", "version"),
-          :using_default => true
+          :path          => manifest_path,
+          :body          => manifest,
+          :version       => manifest.dig("manifest", "version"),
+          :using_default => manifest_path == default_manifest_path
         }
       end
 
