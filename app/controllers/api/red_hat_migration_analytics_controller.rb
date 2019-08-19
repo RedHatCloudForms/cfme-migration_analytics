@@ -26,9 +26,12 @@ module Api
       provider_targets = provider_ids.map { |id| ["ExtManagementSystem", id] }
       public_download_dir = Rails.root.join("public", "migration_analytics")
       Dir.mkdir public_download_dir unless public_download_dir.exist?
+      file_permissions = 0644
 
       # bundle takes (userid, manifest, targets, tempdir = nil)
-      task_id = Cfme::CloudServices::InventorySync.bundle_queue(userid, manifest, provider_targets, public_download_dir)
+      task_id = Cfme::CloudServices::InventorySync.bundle_queue(
+        userid, manifest, provider_targets, public_download_dir, file_permissions)
+
       action_result(true, desc, :task_id => task_id)
     rescue => e
       action_result(false, e.to_s)

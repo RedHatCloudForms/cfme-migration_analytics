@@ -45,8 +45,9 @@ describe "Red Hat  Migration Analytics Manifest API" do
 
       expected_targets = [["ExtManagementSystem", ems1.id]]
       expected_tempdir = Rails.root.join("public", "migration_analytics")
+      expected_perm    = 0644
       allow(Cfme::CloudServices::InventorySync).to receive("bundle_queue")
-        .with(@user.userid, manifest, expected_targets, expected_tempdir) { task.id }
+        .with(@user.userid, manifest, expected_targets, expected_tempdir, expected_perm) { task.id }
 
       post(api_red_hat_migration_analytics_url,
            :params => {
