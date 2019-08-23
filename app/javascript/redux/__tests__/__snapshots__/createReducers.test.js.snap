@@ -3,9 +3,15 @@
 exports[`create reducers produces a properly combined initial state 1`] = `
 Object {
   "analytics": Object {
+    "bundleStartResult": null,
+    "bundleTask": null,
     "detailedDataSelected": false,
+    "errorFetchingBundleTask": null,
     "errorFetchingManifestInfo": null,
+    "errorStartingBundle": null,
+    "isFetchingBundleTask": false,
     "isFetchingManifestInfo": false,
+    "isStartingBundle": false,
     "manifestInfo": null,
     "selectedProviders": Array [],
     "summaryData": null,

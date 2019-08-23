@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EmptyStateWithButton from './EmptyStateWithButton';
+import EmptyStateWithButton from '../../../components/EmptyStateWithButton';
 
 const ProviderRefreshErrors = ({ providersWithRefreshErrors, onRetryClick }) => (
   <EmptyStateWithButton

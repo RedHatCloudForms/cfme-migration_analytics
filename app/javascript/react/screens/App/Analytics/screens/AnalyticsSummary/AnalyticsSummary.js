@@ -13,7 +13,7 @@ import {
 import SummaryAccordion, { summaryDataShape } from './components/SummaryAccordion';
 import { someProvidersExist, noRefreshErrorsExist, someProvidersAwaitingRefresh, providersRefreshed } from './helpers';
 import LargeInlineSpinner from './components/LargeInlineSpinner';
-import EmptyStateWithButton from './components/EmptyStateWithButton';
+import EmptyStateWithButton from '../../components/EmptyStateWithButton';
 import ProviderRefreshErrors from './components/ProviderRefreshErrors';
 import ReportTaskError from './components/ReportTaskError';
 
