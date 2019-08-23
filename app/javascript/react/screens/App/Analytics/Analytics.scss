@@ -57,6 +57,10 @@
 
   .detailed-data-selection {
     margin-top: 15px;
+
+    li {
+      list-style: disc outside none;
+    }
   }
 
   .icon-with-content {
@@ -99,6 +103,11 @@
         margin: 15px 0;
       }
     }
+  }
+
+  .payload-path {
+    display: inline-block;
+    padding-left: 20px;
   }
 }
 
