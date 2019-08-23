@@ -14,6 +14,7 @@ describe('Data collection screen', () => {
     expect(shallow(<AnalyticsDataCollection {...getBaseProps()} />)).toMatchSnapshot();
   });
 
+  /*
   test('renders a success message with a download button after payload is loaded', () => {
     const props = {
       ...getBaseProps(),
@@ -36,4 +37,5 @@ describe('Data collection screen', () => {
     const component = shallow(<AnalyticsDataCollection {...props} />);
     expect(component).toMatchSnapshot();
   });
+  */
 });

@@ -14,6 +14,15 @@ class AnalyticsDataCollection extends React.Component {
     this.fetchBundleTaskTimeout = null;
   };
 
+  copyToClipboard = e => {
+    const range = document.createRange();
+    range.selectNode(this.span);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    e.target.focus();
+  };
+
   componentDidMount() {
     const { startInventoryBundleAction, selectedProviders } = this.props;
     startInventoryBundleAction(selectedProviders.map(provider => provider.id));
@@ -44,7 +53,16 @@ class AnalyticsDataCollection extends React.Component {
   }
 
   render() {
-    const { bundleError, isPayloadReady, onCancelClick, numVms, payloadPath, payloadUrl, onReturnClick } = this.props;
+    const {
+      bundleError,
+      isPayloadReady,
+      onCancelClick,
+      numVms,
+      payloadHost,
+      payloadPath,
+      // payloadUrl,
+      onReturnClick
+    } = this.props;
 
     if (bundleError) {
       return (
@@ -80,14 +98,25 @@ class AnalyticsDataCollection extends React.Component {
             &nbsp;
             {__('VMs examined')}
             <br />
-            {__('Inventory data saved at:')}
+            {__('To download the saved inventory data, copy the command below and run it from a command line.')}
             <br />
-            <span className="payload-path">{payloadPath}</span>
+            <span
+              className="payload-path"
+              /* eslint no-return-assign: "error" */
+              ref={span => (this.span = span)}
+            >{`scp root@${payloadHost}:${payloadPath} .`}</span>
           </p>
           <div className="buttons">
+            {document.queryCommandSupported('copy') && (
+              <Button bsStyle="primary" onClick={this.copyToClipboard}>
+                {__('Copy to Clipboard')}
+              </Button>
+            )}
+            {/* Disabled for now, before we figure out how to download the payload safely over http
             <Button bsStyle="primary" href={payloadUrl} disabled={!payloadUrl}>
               {payloadUrl ? __('Download Inventory File') : __('Download Not Available')}
             </Button>
+            */}
             <Button onClick={onReturnClick}>{__('Return to Summary')}</Button>
           </div>
         </div>
@@ -108,8 +137,9 @@ AnalyticsDataCollection.propTypes = {
   isFetchingBundleTask: PropTypes.bool,
   isBundleTaskFinished: PropTypes.bool,
   numVms: PropTypes.number,
+  payloadHost: PropTypes.string,
   payloadPath: PropTypes.string,
-  payloadUrl: PropTypes.string,
+  // payloadUrl: PropTypes.string,
   onCancelClick: PropTypes.func.isRequired,
   onReturnClick: PropTypes.func.isRequired,
   resetDataCollectionStateAction: PropTypes.func
@@ -125,8 +155,9 @@ AnalyticsDataCollection.defaultProps = {
   isFetchingBundleTask: false,
   isBundleTaskFinished: false,
   numVms: null,
+  payloadHost: null,
   payloadPath: null,
-  payloadUrl: null,
+  // payloadUrl: null,
   resetDataCollectionStateAction: noop
 };
 
