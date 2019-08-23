@@ -11,6 +11,7 @@ Object {
   "numVms": null,
   "onCancelClick": [Function],
   "onReturnClick": [Function],
+  "payloadHost": null,
   "payloadPath": null,
   "payloadUrl": null,
   "resetDataCollectionStateAction": [Function],
