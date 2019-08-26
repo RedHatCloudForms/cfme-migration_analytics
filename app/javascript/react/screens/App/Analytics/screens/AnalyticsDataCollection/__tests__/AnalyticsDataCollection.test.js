@@ -14,20 +14,21 @@ describe('Data collection screen', () => {
     expect(shallow(<AnalyticsDataCollection {...getBaseProps()} />)).toMatchSnapshot();
   });
 
-  /*
-  test('renders a success message with a download button after payload is loaded', () => {
+  test('renders a success message and payload path after payload is loaded', () => {
     const props = {
       ...getBaseProps(),
       isPayloadReady: true,
       numVms: 7,
       payloadPath: 'some/path/to/payload.tgz',
-      payloadUrl: 'fake/url/here/payload.tgz'
+      payloadHost: 'some.host'
     };
     const component = shallow(<AnalyticsDataCollection {...props} />);
     expect(component).toMatchSnapshot();
   });
 
-  test('renders a success message with disabled button if there is no download url', () => {
+  // Disabled until we figure out how to download the payload safely over http
+  // eslint-disable-next-line jest/no-disabled-tests
+  test.skip('renders a success message with disabled button if there is no download url', () => {
     const props = {
       ...getBaseProps(),
       isPayloadReady: true,
@@ -37,5 +38,4 @@ describe('Data collection screen', () => {
     const component = shallow(<AnalyticsDataCollection {...props} />);
     expect(component).toMatchSnapshot();
   });
-  */
 });
