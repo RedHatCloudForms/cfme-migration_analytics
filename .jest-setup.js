@@ -23,3 +23,7 @@ global.$ = jest.fn(() => ({
   on: jest.fn(),
   selectpicker: jest.fn()
 }));
+
+Object.defineProperty(global.document, 'queryCommandSupported', {
+  value: () => true
+});

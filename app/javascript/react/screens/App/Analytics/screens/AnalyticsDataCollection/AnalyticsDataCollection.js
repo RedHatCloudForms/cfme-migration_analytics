@@ -7,6 +7,7 @@ class AnalyticsDataCollection extends React.Component {
   constructor(props) {
     super(props);
     this.fetchBundleTaskTimeout = null;
+    this.scpSpanRef = React.createRef();
   }
 
   clearTimer = () => {
@@ -16,7 +17,7 @@ class AnalyticsDataCollection extends React.Component {
 
   copyToClipboard = e => {
     const range = document.createRange();
-    range.selectNode(this.span);
+    range.selectNode(this.scpSpanRef.current);
     window.getSelection().removeAllRanges();
     window.getSelection().addRange(range);
     document.execCommand('copy');
@@ -100,11 +101,7 @@ class AnalyticsDataCollection extends React.Component {
             <br />
             {__('To download the saved inventory data, copy the command below and run it from a command line.')}
             <br />
-            <span
-              className="payload-path"
-              /* eslint no-return-assign: "error" */
-              ref={span => (this.span = span)}
-            >{`scp root@${payloadHost}:${payloadPath} .`}</span>
+            <span className="payload-path" ref={this.scpSpanRef}>{`scp root@${payloadHost}:${payloadPath} .`}</span>
           </p>
           <div className="buttons">
             {document.queryCommandSupported('copy') && (
