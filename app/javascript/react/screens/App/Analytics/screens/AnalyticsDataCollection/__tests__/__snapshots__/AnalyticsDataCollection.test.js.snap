@@ -1,5 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Data collection screen renders a success message and payload path after payload is loaded 1`] = `
+<div
+  className="data-collection-status icon-with-content"
+>
+  <Icon
+    className="checkmark"
+    name="check"
+    type="fa"
+  />
+  <div>
+    <h3>
+      Inventory collection complete
+    </h3>
+    <p>
+      7
+       
+      VMs examined
+      <br />
+      To download the saved inventory data, copy the command below and run it from a command line.
+      <br />
+      <span
+        className="payload-path"
+      >
+        scp root@some.host:some/path/to/payload.tgz .
+      </span>
+    </p>
+    <div
+      className="buttons"
+    >
+      <Button
+        active={false}
+        block={false}
+        bsClass="btn"
+        bsStyle="primary"
+        disabled={false}
+        onClick={[Function]}
+      >
+        Copy to Clipboard
+      </Button>
+      <Button
+        active={false}
+        block={false}
+        bsClass="btn"
+        bsStyle="default"
+        disabled={false}
+        onClick={[MockFunction]}
+      >
+        Return to Summary
+      </Button>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Data collection screen renders with a spinner initially 1`] = `
 <div
   className="data-collection-status icon-with-content"
