@@ -3,6 +3,10 @@ import { RUN_REPORT, FETCH_TASK, FETCH_RESULT, FETCH_REPORTS } from '../constant
 import { RESET_ALL_STATE } from '../../common/constants';
 
 describe('reports reducer', () => {
+  test('constructs initial state correctly', () => {
+    expect(initialState).toMatchSnapshot();
+  });
+
   test('calls an action handler for runReport', () => {
     const state = reportsReducer(initialState, { type: `${RUN_REPORT}_PENDING`, meta: { href: 'foo' } });
     expect(state.runningReportHrefs).toEqual(['foo']);

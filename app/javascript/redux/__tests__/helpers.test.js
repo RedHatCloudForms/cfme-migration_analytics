@@ -10,7 +10,8 @@ import {
   filterResources,
   findResource,
   fetchExpandedResourcesAction,
-  simpleActionWithProperties
+  simpleActionWithProperties,
+  getHandlersForBasicFetchActions
 } from '../helpers';
 
 const store = mockStore();
@@ -31,6 +32,21 @@ describe('redux helpers', () => {
     expect(reducedState).toEqual({ foo: 'new value' });
     const stateAfterUnknownAction = reducer(reducedState, { type: 'SOME_OTHER_ACTION' });
     expect(stateAfterUnknownAction).toEqual(reducedState);
+  });
+
+  test('get handlers for basic fetch actions with default getResource function', () => {
+    const fetchWidget = getHandlersForBasicFetchActions(
+      'FETCH_WIDGET',
+      'isFetchingWidget',
+      'errorFetchingWidget',
+      'widget'
+    );
+    const widgetReducer = functionLookupReducer(fetchWidget.initialState, fetchWidget.actionHandlers);
+    const stateAfterFulfilled = widgetReducer(fetchWidget.initialState, {
+      type: 'FETCH_WIDGET_FULFILLED',
+      payload: { data: { mock: 'widget' } }
+    });
+    expect(stateAfterFulfilled.widget).toEqual({ mock: 'widget' });
   });
 
   test('get handlers for fetch resources actions', () => {
@@ -161,12 +177,18 @@ describe('redux helpers', () => {
   describe('fetch expanded resources action', () => {
     const action = fetchExpandedResourcesAction('FETCH_WIDGETS', '/api/widgets', { size: 'large' }, ['id', 'name']);
 
-    test('formats URL properly', () => {
+    test('formats URL properly with filterValues and attributes', () => {
       global.API.get.mockClear();
       store.dispatch(action);
       expect(global.API.get.mock.calls[0][0]).toEqual(
         '/api/widgets?filter%5B%5D=size%3D%27large%27&attributes=id%2Cname&expand=resources'
       );
+    });
+
+    test('formats URL properly with no filterValues or actions', () => {
+      global.API.get.mockClear();
+      store.dispatch(fetchExpandedResourcesAction('FETCH_WIDGETS', '/api/widgets'));
+      expect(global.API.get.mock.calls[0][0]).toEqual('/api/widgets?expand=resources');
     });
 
     test('is successful', () => {
