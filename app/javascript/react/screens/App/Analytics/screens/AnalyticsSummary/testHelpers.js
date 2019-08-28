@@ -1,9 +1,11 @@
+import { expectOnlySpecificActions } from '../../../../../../common/testReduxHelpers';
+
 export const expectInitialFetchActions = (calledTimes, props) => {
   expect(props.fetchProvidersAction).toHaveBeenCalledTimes(calledTimes * 1);
   expect(props.fetchReportsAction).toHaveBeenCalledTimes(calledTimes * 2);
 };
 
-export const expectNoActionsOtherThan = (otherThanActions, props) => {
+export const expectNoActionsOtherThan = (expectedActions, props) => {
   const allActions = [
     'fetchProvidersAction',
     'fetchReportsAction',
@@ -13,15 +15,7 @@ export const expectNoActionsOtherThan = (otherThanActions, props) => {
     'calculateSummaryDataAction',
     'resetAllStateAction'
   ];
-  allActions.forEach(action => {
-    if (!otherThanActions.includes(action)) {
-      const numCalls = props[action].mock.calls.length;
-      if (numCalls > 0) {
-        console.error(`${action} was called unexpectedly`); // eslint-disable-line no-console
-      }
-      expect(props[action]).toHaveBeenCalledTimes(0);
-    }
-  });
+  expectOnlySpecificActions({ allActions, expectedActions, props });
 };
 
 export const expectNoActions = props => expectNoActionsOtherThan([], props);
