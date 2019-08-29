@@ -23,3 +23,16 @@ export const mockDispatch = actionCreator => {
   actionCreator(dispatch);
   return dispatch.mock.calls[0][0];
 };
+
+export const expectNoCallsTo = (actions, props) => {
+  actions.forEach(action => {
+    const numCalls = props[action].mock.calls.length;
+    if (numCalls > 0) {
+      console.error(`${action} was called unexpectedly`); // eslint-disable-line no-console
+    }
+    expect(props[action]).toHaveBeenCalledTimes(0);
+  });
+};
+
+export const expectOnlySpecificActions = ({ allActions, expectedActions, props }) =>
+  expectNoCallsTo(allActions.filter(action => !expectedActions.includes(action)), props);

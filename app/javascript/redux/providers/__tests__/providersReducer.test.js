@@ -3,6 +3,10 @@ import { FETCH_PROVIDERS } from '../constants';
 import { RESET_ALL_STATE } from '../../common/constants';
 
 describe('providers reducer', () => {
+  test('constructs initial state correctly', () => {
+    expect(initialState).toMatchSnapshot();
+  });
+
   test('calls an action handler for fetchProviders', () => {
     const state = providersReducer(initialState, { type: `${FETCH_PROVIDERS}_PENDING` });
     expect(state.isFetchingProviders).toBe(true);
