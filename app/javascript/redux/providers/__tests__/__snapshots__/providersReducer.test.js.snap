@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`providers reducer constructs initial state correctly 1`] = `
+Object {
+  "errorFetchingProviders": null,
+  "isFetchingProviders": false,
+  "providers": null,
+}
+`;

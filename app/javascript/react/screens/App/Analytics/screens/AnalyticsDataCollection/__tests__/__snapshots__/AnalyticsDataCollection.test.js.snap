@@ -54,7 +54,19 @@ exports[`Data collection screen renders a success message and payload path after
 </div>
 `;
 
-exports[`Data collection screen renders with a spinner initially 1`] = `
+exports[`Data collection screen renders an error message if data collection failed 1`] = `
+<EmptyStateWithButton
+  buttonText="Cancel"
+  href={null}
+  iconName="error-circle-o"
+  iconType="pf"
+  message="some error here"
+  onClick={[MockFunction]}
+  title="Failed to collect inventory data"
+/>
+`;
+
+exports[`Data collection screen renders with a spinner initially and starts the bundle on mount 1`] = `
 <div
   className="data-collection-status icon-with-content"
 >
