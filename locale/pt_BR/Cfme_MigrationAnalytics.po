@@ -1,0 +1,197 @@
+# Portuguese translations for Cfme_MigrationAnalytics package.
+# Copyright (C) 2019 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Cfme_MigrationAnalytics package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cfme_MigrationAnalytics 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-09-13 11:04+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Portuguese\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"\n"
+
+msgid "Basic data"
+msgstr ""
+
+msgid "Before collecting analytics data, you must have at least one VMware provider configured."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Checking providers"
+msgstr ""
+
+msgid "CloudForms discovered the following information:"
+msgstr ""
+
+msgid "Collect Inventory Data"
+msgstr ""
+
+msgid "Collecting inventory data"
+msgstr ""
+
+msgid "Compute"
+msgstr ""
+
+msgid "Configure Infrastructure Providers"
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Copy to Clipboard"
+msgstr ""
+
+msgid "Data may or may not include SmartState Analysis results."
+msgstr ""
+
+msgid "Detailed analysis of individual VMs including host, operating system, files, and running services."
+msgstr ""
+
+msgid "Detailed data"
+msgstr ""
+
+msgid "Download Inventory File"
+msgstr ""
+
+msgid "Download Not Available"
+msgstr ""
+
+msgid "Environment Summary"
+msgstr ""
+
+msgid "Error message: "
+msgstr ""
+
+#. TRANSLATORS: file: db/fixtures/miq_product_features.yml
+msgid "Everything under Red Hat Migration Analytics"
+msgstr ""
+
+msgid "Examine your virtual environment using Red Hat Migration Analytics"
+msgstr ""
+
+msgid "Examining virtualization providers"
+msgstr ""
+
+msgid "Failed to collect inventory data"
+msgstr ""
+
+msgid "Failed to fetch providers"
+msgstr ""
+
+msgid "Failed to fetch reports"
+msgstr ""
+
+msgid "Failed to refresh providers"
+msgstr ""
+
+msgid "Failed to refresh relationships and power states for the following providers:"
+msgstr ""
+
+msgid "Failed to run summary report"
+msgstr ""
+
+msgid "Get a summarized report of your virtualization providers in CloudForms and collect a detailed inventory that can be further analyzed using the Migration Analytics application on cloud.redhat.com."
+msgstr ""
+
+msgid "Get started"
+msgstr ""
+
+msgid "High level information including number of VMs and hypervisors."
+msgstr ""
+
+msgid "Inventory collection complete"
+msgstr ""
+
+msgid "Inventory data needed"
+msgstr ""
+
+msgid "Manifest version:"
+msgstr ""
+
+msgid "Migration"
+msgstr ""
+
+msgid "Migration Analytics"
+msgstr ""
+
+msgid "Missing Providers"
+msgstr ""
+
+msgid "Necessary for creating workload inventory and workload summary reports."
+msgstr ""
+
+msgid "Necessary to calculate an initial migration savings estimate."
+msgstr ""
+
+msgid "No matches found."
+msgstr ""
+
+msgid "Number of ESXi hypervisors (2 socket servers) discovered"
+msgstr ""
+
+msgid "Number of VMs on discovered hypervisors"
+msgstr ""
+
+msgid "Number of VMware providers"
+msgstr ""
+
+msgid "Progress of SmartState Analysis tasks can be monitored on the Tasks page."
+msgstr ""
+
+msgid "Provider Summary"
+msgstr ""
+
+#. TRANSLATORS: file: db/fixtures/miq_product_features.yml
+msgid "Red Hat Migration Analytics"
+msgstr ""
+
+msgid "Requires that SmartState Analysis be run on each VM. This can take several hours depending on the number of VMs in the selected providers."
+msgstr ""
+
+msgid "Return to Summary"
+msgstr ""
+
+msgid "See product documentation for instructions to configure and run SmartState Analysis."
+msgstr ""
+
+msgid "Select providers for which inventory data will be collected."
+msgstr ""
+
+msgid "Select..."
+msgstr ""
+
+msgid "Task failed: "
+msgstr ""
+
+msgid "To download the saved inventory data, copy the command below and run it from a command line."
+msgstr ""
+
+msgid "Total disk space allocated for discovered VMs"
+msgstr ""
+
+msgid "Total memory allocated for discovered VMs"
+msgstr ""
+
+msgid "Total vCPU cores allocated for discovered VMs"
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "VMs examined"
+msgstr ""
+
+msgid "View provider"
+msgstr ""
+
+msgid "Waiting for provider refresh"
+msgstr ""
