@@ -32,6 +32,23 @@ module Api
       action_result(false, e.to_s)
     end
 
+    def import_manifest_collection(type, data)
+      check_feature_enabled
+      self.class.store_manifest(data['manifest'])
+      action_result(true, 'imported manifest')
+    end
+
+    def reset_manifest_collection(type, data)
+      check_feature_enabled
+      path = self.class.user_manifest_path
+      if File.exist?(path)
+        File.unlink(path)
+        action_result(true, 'deleted manifest')
+      else
+        action_result(true, 'manifest does not exist')
+      end
+    end
+
     private
 
     def check_feature_enabled
@@ -46,11 +63,23 @@ module Api
     end
 
     class << self
-      def parse_manifest
-        default_manifest_path = Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
-        user_manifest_path    = Pathname.new("/opt/rh/cfme-migration_analytics/manifest.json")
-        manifest_path         = user_manifest_path.exist? ? user_manifest_path : default_manifest_path
 
+      def default_manifest_path
+        @default_manifest_path ||= Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
+      end
+
+      def user_manifest_path
+        @user_manifest_path ||= Pathname.new("/opt/rh/cfme-migration_analytics/manifest.json")
+      end
+
+      def store_manifest(manifest)
+        File.open(user_manifest_path, 'w') do |f|
+          f.write(JSON.generate(manifest))
+        end
+      end
+
+      def parse_manifest
+        manifest_path = user_manifest_path.exist? ? user_manifest_path : default_manifest_path
         manifest = Vmdb::Settings.filter_passwords!(load_manifest(manifest_path))
 
         {

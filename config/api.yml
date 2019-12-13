@@ -15,3 +15,8 @@
       :post:
       - :name: bundle
         :identifier: red_hat_migration_analytics
+      - :name: import_manifest
+        :identifier: red_hat_migration_analytics
+      - :name: reset_manifest
+        :identifier: red_hat_migration_analytics
+
