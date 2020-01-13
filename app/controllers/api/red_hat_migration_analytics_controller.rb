@@ -5,6 +5,7 @@ module Api
       manifest = self.class.parse_manifest
       res = {
         :manifest_version => manifest[:version],
+        :default_manifest_version => manifest[:default_version],
         :using_default_manifest => manifest[:using_default]
       }
       render_resource :red_hat_migration_analytics, res
@@ -79,14 +80,19 @@ module Api
       end
 
       def parse_manifest
-        manifest_path = user_manifest_path.exist? ? user_manifest_path : default_manifest_path
-        manifest = Vmdb::Settings.filter_passwords!(load_manifest(manifest_path))
-
+        default_manifest = Vmdb::Settings.filter_passwords!(load_manifest(default_manifest_path))
+        using_default = !user_manifest_path.exist?
+        manifest = if using_default
+                     default_manifest
+                   else
+                     Vmdb::Settings.filter_passwords!(load_manifest(user_manifest_path))
+                   end
         {
-          :path          => manifest_path,
-          :body          => manifest,
-          :version       => manifest.dig("manifest", "version"),
-          :using_default => manifest_path == default_manifest_path
+          :path            => using_default ? default_manifest : user_manifest_path,
+          :body            => manifest,
+          :version         => manifest.dig("manifest", "version"),
+          :default_version => default_manifest.dig("manifest", "version"),
+          :using_default   => using_default
         }
       end
 
