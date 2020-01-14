@@ -74,9 +74,7 @@ module Api
       end
 
       def store_manifest(manifest)
-        File.open(user_manifest_path, 'w') do |f|
-          f.write(JSON.generate(manifest))
-        end
+        user_manifest_path.write(JSON.generate(manifest))
       end
 
       def parse_manifest
