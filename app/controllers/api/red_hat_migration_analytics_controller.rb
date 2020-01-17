@@ -5,6 +5,7 @@ module Api
       manifest = self.class.parse_manifest
       res = {
         :manifest_version => manifest[:version],
+        :default_manifest_version => manifest[:default_version],
         :using_default_manifest => manifest[:using_default]
       }
       render_resource :red_hat_migration_analytics, res
@@ -32,6 +33,23 @@ module Api
       action_result(false, e.to_s)
     end
 
+    def import_manifest_collection(type, data)
+      check_feature_enabled
+      self.class.store_manifest(data['manifest'])
+      action_result(true, 'imported manifest')
+    end
+
+    def reset_manifest_collection(type, data)
+      check_feature_enabled
+      path = self.class.user_manifest_path
+      if File.exist?(path)
+        File.unlink(path)
+        action_result(true, 'deleted manifest')
+      else
+        action_result(true, 'manifest does not exist')
+      end
+    end
+
     private
 
     def check_feature_enabled
@@ -46,18 +64,33 @@ module Api
     end
 
     class << self
+
+      def default_manifest_path
+        @default_manifest_path ||= Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
+      end
+
+      def user_manifest_path
+        @user_manifest_path ||= Pathname.new("/opt/rh/cfme-migration_analytics/manifest.json")
+      end
+
+      def store_manifest(manifest)
+        user_manifest_path.write(JSON.generate(manifest))
+      end
+
       def parse_manifest
-        default_manifest_path = Cfme::MigrationAnalytics::Engine.root.join("config", "default-manifest.json")
-        user_manifest_path    = Pathname.new("/opt/rh/cfme-migration_analytics/manifest.json")
-        manifest_path         = user_manifest_path.exist? ? user_manifest_path : default_manifest_path
-
-        manifest = Vmdb::Settings.filter_passwords!(load_manifest(manifest_path))
-
+        default_manifest = Vmdb::Settings.filter_passwords!(load_manifest(default_manifest_path))
+        using_default = !user_manifest_path.exist?
+        manifest = if using_default
+                     default_manifest
+                   else
+                     Vmdb::Settings.filter_passwords!(load_manifest(user_manifest_path))
+                   end
         {
-          :path          => manifest_path,
-          :body          => manifest,
-          :version       => manifest.dig("manifest", "version"),
-          :using_default => manifest_path == default_manifest_path
+          :path            => using_default ? default_manifest : user_manifest_path,
+          :body            => manifest,
+          :version         => manifest.dig("manifest", "version"),
+          :default_version => default_manifest.dig("manifest", "version"),
+          :using_default   => using_default
         }
       end
 
