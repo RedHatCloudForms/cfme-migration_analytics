@@ -6,6 +6,7 @@ import AnalyticsEmptyState from './screens/AnalyticsEmptyState';
 import AnalyticsSummary from './screens/AnalyticsSummary';
 import AnalyticsProviderSelection from './screens/AnalyticsProviderSelection';
 import AnalyticsDataCollection from './screens/AnalyticsDataCollection';
+import ManifestVersion from './components/ManifestVersion';
 // import BreadcrumbPageSwitcher from '../common/BreadcrumbPageSwitcher'; // TODO: figure out how to share the breadcrumb switcher with v2v
 
 const SCREENS = {
@@ -58,13 +59,7 @@ class Analytics extends React.Component {
         <div id="migration-analytics" className={onEmptyState ? 'row cards-pf' : ''}>
           {this.renderCurrentScreen()}
         </div>
-        {manifestInfo && (
-          <h6 id="migration-analytics-manifest-version" className={onEmptyState ? 'on-empty-state' : ''}>
-            {__('Manifest version:')}
-            &nbsp;
-            {manifestInfo.manifest_version}
-          </h6>
-        )}
+        <ManifestVersion manifestInfo={manifestInfo} onEmptyState={onEmptyState} />
       </React.Fragment>
     );
   }
@@ -72,10 +67,7 @@ class Analytics extends React.Component {
 
 Analytics.propTypes = {
   fetchManifestInfoAction: PropTypes.func,
-  manifestInfo: PropTypes.shape({
-    manifest_version: PropTypes.string,
-    using_default_manifest: PropTypes.bool
-  })
+  manifestInfo: PropTypes.object
 };
 
 Analytics.defaultProps = {
