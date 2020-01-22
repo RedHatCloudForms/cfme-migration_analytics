@@ -15,14 +15,17 @@ const ManifestVersion = ({ manifestInfo, onEmptyState, manifestUpdateModalVisibl
           {__('Update')}
         </Button>
       </h6>
-      <ManifestUpdateModal show={manifestUpdateModalVisible} onClose={toggleManifestUpdateModalAction} />
+      <ManifestUpdateModal
+        show={manifestUpdateModalVisible}
+        onClose={toggleManifestUpdateModalAction}
+        manifestInfo={manifestInfo}
+      />
     </React.Fragment>
   );
 
 ManifestVersion.propTypes = {
   manifestInfo: PropTypes.shape({
-    manifest_version: PropTypes.string,
-    using_default_manifest: PropTypes.bool
+    manifest_version: PropTypes.string
   }),
   onEmptyState: PropTypes.bool,
   manifestUpdateModalVisible: PropTypes.bool,

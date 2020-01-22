@@ -1,15 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Button, noop } from 'patternfly-react';
+import { Modal, Grid, Button, noop } from 'patternfly-react';
 
-const ManifestUpdateModal = ({ onClose, ...otherProps }) => (
-  <Modal {...otherProps} onHide={onClose} backdrop="static">
+const ManifestUpdateModal = ({ onClose, manifestInfo, ...otherProps }) => (
+  <Modal {...otherProps} onHide={onClose} backdrop="static" className="manifest-update-modal">
     <Modal.Header>
       <Modal.CloseButton onClick={onClose} />
       <Modal.Title>{__('Update Manifest')}</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      <h1>TODO: stuff here</h1>
+      <Grid.Row className="show-grid">
+        <Grid.Col xs={6} className="text-right">
+          {__('Current manifest version')}:
+        </Grid.Col>
+        <Grid.Col xs={6}>{manifestInfo.manifest_version}</Grid.Col>
+      </Grid.Row>
+      <Grid.Row className="show-grid">
+        <Grid.Col xs={6} className="text-right">
+          {__('Default manifest version')}:
+        </Grid.Col>
+        <Grid.Col xs={6}>{manifestInfo.default_manifest_version}</Grid.Col>
+      </Grid.Row>
     </Modal.Body>
     <Modal.Footer>
       <Button bsStyle="default" className="btn-cancel" onClick={onClose}>
@@ -23,11 +34,17 @@ const ManifestUpdateModal = ({ onClose, ...otherProps }) => (
 );
 
 ManifestUpdateModal.propTypes = {
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  manifestInfo: PropTypes.shape({
+    manifest_version: PropTypes.string,
+    default_manifest_version: PropTypes.string,
+    using_default_manifest: PropTypes.bool
+  })
 };
 
 ManifestUpdateModal.defaultProps = {
-  onClose: noop
+  onClose: noop,
+  manifestInfo: {}
 };
 
 export default ManifestUpdateModal;
