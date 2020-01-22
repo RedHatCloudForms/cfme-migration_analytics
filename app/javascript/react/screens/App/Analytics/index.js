@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 import Analytics from './Analytics';
-import { fetchManifestInfoAction } from './redux/analyticsActions';
+import { fetchManifestInfoAction, toggleManifestUpdateModalAction } from './redux/analyticsActions';
 
 const mapStateToProps = ({
   migrationAnalytics: {
-    analytics: { manifestInfo }
+    analytics: { manifestInfo, manifestUpdateModalVisible }
   }
-}) => ({ manifestInfo });
+}) => ({ manifestInfo, manifestUpdateModalVisible });
 
 export default connect(
   mapStateToProps,
-  { fetchManifestInfoAction }
+  { fetchManifestInfoAction, toggleManifestUpdateModalAction }
 )(Analytics);

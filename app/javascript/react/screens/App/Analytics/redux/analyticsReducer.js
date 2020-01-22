@@ -4,6 +4,7 @@ import {
   SELECT_PROVIDERS,
   SELECT_DETAILED_DATA,
   FETCH_MANIFEST_INFO,
+  TOGGLE_MANIFEST_UPDATE_MODAL,
   START_INVENTORY_BUNDLE,
   FETCH_BUNDLE_TASK,
   RESET_DATA_COLLECTION_STATE
@@ -35,6 +36,7 @@ const fetchBundleTask = getHandlersForBasicFetchActions(
 
 export const initialState = Immutable({
   ...fetchManifestInfo.initialState,
+  manifestUpdateModalVisible: false,
   summaryData: null,
   selectedProviders: [],
   detailedDataSelected: false,
@@ -44,6 +46,7 @@ export const initialState = Immutable({
 
 const actionHandlers = {
   ...fetchManifestInfo.actionHandlers,
+  [TOGGLE_MANIFEST_UPDATE_MODAL]: state => state.set('manifestUpdateModalVisible', !state.manifestUpdateModalVisible),
   [CALCULATE_SUMMARY_DATA]: (state, action) => state.set('summaryData', calculateSummaryData(action.results)),
   [SELECT_PROVIDERS]: (state, action) => state.set('selectedProviders', action.selectedProviders),
   [SELECT_DETAILED_DATA]: (state, action) => state.set('detailedDataSelected', action.detailedDataSelected),

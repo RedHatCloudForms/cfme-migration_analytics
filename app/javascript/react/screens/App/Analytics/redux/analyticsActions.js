@@ -6,6 +6,7 @@ import {
   SELECT_DETAILED_DATA,
   FETCH_MANIFEST_INFO,
   MANIFEST_INFO_URL,
+  TOGGLE_MANIFEST_UPDATE_MODAL,
   START_INVENTORY_BUNDLE,
   INVENTORY_BUNDLE_URL,
   FETCH_BUNDLE_TASK,
@@ -14,6 +15,8 @@ import {
 import { simpleActionWithProperties, basicFetchAction } from '../../../../../redux/helpers';
 
 export const fetchManifestInfoAction = () => basicFetchAction(FETCH_MANIFEST_INFO, MANIFEST_INFO_URL);
+
+export const toggleManifestUpdateModalAction = () => dispatch => dispatch({ type: TOGGLE_MANIFEST_UPDATE_MODAL });
 
 export const calculateSummaryDataAction = results => simpleActionWithProperties(CALCULATE_SUMMARY_DATA, { results });
 

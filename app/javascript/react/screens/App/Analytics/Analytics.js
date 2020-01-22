@@ -42,7 +42,7 @@ class Analytics extends React.Component {
   };
 
   render() {
-    const { manifestInfo } = this.props;
+    const { manifestInfo, toggleManifestUpdateModalAction, manifestUpdateModalVisible } = this.props;
     const { currentScreen } = this.state;
     const onEmptyState = currentScreen === SCREENS.EMPTY_STATE;
     return (
@@ -59,7 +59,12 @@ class Analytics extends React.Component {
         <div id="migration-analytics" className={onEmptyState ? 'row cards-pf' : ''}>
           {this.renderCurrentScreen()}
         </div>
-        <ManifestVersion manifestInfo={manifestInfo} onEmptyState={onEmptyState} />
+        <ManifestVersion
+          manifestInfo={manifestInfo}
+          onEmptyState={onEmptyState}
+          toggleManifestUpdateModalAction={toggleManifestUpdateModalAction}
+          manifestUpdateModalVisible={manifestUpdateModalVisible}
+        />
       </React.Fragment>
     );
   }
@@ -67,12 +72,16 @@ class Analytics extends React.Component {
 
 Analytics.propTypes = {
   fetchManifestInfoAction: PropTypes.func,
-  manifestInfo: PropTypes.object
+  manifestInfo: PropTypes.object,
+  toggleManifestUpdateModalAction: PropTypes.func,
+  manifestUpdateModalVisible: PropTypes.bool
 };
 
 Analytics.defaultProps = {
   fetchManifestInfoAction: noop,
-  manifestInfo: null
+  manifestInfo: null,
+  toggleManifestUpdateModalAction: noop,
+  manifestUpdateModalVisible: false
 };
 
 export default Analytics;

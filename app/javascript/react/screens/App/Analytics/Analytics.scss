@@ -122,4 +122,8 @@
   &.on-empty-state {
     background-color: $color-pf-black-150;
   }
+
+  > button.btn-link {
+    margin-bottom: 2px;
+  }
 }
