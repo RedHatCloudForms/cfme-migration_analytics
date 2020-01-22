@@ -64,6 +64,7 @@ class Analytics extends React.Component {
           onEmptyState={onEmptyState}
           toggleManifestUpdateModalAction={toggleManifestUpdateModalAction}
           manifestUpdateModalVisible={manifestUpdateModalVisible}
+          updatingManifest={false} // TODO
         />
       </React.Fragment>
     );

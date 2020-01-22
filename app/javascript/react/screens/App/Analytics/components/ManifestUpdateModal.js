@@ -23,12 +23,15 @@ const ManifestUpdateModal = ({ onClose, manifestInfo, ...otherProps }) => (
       </Grid.Row>
     </Modal.Body>
     <Modal.Footer>
-      <Button bsStyle="default" className="btn-cancel" onClick={onClose}>
+      <Button bsStyle="default" onClick={noop /* TODO */} disabled={manifestInfo.using_default_manifest}>
+        {__('Restore default manifest')}
+      </Button>
+      <Button bsStyle="default" onClick={noop /* TODO */}>
+        {__('Upload new manifest')}
+      </Button>
+      <Button bsStyle="primary" className="btn-cancel" onClick={onClose}>
         {__('Close')}
       </Button>
-      {/* <Button bsStyle="primary" onClick={onConfirm} disabled={disableConfirmButton}>
-        {confirmButtonLabel}
-      </Button> */}
     </Modal.Footer>
   </Modal>
 );
