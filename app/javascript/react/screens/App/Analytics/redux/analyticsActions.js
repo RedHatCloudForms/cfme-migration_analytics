@@ -18,6 +18,10 @@ export const fetchManifestInfoAction = () => basicFetchAction(FETCH_MANIFEST_INF
 
 export const toggleManifestUpdateModalAction = () => dispatch => dispatch({ type: TOGGLE_MANIFEST_UPDATE_MODAL });
 
+export const uploadManifestAction = () => dispatch => dispatch(); // TODO
+
+export const resetManifestAction = () => dispatch => dispatch(); // TODO
+
 export const calculateSummaryDataAction = results => simpleActionWithProperties(CALCULATE_SUMMARY_DATA, { results });
 
 export const selectProvidersAction = selectedProviders =>
