@@ -8,6 +8,8 @@ const ManifestVersion = ({
   onEmptyState,
   manifestUpdateModalVisible,
   toggleManifestUpdateModalAction,
+  uploadManifestAction,
+  resetManifestAction,
   updatingManifest
 }) =>
   manifestInfo && (
@@ -34,6 +36,8 @@ const ManifestVersion = ({
         show={manifestUpdateModalVisible}
         onClose={toggleManifestUpdateModalAction}
         manifestInfo={manifestInfo}
+        uploadManifestAction={uploadManifestAction}
+        resetManifestAction={resetManifestAction}
       />
     </React.Fragment>
   );
@@ -45,6 +49,8 @@ ManifestVersion.propTypes = {
   onEmptyState: PropTypes.bool,
   manifestUpdateModalVisible: PropTypes.bool,
   toggleManifestUpdateModalAction: PropTypes.func,
+  uploadManifestAction: PropTypes.func,
+  resetManifestAction: PropTypes.func,
   updatingManifest: PropTypes.bool
 };
 
@@ -53,6 +59,8 @@ ManifestVersion.defaultProps = {
   onEmptyState: false,
   manifestUpdateModalVisible: false,
   toggleManifestUpdateModalAction: noop,
+  uploadManifestAction: noop,
+  resetManifestAction: noop,
   updatingManifest: false
 };
 

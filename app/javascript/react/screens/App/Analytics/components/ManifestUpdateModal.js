@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Grid, Button, noop } from 'patternfly-react';
 import Dropzone from 'react-dropzone';
+import { readFirstFile } from './helpers';
 
-const onFileDrop = () => console.log(arguments);
-
-const ManifestUpdateModal = ({ onClose, manifestInfo, ...otherProps }) => (
+const ManifestUpdateModal = ({ onClose, manifestInfo, uploadManifestAction, resetManifestAction, ...otherProps }) => (
   <Modal {...otherProps} onHide={onClose} backdrop="static" className="manifest-update-modal">
-    <Dropzone onDrop={onFileDrop}>
-      {({ getRootProps, getInputProps, open }) => (
+    <Dropzone onDrop={files => readFirstFile(files, file => uploadManifestAction(file.body))}>
+      {({ getRootProps, getInputProps, open: openFileBrowser }) => (
         <div {...getRootProps()} onClick={event => event.preventDefault()}>
           <input {...getInputProps()} />
           <Modal.Header>
@@ -30,10 +29,10 @@ const ManifestUpdateModal = ({ onClose, manifestInfo, ...otherProps }) => (
             </Grid.Row>
           </Modal.Body>
           <Modal.Footer>
-            <Button bsStyle="default" onClick={noop /* TODO */} disabled={manifestInfo.using_default_manifest}>
+            <Button bsStyle="default" onClick={resetManifestAction} disabled={manifestInfo.using_default_manifest}>
               {__('Restore default manifest')}
             </Button>
-            <Button bsStyle="default" onClick={open}>
+            <Button bsStyle="default" onClick={openFileBrowser}>
               {__('Upload new manifest')}
             </Button>
             <Button bsStyle="primary" className="btn-cancel" onClick={onClose}>
@@ -52,12 +51,16 @@ ManifestUpdateModal.propTypes = {
     manifest_version: PropTypes.string,
     default_manifest_version: PropTypes.string,
     using_default_manifest: PropTypes.bool
-  })
+  }),
+  uploadManifestAction: PropTypes.func,
+  resetManifestAction: PropTypes.func
 };
 
 ManifestUpdateModal.defaultProps = {
   onClose: noop,
-  manifestInfo: {}
+  manifestInfo: {},
+  uploadManifestAction: noop,
+  resetManifestAction: noop
 };
 
 export default ManifestUpdateModal;

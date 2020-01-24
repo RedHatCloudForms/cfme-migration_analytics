@@ -10,7 +10,9 @@ import {
   START_INVENTORY_BUNDLE,
   INVENTORY_BUNDLE_URL,
   FETCH_BUNDLE_TASK,
-  RESET_DATA_COLLECTION_STATE
+  RESET_DATA_COLLECTION_STATE,
+  UPLOAD_MANIFEST,
+  RESET_MANIFEST
 } from './constants';
 import { simpleActionWithProperties, basicFetchAction } from '../../../../../redux/helpers';
 
@@ -18,9 +20,28 @@ export const fetchManifestInfoAction = () => basicFetchAction(FETCH_MANIFEST_INF
 
 export const toggleManifestUpdateModalAction = () => dispatch => dispatch({ type: TOGGLE_MANIFEST_UPDATE_MODAL });
 
-export const uploadManifestAction = () => dispatch => dispatch(); // TODO
+export const uploadManifestAction = fileBody => dispatch => {
+  try {
+    const manifest = JSON.parse(fileBody);
+    dispatch({
+      type: UPLOAD_MANIFEST,
+      payload: API.post(new URI(MANIFEST_INFO_URL).toString(), {
+        action: 'import_manifest',
+        manifest
+      })
+    }).then(() => fetchManifestInfoAction()(dispatch));
+  } catch (e) {
+    // TODO dispatch some error action here, maybe UPLOAD_MANIFEST_REJECTED?
+  }
+};
 
-export const resetManifestAction = () => dispatch => dispatch(); // TODO
+export const resetManifestAction = () => dispatch =>
+  dispatch({
+    type: RESET_MANIFEST,
+    payload: API.post(new URI(MANIFEST_INFO_URL).toString(), {
+      action: 'reset_manifest'
+    })
+  }).then(() => fetchManifestInfoAction()(dispatch));
 
 export const calculateSummaryDataAction = results => simpleActionWithProperties(CALCULATE_SUMMARY_DATA, { results });
 
