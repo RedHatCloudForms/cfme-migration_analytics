@@ -40,5 +40,15 @@ exports[`Analytics root component renders toolbar and empty state correctly 1`] 
       onGetStartedClick={[Function]}
     />
   </div>
+  <ManifestVersion
+    className="on-empty-state"
+    isLoadingManifest={false}
+    manifestError={null}
+    manifestInfo={null}
+    manifestUpdateModalVisible={false}
+    resetManifestAction={[Function]}
+    toggleManifestUpdateModalAction={[Function]}
+    uploadManifestAction={[Function]}
+  />
 </Fragment>
 `;
