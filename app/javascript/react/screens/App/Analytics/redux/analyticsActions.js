@@ -11,8 +11,7 @@ import {
   INVENTORY_BUNDLE_URL,
   FETCH_BUNDLE_TASK,
   RESET_DATA_COLLECTION_STATE,
-  UPLOAD_MANIFEST,
-  RESET_MANIFEST
+  CHANGE_MANIFEST
 } from './constants';
 import { simpleActionWithProperties, basicFetchAction } from '../../../../../redux/helpers';
 
@@ -21,27 +20,37 @@ export const fetchManifestInfoAction = () => basicFetchAction(FETCH_MANIFEST_INF
 export const toggleManifestUpdateModalAction = () => dispatch => dispatch({ type: TOGGLE_MANIFEST_UPDATE_MODAL });
 
 export const uploadManifestAction = fileBody => dispatch => {
+  toggleManifestUpdateModalAction()(dispatch); // TODO explicit hide
   try {
     const manifest = JSON.parse(fileBody);
+    if (!manifest.cfme_version || !manifest.manifest || !manifest.manifest.version) {
+      throw new Error();
+    }
     dispatch({
-      type: UPLOAD_MANIFEST,
+      type: CHANGE_MANIFEST,
       payload: API.post(new URI(MANIFEST_INFO_URL).toString(), {
         action: 'import_manifest',
         manifest
       })
     }).then(() => fetchManifestInfoAction()(dispatch));
   } catch (e) {
-    // TODO dispatch some error action here, maybe UPLOAD_MANIFEST_REJECTED?
+    // If JSON.parse fails or the error above is thrown
+    dispatch({
+      type: `${CHANGE_MANIFEST}_REJECTED`,
+      payload: { data: { error: { message: 'Selected file is not a valid manifest' } } }
+    });
   }
 };
 
-export const resetManifestAction = () => dispatch =>
+export const resetManifestAction = () => dispatch => {
+  toggleManifestUpdateModalAction()(dispatch); // TODO explicit hide
   dispatch({
-    type: RESET_MANIFEST,
+    type: CHANGE_MANIFEST,
     payload: API.post(new URI(MANIFEST_INFO_URL).toString(), {
       action: 'reset_manifest'
     })
   }).then(() => fetchManifestInfoAction()(dispatch));
+};
 
 export const calculateSummaryDataAction = results => simpleActionWithProperties(CALCULATE_SUMMARY_DATA, { results });
 

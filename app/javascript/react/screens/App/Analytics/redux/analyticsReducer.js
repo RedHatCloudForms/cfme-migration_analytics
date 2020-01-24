@@ -8,8 +8,7 @@ import {
   START_INVENTORY_BUNDLE,
   FETCH_BUNDLE_TASK,
   RESET_DATA_COLLECTION_STATE,
-  UPLOAD_MANIFEST,
-  RESET_MANIFEST
+  CHANGE_MANIFEST
 } from './constants';
 import { functionLookupReducer, getHandlersForBasicFetchActions } from '../../../../../redux/helpers';
 import { calculateSummaryData } from './helpers';
@@ -22,18 +21,11 @@ const fetchManifestInfo = getHandlersForBasicFetchActions(
   'manifestInfo'
 );
 
-const uploadManifest = getHandlersForBasicFetchActions(
-  UPLOAD_MANIFEST,
-  'isUploadingManifest',
-  'errorUploadingManifest',
-  'uploadManifestResult'
-);
-
-const resetManifest = getHandlersForBasicFetchActions(
-  RESET_MANIFEST,
-  'isResettingManifest',
-  'errorResettingManifest',
-  'resetManifestResult'
+const changeManifest = getHandlersForBasicFetchActions(
+  CHANGE_MANIFEST,
+  'isChangingManifest',
+  'errorChangingManifest',
+  'changeManifestResult'
 );
 
 const startInventoryBundle = getHandlersForBasicFetchActions(
@@ -52,8 +44,7 @@ const fetchBundleTask = getHandlersForBasicFetchActions(
 
 export const initialState = Immutable({
   ...fetchManifestInfo.initialState,
-  ...uploadManifest.initialState,
-  ...resetManifest.initialState,
+  ...changeManifest.initialState,
   manifestUpdateModalVisible: false,
   summaryData: null,
   selectedProviders: [],
@@ -64,8 +55,7 @@ export const initialState = Immutable({
 
 const actionHandlers = {
   ...fetchManifestInfo.actionHandlers,
-  ...uploadManifest.actionHandlers,
-  ...resetManifest.actionHandlers,
+  ...changeManifest.actionHandlers,
   [TOGGLE_MANIFEST_UPDATE_MODAL]: state => state.set('manifestUpdateModalVisible', !state.manifestUpdateModalVisible),
   [CALCULATE_SUMMARY_DATA]: (state, action) => state.set('summaryData', calculateSummaryData(action.results)),
   [SELECT_PROVIDERS]: (state, action) => state.set('selectedProviders', action.selectedProviders),

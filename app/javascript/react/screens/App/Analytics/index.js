@@ -9,9 +9,21 @@ import {
 
 const mapStateToProps = ({
   migrationAnalytics: {
-    analytics: { manifestInfo, manifestUpdateModalVisible }
+    analytics: {
+      manifestInfo,
+      manifestUpdateModalVisible,
+      isFetchingManifestInfo,
+      isChangingManifest,
+      errorFetchingManifestInfo,
+      errorChangingManifest
+    }
   }
-}) => ({ manifestInfo, manifestUpdateModalVisible });
+}) => ({
+  manifestInfo,
+  manifestUpdateModalVisible,
+  isLoadingManifest: isFetchingManifestInfo || isChangingManifest,
+  manifestError: errorFetchingManifestInfo || errorChangingManifest
+});
 
 export default connect(
   mapStateToProps,

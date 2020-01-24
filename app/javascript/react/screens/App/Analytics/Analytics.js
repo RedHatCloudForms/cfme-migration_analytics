@@ -44,6 +44,8 @@ class Analytics extends React.Component {
   render() {
     const {
       manifestInfo,
+      isLoadingManifest,
+      manifestError,
       toggleManifestUpdateModalAction,
       manifestUpdateModalVisible,
       uploadManifestAction,
@@ -66,13 +68,14 @@ class Analytics extends React.Component {
           {this.renderCurrentScreen()}
         </div>
         <ManifestVersion
+          className={onEmptyState ? 'on-empty-state' : ''}
           manifestInfo={manifestInfo}
-          onEmptyState={onEmptyState}
+          isLoadingManifest={isLoadingManifest}
+          manifestError={manifestError}
           toggleManifestUpdateModalAction={toggleManifestUpdateModalAction}
           manifestUpdateModalVisible={manifestUpdateModalVisible}
           uploadManifestAction={uploadManifestAction}
           resetManifestAction={resetManifestAction}
-          updatingManifest={false} // TODO
         />
       </React.Fragment>
     );
@@ -85,7 +88,9 @@ Analytics.propTypes = {
   toggleManifestUpdateModalAction: PropTypes.func,
   manifestUpdateModalVisible: PropTypes.bool,
   uploadManifestAction: PropTypes.func,
-  resetManifestAction: PropTypes.func
+  resetManifestAction: PropTypes.func,
+  isLoadingManifest: PropTypes.bool,
+  manifestError: PropTypes.shape({ message: PropTypes.string })
 };
 
 Analytics.defaultProps = {
@@ -94,7 +99,9 @@ Analytics.defaultProps = {
   toggleManifestUpdateModalAction: noop,
   manifestUpdateModalVisible: false,
   uploadManifestAction: noop,
-  resetManifestAction: noop
+  resetManifestAction: noop,
+  isLoadingManifest: false,
+  manifestError: null
 };
 
 export default Analytics;

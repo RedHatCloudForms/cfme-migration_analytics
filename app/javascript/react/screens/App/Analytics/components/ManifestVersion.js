@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Spinner, noop } from 'patternfly-react';
+import { Button, Icon, Spinner, noop } from 'patternfly-react';
 import ManifestUpdateModal from './ManifestUpdateModal';
 
 const ManifestVersion = ({
   manifestInfo,
-  onEmptyState,
+  isLoadingManifest,
+  manifestError,
   manifestUpdateModalVisible,
   toggleManifestUpdateModalAction,
   uploadManifestAction,
   resetManifestAction,
-  updatingManifest
+  ...otherProps
 }) =>
   manifestInfo && (
     <React.Fragment>
-      <h6 id="migration-analytics-manifest-version" className={onEmptyState ? 'on-empty-state' : ''}>
-        {!updatingManifest ? (
+      <h6 id="migration-analytics-manifest-version" {...otherProps}>
+        {!isLoadingManifest ? (
           <React.Fragment>
             {__('Manifest version:')}
             &nbsp;
@@ -26,10 +27,15 @@ const ManifestVersion = ({
             </Button>
           </React.Fragment>
         ) : (
-          <React.Fragment>
-            {__('Updating manifest...')}
+          <span className="manifest-loading-message">
+            {__('Loading manifest...')}
             <Spinner inline size="xs" loading />
-          </React.Fragment>
+          </span>
+        )}
+        {manifestError && manifestError.message && (
+          <span className="manifest-error-message">
+            <Icon type="pf" name="error-circle-o" size="sm" /> {manifestError.message}
+          </span>
         )}
       </h6>
       <ManifestUpdateModal
@@ -46,22 +52,22 @@ ManifestVersion.propTypes = {
   manifestInfo: PropTypes.shape({
     manifest_version: PropTypes.string
   }),
-  onEmptyState: PropTypes.bool,
+  isLoadingManifest: PropTypes.bool,
+  manifestError: PropTypes.shape({ message: PropTypes.string }),
   manifestUpdateModalVisible: PropTypes.bool,
   toggleManifestUpdateModalAction: PropTypes.func,
   uploadManifestAction: PropTypes.func,
-  resetManifestAction: PropTypes.func,
-  updatingManifest: PropTypes.bool
+  resetManifestAction: PropTypes.func
 };
 
 ManifestVersion.defaultProps = {
   manifestInfo: null,
-  onEmptyState: false,
+  isLoadingManifest: false,
+  manifestError: null,
   manifestUpdateModalVisible: false,
   toggleManifestUpdateModalAction: noop,
   uploadManifestAction: noop,
-  resetManifestAction: noop,
-  updatingManifest: false
+  resetManifestAction: noop
 };
 
 export default ManifestVersion;
