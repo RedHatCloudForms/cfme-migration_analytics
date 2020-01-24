@@ -22,7 +22,7 @@ const ManifestVersion = ({
             &nbsp;
             {manifestInfo.manifest_version}
             &nbsp;
-            <Button bsStyle="link" bsSize="xsmall" onClick={toggleManifestUpdateModalAction}>
+            <Button bsStyle="link" bsSize="xsmall" onClick={() => toggleManifestUpdateModalAction(true)}>
               {__('Update')}
             </Button>
           </React.Fragment>
@@ -40,7 +40,7 @@ const ManifestVersion = ({
       </h6>
       <ManifestUpdateModal
         show={manifestUpdateModalVisible}
-        onClose={toggleManifestUpdateModalAction}
+        onClose={() => toggleManifestUpdateModalAction(false)}
         manifestInfo={manifestInfo}
         uploadManifestAction={uploadManifestAction}
         resetManifestAction={resetManifestAction}

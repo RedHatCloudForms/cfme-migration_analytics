@@ -17,10 +17,11 @@ import { simpleActionWithProperties, basicFetchAction } from '../../../../../red
 
 export const fetchManifestInfoAction = () => basicFetchAction(FETCH_MANIFEST_INFO, MANIFEST_INFO_URL);
 
-export const toggleManifestUpdateModalAction = () => dispatch => dispatch({ type: TOGGLE_MANIFEST_UPDATE_MODAL });
+export const toggleManifestUpdateModalAction = (show = null) => dispatch =>
+  dispatch({ type: TOGGLE_MANIFEST_UPDATE_MODAL, show });
 
 export const uploadManifestAction = fileBody => dispatch => {
-  toggleManifestUpdateModalAction()(dispatch); // TODO explicit hide
+  toggleManifestUpdateModalAction(false)(dispatch);
   try {
     const manifest = JSON.parse(fileBody);
     if (!manifest.cfme_version || !manifest.manifest || !manifest.manifest.version) {
@@ -43,7 +44,7 @@ export const uploadManifestAction = fileBody => dispatch => {
 };
 
 export const resetManifestAction = () => dispatch => {
-  toggleManifestUpdateModalAction()(dispatch); // TODO explicit hide
+  toggleManifestUpdateModalAction(false)(dispatch);
   dispatch({
     type: CHANGE_MANIFEST,
     payload: API.post(new URI(MANIFEST_INFO_URL).toString(), {

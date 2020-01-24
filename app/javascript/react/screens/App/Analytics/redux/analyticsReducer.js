@@ -56,7 +56,8 @@ export const initialState = Immutable({
 const actionHandlers = {
   ...fetchManifestInfo.actionHandlers,
   ...changeManifest.actionHandlers,
-  [TOGGLE_MANIFEST_UPDATE_MODAL]: state => state.set('manifestUpdateModalVisible', !state.manifestUpdateModalVisible),
+  [TOGGLE_MANIFEST_UPDATE_MODAL]: (state, action) =>
+    state.set('manifestUpdateModalVisible', action.show !== null ? action.show : !state.manifestUpdateModalVisible),
   [CALCULATE_SUMMARY_DATA]: (state, action) => state.set('summaryData', calculateSummaryData(action.results)),
   [SELECT_PROVIDERS]: (state, action) => state.set('selectedProviders', action.selectedProviders),
   [SELECT_DETAILED_DATA]: (state, action) => state.set('detailedDataSelected', action.detailedDataSelected),
