@@ -38,7 +38,7 @@ export const uploadManifestAction = fileBody => dispatch => {
     // If JSON.parse fails or the error above is thrown
     dispatch({
       type: `${CHANGE_MANIFEST}_REJECTED`,
-      payload: { data: { error: { message: 'Selected file is not a valid manifest' } } }
+      payload: { data: { error: { message: __('Selected file is not a valid manifest') } } }
     });
   }
 };
