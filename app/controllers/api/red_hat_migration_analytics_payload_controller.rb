@@ -1,5 +1,7 @@
 module Api
   class RedHatMigrationAnalyticsPayloadController < BaseController
+    include Api::Mixins::FeatureCheck
+
     def index
       check_feature_enabled
       task_id = params['task_id']
@@ -13,14 +15,6 @@ module Api
         else
           raise "Payload not found."
         end
-      end
-    end
-
-    private
-
-    def check_feature_enabled
-      unless Settings.prototype.migration_analytics.enabled
-        raise ActionController::RoutingError, 'Feature Not Enabled'
       end
     end
   end
