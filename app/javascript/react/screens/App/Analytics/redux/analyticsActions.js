@@ -6,14 +6,52 @@ import {
   SELECT_DETAILED_DATA,
   FETCH_MANIFEST_INFO,
   MANIFEST_INFO_URL,
+  TOGGLE_MANIFEST_UPDATE_MODAL,
   START_INVENTORY_BUNDLE,
   INVENTORY_BUNDLE_URL,
   FETCH_BUNDLE_TASK,
-  RESET_DATA_COLLECTION_STATE
+  RESET_DATA_COLLECTION_STATE,
+  CHANGE_MANIFEST
 } from './constants';
 import { simpleActionWithProperties, basicFetchAction } from '../../../../../redux/helpers';
 
 export const fetchManifestInfoAction = () => basicFetchAction(FETCH_MANIFEST_INFO, MANIFEST_INFO_URL);
+
+export const toggleManifestUpdateModalAction = (show = null) => dispatch =>
+  dispatch({ type: TOGGLE_MANIFEST_UPDATE_MODAL, show });
+
+export const uploadManifestAction = fileBody => dispatch => {
+  toggleManifestUpdateModalAction(false)(dispatch);
+  try {
+    const manifest = JSON.parse(fileBody);
+    if (!manifest.cfme_version || !manifest.manifest || !manifest.manifest.version) {
+      throw new Error();
+    }
+    dispatch({
+      type: CHANGE_MANIFEST,
+      payload: API.post(new URI(MANIFEST_INFO_URL).toString(), {
+        action: 'import_manifest',
+        manifest
+      })
+    }).then(() => fetchManifestInfoAction()(dispatch));
+  } catch (e) {
+    // If JSON.parse fails or the error above is thrown
+    dispatch({
+      type: `${CHANGE_MANIFEST}_REJECTED`,
+      payload: { data: { error: { message: __('Selected file is not a valid manifest') } } }
+    });
+  }
+};
+
+export const resetManifestAction = () => dispatch => {
+  toggleManifestUpdateModalAction(false)(dispatch);
+  dispatch({
+    type: CHANGE_MANIFEST,
+    payload: API.post(new URI(MANIFEST_INFO_URL).toString(), {
+      action: 'reset_manifest'
+    })
+  }).then(() => fetchManifestInfoAction()(dispatch));
+};
 
 export const calculateSummaryDataAction = results => simpleActionWithProperties(CALCULATE_SUMMARY_DATA, { results });
 

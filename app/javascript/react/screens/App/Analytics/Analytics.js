@@ -6,6 +6,7 @@ import AnalyticsEmptyState from './screens/AnalyticsEmptyState';
 import AnalyticsSummary from './screens/AnalyticsSummary';
 import AnalyticsProviderSelection from './screens/AnalyticsProviderSelection';
 import AnalyticsDataCollection from './screens/AnalyticsDataCollection';
+import ManifestVersion from './components/ManifestVersion';
 // import BreadcrumbPageSwitcher from '../common/BreadcrumbPageSwitcher'; // TODO: figure out how to share the breadcrumb switcher with v2v
 
 const SCREENS = {
@@ -41,7 +42,15 @@ class Analytics extends React.Component {
   };
 
   render() {
-    const { manifestInfo } = this.props;
+    const {
+      manifestInfo,
+      isLoadingManifest,
+      manifestError,
+      toggleManifestUpdateModalAction,
+      manifestUpdateModalVisible,
+      uploadManifestAction,
+      resetManifestAction
+    } = this.props;
     const { currentScreen } = this.state;
     const onEmptyState = currentScreen === SCREENS.EMPTY_STATE;
     return (
@@ -58,13 +67,16 @@ class Analytics extends React.Component {
         <div id="migration-analytics" className={onEmptyState ? 'row cards-pf' : ''}>
           {this.renderCurrentScreen()}
         </div>
-        {manifestInfo && (
-          <h6 id="migration-analytics-manifest-version" className={onEmptyState ? 'on-empty-state' : ''}>
-            {__('Manifest version:')}
-            &nbsp;
-            {manifestInfo.manifest_version}
-          </h6>
-        )}
+        <ManifestVersion
+          className={onEmptyState ? 'on-empty-state' : ''}
+          manifestInfo={manifestInfo}
+          isLoadingManifest={isLoadingManifest}
+          manifestError={manifestError}
+          toggleManifestUpdateModalAction={toggleManifestUpdateModalAction}
+          manifestUpdateModalVisible={manifestUpdateModalVisible}
+          uploadManifestAction={uploadManifestAction}
+          resetManifestAction={resetManifestAction}
+        />
       </React.Fragment>
     );
   }
@@ -72,15 +84,24 @@ class Analytics extends React.Component {
 
 Analytics.propTypes = {
   fetchManifestInfoAction: PropTypes.func,
-  manifestInfo: PropTypes.shape({
-    manifest_version: PropTypes.string,
-    using_default_manifest: PropTypes.bool
-  })
+  manifestInfo: PropTypes.object,
+  toggleManifestUpdateModalAction: PropTypes.func,
+  manifestUpdateModalVisible: PropTypes.bool,
+  uploadManifestAction: PropTypes.func,
+  resetManifestAction: PropTypes.func,
+  isLoadingManifest: PropTypes.bool,
+  manifestError: PropTypes.shape({ message: PropTypes.string })
 };
 
 Analytics.defaultProps = {
   fetchManifestInfoAction: noop,
-  manifestInfo: null
+  manifestInfo: null,
+  toggleManifestUpdateModalAction: noop,
+  manifestUpdateModalVisible: false,
+  uploadManifestAction: noop,
+  resetManifestAction: noop,
+  isLoadingManifest: false,
+  manifestError: null
 };
 
 export default Analytics;
