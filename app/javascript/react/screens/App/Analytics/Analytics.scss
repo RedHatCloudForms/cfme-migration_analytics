@@ -117,9 +117,35 @@
   right: 0;
   margin: 0;
   padding: 15px;
+  text-align: right;
   background-color: #ffffff;
 
   &.on-empty-state {
     background-color: $color-pf-black-150;
   }
+
+  > button.btn-link {
+    margin-bottom: 2px;
+  }
+
+  .manifest-loading-message,
+  .manifest-error-message {
+    display: block;
+    padding: 5px;
+
+    > .spinner-xs {
+      position: relative;
+      top: 2px;
+      margin-left: 5px;
+    }
+
+    > .pficon-error-circle-o {
+      margin-right: 2px;
+    }
+  }
+}
+
+.manifest-update-modal .col-xs-6 {
+  padding-left: 5px;
+  padding-right: 5px;
 }
