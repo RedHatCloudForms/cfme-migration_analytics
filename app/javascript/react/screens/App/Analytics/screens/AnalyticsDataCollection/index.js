@@ -12,15 +12,13 @@ import {
   selectIsBundleTaskFinished,
   selectPayloadPath,
   selectPayloadHost,
-  selectNumVms
+  selectNumVms,
+  selectBundleTaskId
 } from '../../redux/analyticsSelectors';
-import { getPayloadUrl } from './helpers';
 
 const mapStateToProps = ({ migrationAnalytics: { analytics } }) => {
   const bundleError = selectBundleError(analytics);
   const isBundleTaskFinished = selectIsBundleTaskFinished(analytics);
-  const payloadPath = selectPayloadPath(analytics);
-  const payloadHost = selectPayloadHost(analytics);
   return {
     selectedProviders: analytics.selectedProviders,
     bundleError,
@@ -29,9 +27,9 @@ const mapStateToProps = ({ migrationAnalytics: { analytics } }) => {
     isBundleTaskFinished,
     isPayloadReady: selectIsPayloadReady(analytics, { bundleError, isBundleTaskFinished }),
     numVms: selectNumVms(analytics),
-    payloadHost,
-    payloadPath,
-    payloadUrl: getPayloadUrl(payloadPath)
+    bundleTaskId: selectBundleTaskId(analytics),
+    payloadHost: selectPayloadHost(analytics),
+    payloadPath: selectPayloadPath(analytics)
   };
 };
 

@@ -54,16 +54,7 @@ class AnalyticsDataCollection extends React.Component {
   }
 
   render() {
-    const {
-      bundleError,
-      isPayloadReady,
-      onCancelClick,
-      numVms,
-      payloadHost,
-      payloadPath,
-      // payloadUrl,
-      onReturnClick
-    } = this.props;
+    const { bundleError, isPayloadReady, onCancelClick, numVms, payloadHost, payloadPath, onReturnClick } = this.props;
 
     if (bundleError) {
       return (
@@ -136,7 +127,6 @@ AnalyticsDataCollection.propTypes = {
   numVms: PropTypes.number,
   payloadHost: PropTypes.string,
   payloadPath: PropTypes.string,
-  // payloadUrl: PropTypes.string,
   onCancelClick: PropTypes.func.isRequired,
   onReturnClick: PropTypes.func.isRequired,
   resetDataCollectionStateAction: PropTypes.func
@@ -154,7 +144,6 @@ AnalyticsDataCollection.defaultProps = {
   numVms: null,
   payloadHost: null,
   payloadPath: null,
-  // payloadUrl: null,
   resetDataCollectionStateAction: noop
 };
 

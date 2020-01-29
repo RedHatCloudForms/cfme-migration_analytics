@@ -13,7 +13,6 @@ Object {
   "onReturnClick": [Function],
   "payloadHost": null,
   "payloadPath": null,
-  "payloadUrl": null,
   "resetDataCollectionStateAction": [Function],
   "selectedProviders": Array [],
   "startInventoryBundleAction": [Function],

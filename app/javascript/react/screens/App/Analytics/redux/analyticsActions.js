@@ -1,6 +1,7 @@
 import URI from 'urijs';
 import API from '../../../../../common/API';
 import {
+  CHANGE_MANIFEST,
   CALCULATE_SUMMARY_DATA,
   SELECT_PROVIDERS,
   SELECT_DETAILED_DATA,
@@ -11,7 +12,8 @@ import {
   INVENTORY_BUNDLE_URL,
   FETCH_BUNDLE_TASK,
   RESET_DATA_COLLECTION_STATE,
-  CHANGE_MANIFEST
+  DOWNLOAD_PAYLOAD,
+  PAYLOAD_DOWNLOAD_URL
 } from './constants';
 import { simpleActionWithProperties, basicFetchAction } from '../../../../../redux/helpers';
 
@@ -71,5 +73,14 @@ export const startInventoryBundleAction = providerIds => dispatch =>
   });
 
 export const fetchBundleTaskAction = taskHref => basicFetchAction(FETCH_BUNDLE_TASK, taskHref);
+
+export const downloadPayloadAction = bundleTaskId => dispatch => {
+  const uri = new URI(PAYLOAD_DOWNLOAD_URL);
+  uri.addSearch('task_id', bundleTaskId);
+  dispatch({
+    type: DOWNLOAD_PAYLOAD,
+    payload: API.get(uri.toString())
+  });
+};
 
 export const resetDataCollectionStateAction = () => dispatch => dispatch({ type: RESET_DATA_COLLECTION_STATE });
