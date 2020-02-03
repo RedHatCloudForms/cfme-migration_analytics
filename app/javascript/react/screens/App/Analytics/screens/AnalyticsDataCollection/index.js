@@ -15,18 +15,24 @@ import {
   selectBundleTaskId
 } from '../../redux/analyticsSelectors';
 
-const mapStateToProps = ({ migrationAnalytics: { analytics } }) => {
+const mapStateToProps = ({
+  migrationAnalytics: {
+    analytics,
+    analytics: { selectedProviders, isFetchingBundleTask, isDownloadingPayload }
+  }
+}) => {
   const bundleError = selectBundleError(analytics);
   const isBundleTaskFinished = selectIsBundleTaskFinished(analytics);
   return {
-    selectedProviders: analytics.selectedProviders,
+    selectedProviders,
     bundleError,
     bundleTaskHref: selectBundleTaskHref(analytics),
-    isFetchingBundleTask: analytics.isFetchingBundleTask,
+    isFetchingBundleTask,
     isBundleTaskFinished,
     isPayloadReady: selectIsPayloadReady(analytics, { bundleError, isBundleTaskFinished }),
     numVms: selectNumVms(analytics),
-    bundleTaskId: selectBundleTaskId(analytics)
+    bundleTaskId: selectBundleTaskId(analytics),
+    isDownloadingPayload
   };
 };
 

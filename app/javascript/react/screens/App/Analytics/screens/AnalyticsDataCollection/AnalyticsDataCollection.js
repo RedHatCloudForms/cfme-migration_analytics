@@ -51,6 +51,7 @@ class AnalyticsDataCollection extends React.Component {
       numVms,
       bundleTaskId,
       downloadPayloadAction,
+      isDownloadingPayload,
       onReturnClick
     } = this.props;
 
@@ -89,9 +90,16 @@ class AnalyticsDataCollection extends React.Component {
             {__('VMs examined')}
           </p>
           <div className="buttons">
-            <Button bsStyle="primary" onClick={() => downloadPayloadAction(bundleTaskId)} disabled={!bundleTaskId}>
-              {__('Download Inventory File')}
-            </Button>
+            <div>
+              <Button
+                bsStyle="primary"
+                onClick={() => downloadPayloadAction(bundleTaskId)}
+                disabled={!bundleTaskId || isDownloadingPayload}
+              >
+                {__('Download Inventory File')}
+              </Button>
+              {isDownloadingPayload && <Spinner size="xs" loading />}
+            </div>
             <Button onClick={onReturnClick}>{__('Return to Summary')}</Button>
           </div>
         </div>
@@ -116,6 +124,7 @@ AnalyticsDataCollection.propTypes = {
   onReturnClick: PropTypes.func.isRequired,
   bundleTaskId: PropTypes.string,
   downloadPayloadAction: PropTypes.func,
+  isDownloadingPayload: PropTypes.bool,
   resetDataCollectionStateAction: PropTypes.func
 };
 
@@ -131,6 +140,7 @@ AnalyticsDataCollection.defaultProps = {
   numVms: null,
   bundleTaskId: null,
   downloadPayloadAction: noop,
+  isDownloadingPayload: false,
   resetDataCollectionStateAction: noop
 };
 

@@ -88,7 +88,7 @@ export const downloadPayloadAction = bundleTaskId => dispatch => {
           response.blob().then(blob => {
             const fileName = response.headers.get('content-disposition').match(fileNameRegex)[1];
             saveAs(blob, fileName);
-            resolve();
+            resolve({ data: fileName });
           })
         )
         .catch(error => reject(error))

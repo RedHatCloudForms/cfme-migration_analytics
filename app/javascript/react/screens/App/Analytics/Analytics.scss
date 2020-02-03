@@ -98,9 +98,16 @@
     .buttons {
       margin-top: 20px;
 
-      button {
+      > div,
+      > button {
         display: block;
         margin: 15px 0;
+
+        .spinner {
+          display: inline-block;
+          margin-left: 6px;
+          top: 3px;
+        }
       }
     }
   }

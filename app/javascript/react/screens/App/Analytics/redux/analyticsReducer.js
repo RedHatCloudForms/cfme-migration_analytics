@@ -1,5 +1,6 @@
 import Immutable from 'seamless-immutable';
 import {
+  CHANGE_MANIFEST,
   CALCULATE_SUMMARY_DATA,
   SELECT_PROVIDERS,
   SELECT_DETAILED_DATA,
@@ -8,7 +9,7 @@ import {
   START_INVENTORY_BUNDLE,
   FETCH_BUNDLE_TASK,
   RESET_DATA_COLLECTION_STATE,
-  CHANGE_MANIFEST
+  DOWNLOAD_PAYLOAD
 } from './constants';
 import { functionLookupReducer, getHandlersForBasicFetchActions } from '../../../../../redux/helpers';
 import { calculateSummaryData } from './helpers';
@@ -42,6 +43,13 @@ const fetchBundleTask = getHandlersForBasicFetchActions(
   'bundleTask'
 );
 
+const downloadPayload = getHandlersForBasicFetchActions(
+  DOWNLOAD_PAYLOAD,
+  'isDownloadingPayload',
+  'errorDownloadingPayload',
+  'payloadFileName'
+);
+
 export const initialState = Immutable({
   ...fetchManifestInfo.initialState,
   ...changeManifest.initialState,
@@ -50,7 +58,8 @@ export const initialState = Immutable({
   selectedProviders: [],
   detailedDataSelected: false,
   ...startInventoryBundle.initialState,
-  ...fetchBundleTask.initialState
+  ...fetchBundleTask.initialState,
+  ...downloadPayload.initialState
 });
 
 const actionHandlers = {
@@ -63,6 +72,7 @@ const actionHandlers = {
   [SELECT_DETAILED_DATA]: (state, action) => state.set('detailedDataSelected', action.detailedDataSelected),
   ...startInventoryBundle.actionHandlers,
   ...fetchBundleTask.actionHandlers,
+  ...downloadPayload.actionHandlers,
   [RESET_DATA_COLLECTION_STATE]: state =>
     Immutable.merge(state, {
       ...startInventoryBundle.initialState,
