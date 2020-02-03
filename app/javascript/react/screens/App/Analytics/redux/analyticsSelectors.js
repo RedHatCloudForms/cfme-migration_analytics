@@ -25,9 +25,3 @@ export const selectNumVms = ({ summaryData, selectedProviders }) => {
 };
 
 export const selectBundleTaskId = ({ bundleTask }) => bundleTask && bundleTask.id;
-
-export const selectPayloadPath = ({ bundleTask }) =>
-  bundleTask && bundleTask.context_data && bundleTask.context_data.payload_path;
-
-export const selectPayloadHost = ({ bundleTask }) =>
-  bundleTask && bundleTask.context_data && bundleTask.context_data.ip_address;

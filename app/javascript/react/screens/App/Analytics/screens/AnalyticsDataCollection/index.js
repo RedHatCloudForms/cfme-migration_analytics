@@ -3,6 +3,7 @@ import AnalyticsDataCollection from './AnalyticsDataCollection';
 import {
   startInventoryBundleAction,
   fetchBundleTaskAction,
+  downloadPayloadAction,
   resetDataCollectionStateAction
 } from '../../redux/analyticsActions';
 import {
@@ -10,8 +11,6 @@ import {
   selectBundleError,
   selectBundleTaskHref,
   selectIsBundleTaskFinished,
-  selectPayloadPath,
-  selectPayloadHost,
   selectNumVms,
   selectBundleTaskId
 } from '../../redux/analyticsSelectors';
@@ -27,13 +26,11 @@ const mapStateToProps = ({ migrationAnalytics: { analytics } }) => {
     isBundleTaskFinished,
     isPayloadReady: selectIsPayloadReady(analytics, { bundleError, isBundleTaskFinished }),
     numVms: selectNumVms(analytics),
-    bundleTaskId: selectBundleTaskId(analytics),
-    payloadHost: selectPayloadHost(analytics),
-    payloadPath: selectPayloadPath(analytics)
+    bundleTaskId: selectBundleTaskId(analytics)
   };
 };
 
 export default connect(
   mapStateToProps,
-  { startInventoryBundleAction, fetchBundleTaskAction, resetDataCollectionStateAction }
+  { startInventoryBundleAction, fetchBundleTaskAction, downloadPayloadAction, resetDataCollectionStateAction }
 )(AnalyticsDataCollection);

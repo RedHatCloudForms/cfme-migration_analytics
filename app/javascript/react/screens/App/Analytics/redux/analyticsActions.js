@@ -79,7 +79,7 @@ export const downloadPayloadAction = bundleTaskId => dispatch => {
   uri.addSearch('task_id', bundleTaskId);
   dispatch({
     type: DOWNLOAD_PAYLOAD,
-    payload: API.get(uri.toString())
+    payload: API.get(uri.toString(), {}, {}, { skipJsonParsing: true })
   });
 };
 
