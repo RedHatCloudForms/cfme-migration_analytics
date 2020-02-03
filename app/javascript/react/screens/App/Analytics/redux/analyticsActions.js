@@ -1,4 +1,5 @@
 import URI from 'urijs';
+import { saveAs } from 'file-saver';
 import API from '../../../../../common/API';
 import {
   CHANGE_MANIFEST,
@@ -74,12 +75,24 @@ export const startInventoryBundleAction = providerIds => dispatch =>
 
 export const fetchBundleTaskAction = taskHref => basicFetchAction(FETCH_BUNDLE_TASK, taskHref);
 
+const fileNameRegex = /filename\*?=['"]?(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?;?/; // https://stackoverflow.com/a/52738125
+
 export const downloadPayloadAction = bundleTaskId => dispatch => {
   const uri = new URI(PAYLOAD_DOWNLOAD_URL);
   uri.addSearch('task_id', bundleTaskId);
   dispatch({
     type: DOWNLOAD_PAYLOAD,
-    payload: API.get(uri.toString(), {}, {}, { skipJsonParsing: true })
+    payload: new Promise((resolve, reject) =>
+      API.get(uri.toString(), {}, {}, { skipJsonParsing: true })
+        .then(({ data: response }) =>
+          response.blob().then(blob => {
+            const fileName = response.headers.get('content-disposition').match(fileNameRegex)[1];
+            saveAs(blob, fileName);
+            resolve();
+          })
+        )
+        .catch(error => reject(error))
+    )
   });
 };
 
