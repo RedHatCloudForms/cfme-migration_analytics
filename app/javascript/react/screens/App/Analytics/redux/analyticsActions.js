@@ -1,6 +1,8 @@
 import URI from 'urijs';
+import { saveAs } from 'file-saver';
 import API from '../../../../../common/API';
 import {
+  CHANGE_MANIFEST,
   CALCULATE_SUMMARY_DATA,
   SELECT_PROVIDERS,
   SELECT_DETAILED_DATA,
@@ -11,7 +13,8 @@ import {
   INVENTORY_BUNDLE_URL,
   FETCH_BUNDLE_TASK,
   RESET_DATA_COLLECTION_STATE,
-  CHANGE_MANIFEST
+  DOWNLOAD_PAYLOAD,
+  PAYLOAD_DOWNLOAD_URL
 } from './constants';
 import { simpleActionWithProperties, basicFetchAction } from '../../../../../redux/helpers';
 
@@ -71,5 +74,26 @@ export const startInventoryBundleAction = providerIds => dispatch =>
   });
 
 export const fetchBundleTaskAction = taskHref => basicFetchAction(FETCH_BUNDLE_TASK, taskHref);
+
+const fileNameRegex = /filename\*?=['"]?(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?;?/; // https://stackoverflow.com/a/52738125
+
+export const downloadPayloadAction = bundleTaskId => dispatch => {
+  const uri = new URI(PAYLOAD_DOWNLOAD_URL);
+  uri.addSearch('task_id', bundleTaskId);
+  dispatch({
+    type: DOWNLOAD_PAYLOAD,
+    payload: new Promise((resolve, reject) =>
+      API.get(uri.toString(), {}, {}, { skipJsonParsing: true })
+        .then(({ data: response }) =>
+          response.blob().then(blob => {
+            const fileName = response.headers.get('content-disposition').match(fileNameRegex)[1];
+            saveAs(blob, fileName);
+            resolve({ data: fileName });
+          })
+        )
+        .catch(error => reject(error))
+    )
+  });
+};
 
 export const resetDataCollectionStateAction = () => dispatch => dispatch({ type: RESET_DATA_COLLECTION_STATE });

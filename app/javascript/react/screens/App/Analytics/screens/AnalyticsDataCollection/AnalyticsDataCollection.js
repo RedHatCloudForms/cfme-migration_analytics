@@ -7,21 +7,11 @@ class AnalyticsDataCollection extends React.Component {
   constructor(props) {
     super(props);
     this.fetchBundleTaskTimeout = null;
-    this.scpSpanRef = React.createRef();
   }
 
   clearTimer = () => {
     clearTimeout(this.fetchBundleTaskTimeout);
     this.fetchBundleTaskTimeout = null;
-  };
-
-  copyToClipboard = e => {
-    const range = document.createRange();
-    range.selectNode(this.scpSpanRef.current);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-    document.execCommand('copy');
-    e.target.focus();
   };
 
   componentDidMount() {
@@ -59,9 +49,9 @@ class AnalyticsDataCollection extends React.Component {
       isPayloadReady,
       onCancelClick,
       numVms,
-      payloadHost,
-      payloadPath,
-      // payloadUrl,
+      bundleTaskId,
+      downloadPayloadAction,
+      isDownloadingPayload,
       onReturnClick
     } = this.props;
 
@@ -98,22 +88,18 @@ class AnalyticsDataCollection extends React.Component {
             {numVms}
             &nbsp;
             {__('VMs examined')}
-            <br />
-            {__('To download the saved inventory data, copy the command below and run it from a command line.')}
-            <br />
-            <span className="payload-path" ref={this.scpSpanRef}>{`scp root@${payloadHost}:${payloadPath} .`}</span>
           </p>
           <div className="buttons">
-            {document.queryCommandSupported('copy') && (
-              <Button bsStyle="primary" onClick={this.copyToClipboard}>
-                {__('Copy to Clipboard')}
+            <div>
+              <Button
+                bsStyle="primary"
+                onClick={() => downloadPayloadAction(bundleTaskId)}
+                disabled={!bundleTaskId || isDownloadingPayload}
+              >
+                {__('Download Inventory File')}
               </Button>
-            )}
-            {/* Disabled for now, before we figure out how to download the payload safely over http
-            <Button bsStyle="primary" href={payloadUrl} disabled={!payloadUrl}>
-              {payloadUrl ? __('Download Inventory File') : __('Download Not Available')}
-            </Button>
-            */}
+              {isDownloadingPayload && <Spinner size="xs" loading />}
+            </div>
             <Button onClick={onReturnClick}>{__('Return to Summary')}</Button>
           </div>
         </div>
@@ -134,11 +120,11 @@ AnalyticsDataCollection.propTypes = {
   isFetchingBundleTask: PropTypes.bool,
   isBundleTaskFinished: PropTypes.bool,
   numVms: PropTypes.number,
-  payloadHost: PropTypes.string,
-  payloadPath: PropTypes.string,
-  // payloadUrl: PropTypes.string,
   onCancelClick: PropTypes.func.isRequired,
   onReturnClick: PropTypes.func.isRequired,
+  bundleTaskId: PropTypes.string,
+  downloadPayloadAction: PropTypes.func,
+  isDownloadingPayload: PropTypes.bool,
   resetDataCollectionStateAction: PropTypes.func
 };
 
@@ -152,9 +138,9 @@ AnalyticsDataCollection.defaultProps = {
   isFetchingBundleTask: false,
   isBundleTaskFinished: false,
   numVms: null,
-  payloadHost: null,
-  payloadPath: null,
-  // payloadUrl: null,
+  bundleTaskId: null,
+  downloadPayloadAction: noop,
+  isDownloadingPayload: false,
   resetDataCollectionStateAction: noop
 };
 

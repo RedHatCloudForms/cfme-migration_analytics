@@ -3,9 +3,7 @@ import {
   selectIsBundleTaskFinished,
   selectIsPayloadReady,
   selectBundleTaskHref,
-  selectNumVms,
-  selectPayloadPath,
-  selectPayloadHost
+  selectNumVms
 } from '../analyticsSelectors';
 import { ERROR, FINISHED, OK } from '../../constants';
 
@@ -80,15 +78,5 @@ describe('analytics redux selectors', () => {
     const summaryData = { providers: [{ id: 1, numVms: 3 }, { id: 2, numVms: 5 }, { id: 3, numVms: 7 }] };
     const selectedProviders = [{ id: 2 }, { id: 3 }];
     expect(selectNumVms({ summaryData, selectedProviders })).toBe(12);
-  });
-
-  test('select payload path', () => {
-    expect(selectPayloadPath({ bundleTask: { context_data: { payload_path: 'foo' } } })).toBe('foo');
-    expect(selectPayloadPath({ bundleTask: null })).toBe(null);
-  });
-
-  test('select payload host', () => {
-    expect(selectPayloadHost({ bundleTask: { context_data: { ip_address: 'foo' } } })).toBe('foo');
-    expect(selectPayloadPath({ bundleTask: null })).toBe(null);
   });
 });

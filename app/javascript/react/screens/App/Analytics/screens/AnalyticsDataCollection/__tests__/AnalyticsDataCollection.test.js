@@ -106,53 +106,11 @@ describe('Data collection screen', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('renders a success message and payload path after payload is loaded', () => {
+  test('renders a success message and download button after payload is loaded', () => {
     const props = {
       ...getBaseProps(),
       isPayloadReady: true,
-      numVms: 7,
-      payloadPath: 'some/path/to/payload.tgz',
-      payloadHost: 'some.host'
-    };
-    const component = shallow(<AnalyticsDataCollection {...props} />);
-    expect(component).toMatchSnapshot();
-  });
-
-  test('copy to clipboard method is called on button click', () => {
-    const props = {
-      ...getBaseProps(),
-      isPayloadReady: true,
-      numVms: 7,
-      payloadPath: 'some/path/to/payload.tgz',
-      payloadHost: 'some.host'
-    };
-    const component = shallow(<AnalyticsDataCollection {...props} />);
-    const range = { selectNode: jest.fn() };
-    const selection = { removeAllRanges: jest.fn(), addRange: jest.fn() };
-    document.createRange = jest.fn(() => range);
-    window.getSelection = jest.fn(() => selection);
-    document.execCommand = jest.fn();
-    const event = { target: { focus: jest.fn() } };
-    component.find('Button[bsStyle="primary"]').simulate('click', event);
-    expect(document.createRange).toHaveBeenCalledTimes(1);
-    expect(range.selectNode).toHaveBeenCalledTimes(1);
-    expect(window.getSelection).toHaveBeenCalledTimes(2);
-    expect(selection.removeAllRanges).toHaveBeenCalledTimes(1);
-    expect(selection.addRange).toHaveBeenCalledTimes(1);
-    expect(selection.addRange).toHaveBeenCalledWith(range);
-    expect(document.execCommand).toHaveBeenCalledTimes(1);
-    expect(document.execCommand).toHaveBeenCalledWith('copy');
-    expect(event.target.focus).toHaveBeenCalledTimes(1);
-  });
-
-  // Disabled until we figure out how to download the payload safely over http
-  // eslint-disable-next-line jest/no-disabled-tests
-  test.skip('renders a success message with disabled button if there is no download url', () => {
-    const props = {
-      ...getBaseProps(),
-      isPayloadReady: true,
-      numVms: 7,
-      payloadPath: 'some/path/to/payload.tgz'
+      numVms: 7
     };
     const component = shallow(<AnalyticsDataCollection {...props} />);
     expect(component).toMatchSnapshot();
