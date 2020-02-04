@@ -3,6 +3,7 @@ import AnalyticsDataCollection from './AnalyticsDataCollection';
 import {
   startInventoryBundleAction,
   fetchBundleTaskAction,
+  downloadPayloadAction,
   resetDataCollectionStateAction
 } from '../../redux/analyticsActions';
 import {
@@ -10,32 +11,32 @@ import {
   selectBundleError,
   selectBundleTaskHref,
   selectIsBundleTaskFinished,
-  selectPayloadPath,
-  selectPayloadHost,
-  selectNumVms
+  selectNumVms,
+  selectBundleTaskId
 } from '../../redux/analyticsSelectors';
-import { getPayloadUrl } from './helpers';
 
-const mapStateToProps = ({ migrationAnalytics: { analytics } }) => {
+const mapStateToProps = ({
+  migrationAnalytics: {
+    analytics,
+    analytics: { selectedProviders, isFetchingBundleTask, isDownloadingPayload }
+  }
+}) => {
   const bundleError = selectBundleError(analytics);
   const isBundleTaskFinished = selectIsBundleTaskFinished(analytics);
-  const payloadPath = selectPayloadPath(analytics);
-  const payloadHost = selectPayloadHost(analytics);
   return {
-    selectedProviders: analytics.selectedProviders,
+    selectedProviders,
     bundleError,
     bundleTaskHref: selectBundleTaskHref(analytics),
-    isFetchingBundleTask: analytics.isFetchingBundleTask,
+    isFetchingBundleTask,
     isBundleTaskFinished,
     isPayloadReady: selectIsPayloadReady(analytics, { bundleError, isBundleTaskFinished }),
     numVms: selectNumVms(analytics),
-    payloadHost,
-    payloadPath,
-    payloadUrl: getPayloadUrl(payloadPath)
+    bundleTaskId: selectBundleTaskId(analytics),
+    isDownloadingPayload
   };
 };
 
 export default connect(
   mapStateToProps,
-  { startInventoryBundleAction, fetchBundleTaskAction, resetDataCollectionStateAction }
+  { startInventoryBundleAction, fetchBundleTaskAction, downloadPayloadAction, resetDataCollectionStateAction }
 )(AnalyticsDataCollection);
