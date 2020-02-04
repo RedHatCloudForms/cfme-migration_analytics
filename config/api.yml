@@ -19,4 +19,15 @@
         :identifier: red_hat_migration_analytics
       - :name: reset_manifest
         :identifier: red_hat_migration_analytics
-
+  :red_hat_migration_analytics_payload:
+    :description: Red Hat Migration Analytics Payload
+    :options:
+    - :arbitrary_resource_path
+    - :collection
+    :identifier: red_hat_migration_analytics
+    :verbs:
+    - :get
+    :collection_actions:
+      :get:
+      - :name: read
+        :identifier: red_hat_migration_analytics
