@@ -1,5 +1,7 @@
 module Api
   class RedHatMigrationAnalyticsController < BaseController
+    include Api::Mixins::FeatureCheck
+
     def index
       check_feature_enabled
       manifest = self.class.parse_manifest
@@ -51,12 +53,6 @@ module Api
     end
 
     private
-
-    def check_feature_enabled
-      unless Settings.prototype.migration_analytics.enabled
-        raise ActionController::RoutingError, 'Feature Not Enabled'
-      end
-    end
 
     def find_provider_ids(type)
       providers, _ = collection_search(false, :providers, collection_class(:providers))
