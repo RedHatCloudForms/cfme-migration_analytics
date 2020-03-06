@@ -1,0 +1,309 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Cfme_MigrationAnalytics package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Keiko Moriguchi <kemorigu@redhat.com>, 2020
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Cfme_MigrationAnalytics 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-06 16:34+0100\n"
+"PO-Revision-Date: 2020-03-06 15:37+0000\n"
+"Last-Translator: Keiko Moriguchi <kemorigu@redhat.com>, 2020\n"
+"Language-Team: Japanese (https://www.transifex.com/redhatcloudforms/teams/102751/ja/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:38
+msgid "Basic data"
+msgstr "基本データ"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:182
+msgid ""
+"Before collecting analytics data, you must have at least one VMware provider"
+" configured."
+msgstr "分析データを収集する前に、 1 つ以上の VMware プロバイダーを設定する必要があります。"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:76
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:64
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:76
+msgid "Cancel"
+msgstr "取り消し"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:217
+msgid "Checking providers"
+msgstr "プロバイダーを確認中"
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:39
+msgid "Close"
+msgstr "閉じる"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryAccordion.js:8
+msgid "CloudForms discovered the following information:"
+msgstr "CloudForms は以下の情報を見つけました:"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:228
+msgid "Collect Inventory Data"
+msgstr "インベントリーデータの収集"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:75
+msgid "Collecting inventory data"
+msgstr "インベントリーデータを収集中"
+
+#: ../app/javascript/react/screens/App/Analytics/Analytics.js:59
+msgid "Compute"
+msgstr "コンピュート"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:183
+msgid "Configure Infrastructure Providers"
+msgstr "インフラストラクチャープロバイダーの設定"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:74
+msgid "Continue"
+msgstr "続行"
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:20
+msgid "Current manifest version"
+msgstr "現在のマニフェストバージョン"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:42
+msgid "Data may or may not include SmartState Analysis results."
+msgstr "データには SmartState 分析の結果が含まれる場合と含まれない場合があります。"
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:26
+msgid "Default manifest version"
+msgstr "デフォルトのマニフェストバージョン"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:52
+msgid ""
+"Detailed analysis of individual VMs including host, operating system, files,"
+" and running services."
+msgstr "ホスト、オペレーティングシステム、ファイル、および実行中のサービスを含む個別の仮想マシンの詳細な分析"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:49
+msgid "Detailed data"
+msgstr "詳細データ"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:99
+msgid "Download Inventory File"
+msgstr "インベントリーファイルのダウンロード"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryAccordion.js:10
+msgid "Environment Summary"
+msgstr "環境サマリー"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ReportTaskError.js:14
+msgid "Error message: "
+msgstr "エラーメッセージ: "
+
+#. TRANSLATORS: file: db/fixtures/miq_product_features.yml
+#: ../config/yaml_strings.rb:6
+msgid "Everything under Red Hat Migration Analytics"
+msgstr "Red Hat Migration Analytics 配下のすべて"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsEmptyState/AnalyticsEmptyState.js:11
+msgid "Examine your virtual environment using Red Hat Migration Analytics"
+msgstr "Red Hat Migration Analytics を使用してお使いの仮想環境をテストします"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:221
+msgid "Examining virtualization providers"
+msgstr "仮想プロバイダーをテスト中"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:62
+msgid "Failed to collect inventory data"
+msgstr "インベントリーデータの収集に失敗しました"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:170
+msgid "Failed to fetch providers"
+msgstr "プロバイダーの取得に失敗しました"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:199
+msgid "Failed to fetch reports"
+msgstr "レポートの取得に失敗しました"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ProviderRefreshErrors.js:8
+msgid "Failed to refresh providers"
+msgstr "プロバイダーの更新に失敗しました"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ProviderRefreshErrors.js:11
+msgid ""
+"Failed to refresh relationships and power states for the following "
+"providers:"
+msgstr "以下のプロバイダーの関係および電源状態の更新に失敗しました:"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ReportTaskError.js:8
+msgid "Failed to run summary report"
+msgstr "サマリーレポートの実行に失敗しました"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsEmptyState/AnalyticsEmptyState.js:13
+msgid ""
+"Get a summarized report of your virtualization providers in CloudForms and "
+"collect a detailed inventory that can be further analyzed using the "
+"Migration Analytics application on cloud.redhat.com."
+msgstr ""
+"CloudForms でお使いの仮想プロバイダーのサマリーレポートを取得し、cloud.redhat.com で Migration Analytics"
+" アプリケーションを使用してさらなる分析が可能なインベントリーの詳細を収集します。"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsEmptyState/AnalyticsEmptyState.js:17
+msgid "Get started"
+msgstr "開始"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:40
+msgid "High level information including number of VMs and hypervisors."
+msgstr "仮想マシンおよびハイパーバイザーの数を含むハイレベルな情報"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:86
+msgid "Inventory collection complete"
+msgstr "インベントリー収集の完了"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:33
+msgid "Inventory data needed"
+msgstr "インベントリーデータが必要"
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestVersion.js:31
+msgid "Loading manifest..."
+msgstr "マニフェストをロード中..."
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestVersion.js:21
+msgid "Manifest version:"
+msgstr "マニフェストバージョン:"
+
+#: ../app/javascript/react/screens/App/Analytics/Analytics.js:60
+msgid "Migration"
+msgstr "移行"
+
+#: ../app/controllers/migration_analytics_controller.rb:7
+#: ../app/javascript/react/screens/App/Analytics/Analytics.js:62
+#: ../lib/cfme/migration_analytics/engine.rb:21
+msgid "Migration Analytics"
+msgstr "Migration Analytics"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:181
+msgid "Missing Providers"
+msgstr "不明なプロバイダー"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:54
+msgid ""
+"Necessary for creating workload inventory and workload summary reports."
+msgstr "ワークロードインベントリーおよびワークロードサマリーのレポート作成に必要です。"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:41
+msgid "Necessary to calculate an initial migration savings estimate."
+msgstr "初期の移行における見込み節約の計算が必要です。"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:24
+msgid "No matches found."
+msgstr "一致するものは見つかりませんでした。"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:21
+msgid "Number of ESXi hypervisors (2 socket servers) discovered"
+msgstr "ESXi ハイパーバイザーの数 (2 ソケットサーバー) が見つかりました"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:22
+msgid "Number of VMs on discovered hypervisors"
+msgstr "見つかったハイパーバイザー上の仮想マシンの数"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:20
+msgid "Number of VMware providers"
+msgstr "仮想マシンプロバイダーの数"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:65
+msgid ""
+"Progress of SmartState Analysis tasks can be monitored on the Tasks page."
+msgstr "SmartState 分析タスクの進行状況は、タスクページで監視できます。"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryAccordion.js:19
+msgid "Provider Summary"
+msgstr "プロバイダーサマリー"
+
+#. TRANSLATORS: file: db/fixtures/miq_product_features.yml
+#: ../lib/cfme/migration_analytics/engine.rb:11 ../config/yaml_strings.rb:4
+msgid "Red Hat Migration Analytics"
+msgstr "Red Hat Migration Analytics"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:56
+msgid ""
+"Requires that SmartState Analysis be run on each VM. This can take several "
+"hours depending on the number of VMs in the selected providers."
+msgstr ""
+"各仮想マシンで SmartState 分析の実行が必要です。選択したプロバイダーにおける仮想マシンの数により、実行に数時間かかる場合があります。"
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:33
+msgid "Restore default manifest"
+msgstr "デフォルトのマニフェストの復元"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:103
+msgid "Return to Summary"
+msgstr "サマリーに戻る"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:63
+msgid ""
+"See product documentation for instructions to configure and run SmartState "
+"Analysis."
+msgstr "SmartState 分析を設定および実行するには、製品ドキュメントの説明を参照してください。"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:15
+msgid "Select providers for which inventory data will be collected."
+msgstr "インベントリーデータを収集するプロバイダーを選択します"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:23
+msgid "Select..."
+msgstr "選択..."
+
+#: ../app/javascript/react/screens/App/Analytics/redux/analyticsActions.js:44
+msgid "Selected file is not a valid manifest"
+msgstr "選択されたファイルは有効なマニフェストではありません"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ReportTaskError.js:11
+msgid "Task failed: "
+msgstr "タスクに失敗しました:"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:24
+msgid "Total disk space allocated for discovered VMs"
+msgstr "見つかった仮想マシンに割り当て済みのディスク領域の合計"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:28
+msgid "Total memory allocated for discovered VMs"
+msgstr "見つかった仮想マシンに割り当て済みのメモリーの合計"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:31
+msgid "Total vCPU cores allocated for discovered VMs"
+msgstr "見つかった仮想マシンに割り当て済みの vCPU コアの合計"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ProviderRefreshErrors.js:25
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ReportTaskError.js:18
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:172
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:201
+msgid "Try again"
+msgstr "再試行してください"
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestVersion.js:26
+msgid "Update"
+msgstr "更新"
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:15
+msgid "Update Manifest"
+msgstr "マニフェストの更新"
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:36
+msgid "Upload new manifest"
+msgstr "新しいマニフェストのアップロード"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:90
+msgid "VMs examined"
+msgstr "テスト済みの仮想マシン"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ProviderRefreshErrors.js:18
+msgid "View provider"
+msgstr "プロバイダーの表示"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:213
+msgid "Waiting for provider refresh"
+msgstr "プロバイダーの更新を待機中"
