@@ -1,4 +1,4 @@
 ---
 :prototype:
   :migration_analytics:
-    :enabled: false
+    :enabled: true
