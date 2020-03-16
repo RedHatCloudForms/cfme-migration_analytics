@@ -5,8 +5,6 @@ describe "Red Hat  Migration Analytics Payload API" do
   let(:task) { FactoryBot.create(:miq_task, :context_data => {:payload_path => payload_path}) }
   let(:empty_task) { FactoryBot.create(:miq_task) }
 
-  before { stub_settings_merge(:prototype => {:migration_analytics => {:enabled => true}}) }
-
   describe "GET" do
     context "/api/red_hat_migration_analytics_payload" do
       before do

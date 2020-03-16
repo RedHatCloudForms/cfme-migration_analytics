@@ -16,11 +16,9 @@ module Cfme
       end
 
       initializer "plugin-migration-analytics-menu", {:after => "plugin-migration-menu"} do
-        if Settings.prototype.migration_analytics.enabled
-          Menu::CustomLoader.register(
-            Menu::Item.new("migration_analytics", N_("Migration Analytics"), "migration_analytics", {:feature => "migration_analytics", :any => true}, "/migration_analytics", :default, :migration)
-          )
-        end
+        Menu::CustomLoader.register(
+          Menu::Item.new("migration_analytics", N_("Migration Analytics"), "migration_analytics", {:feature => "migration_analytics", :any => true}, "/migration_analytics", :default, :migration)
+        )
       end
     end
   end

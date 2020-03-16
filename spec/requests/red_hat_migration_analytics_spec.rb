@@ -3,8 +3,6 @@ describe "Red Hat  Migration Analytics Manifest API" do
   let(:manifest) { { "ManageIQ::Providers::Vmware::InfraManager" => {}} }
   let(:task) { FactoryBot.create(:miq_task) }
 
-  before { stub_settings_merge(:prototype => {:migration_analytics => {:enabled => true}}) }
-
   describe "GET" do
     context "/api/red_hat_migration_analytics index action" do
       before do
