@@ -1,9 +1,6 @@
 module Api
   class RedHatMigrationAnalyticsController < BaseController
-    include Api::Mixins::FeatureCheck
-
     def index
-      check_feature_enabled
       manifest = self.class.parse_manifest
       res = {
         :manifest_version => manifest[:version],
@@ -14,7 +11,6 @@ module Api
     end
 
     def bundle_collection(type, data)
-      check_feature_enabled
       manifest = self.class.parse_manifest[:body]
 
       provider_ids = data["provider_ids"]
@@ -36,13 +32,11 @@ module Api
     end
 
     def import_manifest_collection(type, data)
-      check_feature_enabled
       self.class.store_manifest(data['manifest'])
       action_result(true, 'imported manifest')
     end
 
     def reset_manifest_collection(type, data)
-      check_feature_enabled
       path = self.class.user_manifest_path
       if File.exist?(path)
         File.unlink(path)
