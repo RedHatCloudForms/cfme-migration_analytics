@@ -29,6 +29,9 @@ msgstr ""
 msgid "Checking providers"
 msgstr ""
 
+msgid "Close"
+msgstr ""
+
 msgid "CloudForms discovered the following information:"
 msgstr ""
 
@@ -47,10 +50,13 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-msgid "Copy to Clipboard"
+msgid "Current manifest version"
 msgstr ""
 
 msgid "Data may or may not include SmartState Analysis results."
+msgstr ""
+
+msgid "Default manifest version"
 msgstr ""
 
 msgid "Detailed analysis of individual VMs including host, operating system, files, and running services."
@@ -60,9 +66,6 @@ msgid "Detailed data"
 msgstr ""
 
 msgid "Download Inventory File"
-msgstr ""
-
-msgid "Download Not Available"
 msgstr ""
 
 msgid "Environment Summary"
@@ -114,6 +117,9 @@ msgstr ""
 msgid "Inventory data needed"
 msgstr ""
 
+msgid "Loading manifest..."
+msgstr ""
+
 msgid "Manifest version:"
 msgstr ""
 
@@ -157,6 +163,9 @@ msgstr ""
 msgid "Requires that SmartState Analysis be run on each VM. This can take several hours depending on the number of VMs in the selected providers."
 msgstr ""
 
+msgid "Restore default manifest"
+msgstr ""
+
 msgid "Return to Summary"
 msgstr ""
 
@@ -169,10 +178,10 @@ msgstr ""
 msgid "Select..."
 msgstr ""
 
-msgid "Task failed: "
+msgid "Selected file is not a valid manifest"
 msgstr ""
 
-msgid "To download the saved inventory data, copy the command below and run it from a command line."
+msgid "Task failed: "
 msgstr ""
 
 msgid "Total disk space allocated for discovered VMs"
@@ -185,6 +194,15 @@ msgid "Total vCPU cores allocated for discovered VMs"
 msgstr ""
 
 msgid "Try again"
+msgstr ""
+
+msgid "Update"
+msgstr ""
+
+msgid "Update Manifest"
+msgstr ""
+
+msgid "Upload new manifest"
 msgstr ""
 
 msgid "VMs examined"
