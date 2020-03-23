@@ -17,23 +17,17 @@ const ManifestUpdateModal = ({ onClose, manifestInfo, uploadManifestAction, rese
           <Modal.Body>
             <Grid.Row className="show-grid">
               <Grid.Col xs={6} className="text-right">
-                {__('Current manifest version')}:
+                {__('Manifest version')}:
               </Grid.Col>
               <Grid.Col xs={6}>{manifestInfo.manifest_version}</Grid.Col>
-            </Grid.Row>
-            <Grid.Row className="show-grid">
-              <Grid.Col xs={6} className="text-right">
-                {__('Default manifest version')}:
-              </Grid.Col>
-              <Grid.Col xs={6}>{manifestInfo.default_manifest_version}</Grid.Col>
             </Grid.Row>
           </Modal.Body>
           <Modal.Footer>
             <Button bsStyle="default" onClick={resetManifestAction} disabled={manifestInfo.using_default_manifest}>
-              {__('Restore default manifest')}
+              {__('Restore Manifest Version')} {manifestInfo.default_manifest_version}
             </Button>
             <Button bsStyle="default" onClick={openFileBrowser}>
-              {__('Upload new manifest')}
+              {__('Update Manifest')}
             </Button>
             <Button bsStyle="primary" className="btn-cancel" onClick={onClose}>
               {__('Close')}
