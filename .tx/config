@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[redhatcloudforms.migration-analytics-master]
+[redhatcloudforms.migration-analytics-jansa]
 file_filter = locale/<lang>/Cfme_MigrationAnalytics.po
 source_file = locale/Cfme_MigrationAnalytics.pot
 source_lang = en
