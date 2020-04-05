@@ -1,197 +1,331 @@
-# Spanish translations for Cfme_MigrationAnalytics package.
-# Copyright (C) 2019 THE PACKAGE'S COPYRIGHT HOLDER
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Cfme_MigrationAnalytics package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# trh01 oceantranslations <tr.rh01@oceantranslations.com>, 2020
+# Milan Zázrivec <mzazrivec@redhat.com>, 2020
+# 
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Cfme_MigrationAnalytics 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-09-13 11:04+0200\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Spanish\n"
-"Language: es\n"
+"POT-Creation-Date: 2020-03-18 14:38+0100\n"
+"PO-Revision-Date: 2019-09-13 09:11+0000\n"
+"Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>, 2020\n"
+"Language-Team: Spanish (https://www.transifex.com/redhatcloudforms/teams/102751/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:38
 msgid "Basic data"
-msgstr ""
+msgstr "Datos básicos"
 
-msgid "Before collecting analytics data, you must have at least one VMware provider configured."
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:182
+msgid ""
+"Before collecting analytics data, you must have at least one VMware provider"
+" configured."
 msgstr ""
+"Antes de recopilar los datos de análisis, debe tener al menos un proveedor "
+"de VMware configurado."
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:76
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:64
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:76
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:217
 msgid "Checking providers"
-msgstr ""
+msgstr "Verificando proveedores"
 
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:39
+msgid "Close"
+msgstr "Cerrar"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryAccordion.js:8
 msgid "CloudForms discovered the following information:"
-msgstr ""
+msgstr "CloudForms detectó la siguiente información:"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:228
 msgid "Collect Inventory Data"
-msgstr ""
+msgstr "Recopilar datos de inventario"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:75
 msgid "Collecting inventory data"
-msgstr ""
+msgstr "Recopilando datos de inventario"
 
+#: ../app/javascript/react/screens/App/Analytics/Analytics.js:59
 msgid "Compute"
-msgstr ""
+msgstr "Computar"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:183
 msgid "Configure Infrastructure Providers"
-msgstr ""
+msgstr "Configurar proveedores de infraestructura"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:74
 msgid "Continue"
-msgstr ""
+msgstr "Continuar"
 
-msgid "Copy to Clipboard"
-msgstr ""
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:20
+msgid "Current manifest version"
+msgstr "Versión de manifiesto actual"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:42
 msgid "Data may or may not include SmartState Analysis results."
-msgstr ""
+msgstr "Los datos pueden incluir o no los resultados del análisis SmartState."
 
-msgid "Detailed analysis of individual VMs including host, operating system, files, and running services."
-msgstr ""
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:26
+msgid "Default manifest version"
+msgstr "Versión de manifiesto predeterminada"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:52
+msgid ""
+"Detailed analysis of individual VMs including host, operating system, files,"
+" and running services."
+msgstr ""
+"Análisis detallado de las máquinas virtuales individuales, incluido el host,"
+" el sistema operativo, los archivos y los servicios en ejecución."
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:49
 msgid "Detailed data"
-msgstr ""
+msgstr "Datos detallados"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:99
 msgid "Download Inventory File"
-msgstr ""
+msgstr "Descargar archivo de inventario"
 
-msgid "Download Not Available"
-msgstr ""
-
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryAccordion.js:10
 msgid "Environment Summary"
-msgstr ""
+msgstr "Resumen de entorno"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ReportTaskError.js:14
 msgid "Error message: "
-msgstr ""
+msgstr "Mensaje de error:"
 
 #. TRANSLATORS: file: db/fixtures/miq_product_features.yml
+#: ../config/yaml_strings.rb:6
 msgid "Everything under Red Hat Migration Analytics"
-msgstr ""
+msgstr "Todo bajo Red Hat Migration Analytics"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsEmptyState/AnalyticsEmptyState.js:11
 msgid "Examine your virtual environment using Red Hat Migration Analytics"
-msgstr ""
+msgstr "Examine su entorno virtual con Red Hat Migration Analytics"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:221
 msgid "Examining virtualization providers"
-msgstr ""
+msgstr "Examinando proveedores de virtualización"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:62
 msgid "Failed to collect inventory data"
-msgstr ""
+msgstr "Falló la recopilación de datos de inventario"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:170
 msgid "Failed to fetch providers"
-msgstr ""
+msgstr "Falló la búsqueda de proveedores"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:199
 msgid "Failed to fetch reports"
-msgstr ""
+msgstr "Falló la búsqueda de informes"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ProviderRefreshErrors.js:8
 msgid "Failed to refresh providers"
-msgstr ""
+msgstr "Falló la actualización de proveedores"
 
-msgid "Failed to refresh relationships and power states for the following providers:"
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ProviderRefreshErrors.js:11
+msgid ""
+"Failed to refresh relationships and power states for the following "
+"providers:"
 msgstr ""
+"Falló la actualización de relaciones y estados de activación para los "
+"siguientes proveedores:"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ReportTaskError.js:8
 msgid "Failed to run summary report"
-msgstr ""
+msgstr "Falló la ejecución del informe de resumen"
 
-msgid "Get a summarized report of your virtualization providers in CloudForms and collect a detailed inventory that can be further analyzed using the Migration Analytics application on cloud.redhat.com."
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsEmptyState/AnalyticsEmptyState.js:13
+msgid ""
+"Get a summarized report of your virtualization providers in CloudForms and "
+"collect a detailed inventory that can be further analyzed using the "
+"Migration Analytics application on cloud.redhat.com."
 msgstr ""
+"Obtenga un informe resumido de los proveedores de virtualización en "
+"CloudForms y recopile un inventario detallado que se pueda analizar mejor "
+"con la aplicación Migration Analytics en cloud.redhat.com."
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsEmptyState/AnalyticsEmptyState.js:17
 msgid "Get started"
-msgstr ""
+msgstr "Inicio"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:40
 msgid "High level information including number of VMs and hypervisors."
 msgstr ""
+"Información de alto nivel, incluida la cantidad de máquinas virtuales e "
+"hipervisores."
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:86
 msgid "Inventory collection complete"
-msgstr ""
+msgstr "Recopilación de inventario completada"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:33
 msgid "Inventory data needed"
-msgstr ""
+msgstr "Datos de inventario necesarios"
 
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestVersion.js:31
+msgid "Loading manifest..."
+msgstr "Cargando manifiesto..."
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestVersion.js:21
 msgid "Manifest version:"
-msgstr ""
+msgstr "Versión de manifiesto:"
 
+#: ../app/javascript/react/screens/App/Analytics/Analytics.js:60
 msgid "Migration"
-msgstr ""
+msgstr "Migración"
 
+#: ../app/controllers/migration_analytics_controller.rb:7
+#: ../app/javascript/react/screens/App/Analytics/Analytics.js:62
+#: ../lib/cfme/migration_analytics/engine.rb:20
 msgid "Migration Analytics"
-msgstr ""
+msgstr "Análisis de migración"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:181
 msgid "Missing Providers"
-msgstr ""
+msgstr "Proveedores faltantes"
 
-msgid "Necessary for creating workload inventory and workload summary reports."
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:54
+msgid ""
+"Necessary for creating workload inventory and workload summary reports."
 msgstr ""
+"Es necesario para la creación del inventario de carga de trabajo y de los "
+"informes de resumen de carga de trabajo."
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:41
 msgid "Necessary to calculate an initial migration savings estimate."
 msgstr ""
+"Es necesario para hacer un cálculo estimado del ahorro de migración inicial."
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:24
 msgid "No matches found."
-msgstr ""
+msgstr "No se encontraron coincidencias."
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:21
 msgid "Number of ESXi hypervisors (2 socket servers) discovered"
-msgstr ""
+msgstr "Cantidad de hipervisores ESXi (servidores de 2 sockets) detectados"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:22
 msgid "Number of VMs on discovered hypervisors"
-msgstr ""
+msgstr "Cantidad de máquinas virtuales en hipervisores detectados"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:20
 msgid "Number of VMware providers"
-msgstr ""
+msgstr "Cantidad de proveedores de VMware"
 
-msgid "Progress of SmartState Analysis tasks can be monitored on the Tasks page."
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:65
+msgid ""
+"Progress of SmartState Analysis tasks can be monitored on the Tasks page."
 msgstr ""
+"El progreso de las tareas del análisis SmartState se puede monitorear en la "
+"página Tasks (Tareas)."
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryAccordion.js:19
 msgid "Provider Summary"
-msgstr ""
+msgstr "Resumen de proveedor"
 
 #. TRANSLATORS: file: db/fixtures/miq_product_features.yml
+#: ../lib/cfme/migration_analytics/engine.rb:11 ../config/yaml_strings.rb:4
 msgid "Red Hat Migration Analytics"
-msgstr ""
+msgstr "Red Hat Migration Analytics"
 
-msgid "Requires that SmartState Analysis be run on each VM. This can take several hours depending on the number of VMs in the selected providers."
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:56
+msgid ""
+"Requires that SmartState Analysis be run on each VM. This can take several "
+"hours depending on the number of VMs in the selected providers."
 msgstr ""
+"Requiere la ejecución del análisis SmartState en cada máquina virtual. Esto "
+"puede tardar varias horas según la cantidad de máquinas virtuales de los "
+"proveedores seleccionados."
 
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:33
+msgid "Restore default manifest"
+msgstr "Restaurar manifiesto predeterminado"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:103
 msgid "Return to Summary"
-msgstr ""
+msgstr "Volver al resumen"
 
-msgid "See product documentation for instructions to configure and run SmartState Analysis."
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:63
+msgid ""
+"See product documentation for instructions to configure and run SmartState "
+"Analysis."
 msgstr ""
+"Consulte las instrucciones para configurar y ejecutar el análisis SmartState"
+" en la documentación del producto."
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:15
 msgid "Select providers for which inventory data will be collected."
 msgstr ""
+"Seleccione los proveedores para los que se recopilarán datos de inventario."
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:23
 msgid "Select..."
-msgstr ""
+msgstr "Seleccionar..."
 
+#: ../app/javascript/react/screens/App/Analytics/redux/analyticsActions.js:44
+msgid "Selected file is not a valid manifest"
+msgstr "El archivo seleccionado no es un manifiesto válido"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ReportTaskError.js:11
 msgid "Task failed: "
-msgstr ""
+msgstr "La tarea falló:"
 
-msgid "To download the saved inventory data, copy the command below and run it from a command line."
-msgstr ""
-
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:24
 msgid "Total disk space allocated for discovered VMs"
 msgstr ""
+"Espacio en disco total asignado para las máquinas virtuales detectadas"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:28
 msgid "Total memory allocated for discovered VMs"
-msgstr ""
+msgstr "Memoria total asignada para las máquinas virtuales detectadas"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:31
 msgid "Total vCPU cores allocated for discovered VMs"
 msgstr ""
+"Núcleos totales de vCPU asignados para las máquinas virtuales detectadas"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ProviderRefreshErrors.js:25
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ReportTaskError.js:18
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:172
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:201
 msgid "Try again"
-msgstr ""
+msgstr "Volver a intentar"
 
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestVersion.js:26
+msgid "Update"
+msgstr "Actualizar"
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:15
+msgid "Update Manifest"
+msgstr "Actualizar manifiesto"
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:36
+msgid "Upload new manifest"
+msgstr "Cargar manifiesto nuevo"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:90
 msgid "VMs examined"
-msgstr ""
+msgstr "Máquinas virtuales examinadas"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ProviderRefreshErrors.js:18
 msgid "View provider"
-msgstr ""
+msgstr "Ver proveedor"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:213
 msgid "Waiting for provider refresh"
-msgstr ""
+msgstr "Esperando actualización de proveedor"

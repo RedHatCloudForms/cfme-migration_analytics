@@ -1,197 +1,306 @@
-# Chinese translations for Cfme_MigrationAnalytics package.
-# Copyright (C) 2019 THE PACKAGE'S COPYRIGHT HOLDER
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Cfme_MigrationAnalytics package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Milan Zázrivec <mzazrivec@redhat.com>, 2020
+# 
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Cfme_MigrationAnalytics 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-09-13 11:04+0200\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Chinese\n"
-"Language: zh_CN\n"
+"POT-Creation-Date: 2020-03-18 14:38+0100\n"
+"PO-Revision-Date: 2019-09-13 09:11+0000\n"
+"Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>, 2020\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/redhatcloudforms/teams/102751/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"\n"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:38
 msgid "Basic data"
-msgstr ""
+msgstr "基本数据"
 
-msgid "Before collecting analytics data, you must have at least one VMware provider configured."
-msgstr ""
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:182
+msgid ""
+"Before collecting analytics data, you must have at least one VMware provider"
+" configured."
+msgstr "在收集分析数据之前，必须配置至少一个 VMware 提供程序。"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:76
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:64
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:76
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:217
 msgid "Checking providers"
-msgstr ""
+msgstr "正在检查提供程序"
 
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:39
+msgid "Close"
+msgstr "关闭"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryAccordion.js:8
 msgid "CloudForms discovered the following information:"
-msgstr ""
+msgstr "CloudForms 发现了以下信息："
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:228
 msgid "Collect Inventory Data"
-msgstr ""
+msgstr "收集库存数据"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:75
 msgid "Collecting inventory data"
-msgstr ""
+msgstr "正在收集库存数据"
 
+#: ../app/javascript/react/screens/App/Analytics/Analytics.js:59
 msgid "Compute"
-msgstr ""
+msgstr "计算"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:183
 msgid "Configure Infrastructure Providers"
-msgstr ""
+msgstr "配置基础架构提供程序"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:74
 msgid "Continue"
-msgstr ""
+msgstr "继续"
 
-msgid "Copy to Clipboard"
-msgstr ""
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:20
+msgid "Current manifest version"
+msgstr "当前清单版本"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:42
 msgid "Data may or may not include SmartState Analysis results."
-msgstr ""
+msgstr "数据可能包含或不包含 SmartState 分析结果。"
 
-msgid "Detailed analysis of individual VMs including host, operating system, files, and running services."
-msgstr ""
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:26
+msgid "Default manifest version"
+msgstr "默认清单版本"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:52
+msgid ""
+"Detailed analysis of individual VMs including host, operating system, files,"
+" and running services."
+msgstr "单个虚拟机的详细分析，包括主机、操作系统、文件和运行服务。"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:49
 msgid "Detailed data"
-msgstr ""
+msgstr "详细数据"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:99
 msgid "Download Inventory File"
-msgstr ""
+msgstr "下载库存文件"
 
-msgid "Download Not Available"
-msgstr ""
-
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryAccordion.js:10
 msgid "Environment Summary"
-msgstr ""
+msgstr "环境摘要"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ReportTaskError.js:14
 msgid "Error message: "
-msgstr ""
+msgstr "错误消息："
 
 #. TRANSLATORS: file: db/fixtures/miq_product_features.yml
+#: ../config/yaml_strings.rb:6
 msgid "Everything under Red Hat Migration Analytics"
-msgstr ""
+msgstr "红帽迁移分析下的所有内容"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsEmptyState/AnalyticsEmptyState.js:11
 msgid "Examine your virtual environment using Red Hat Migration Analytics"
-msgstr ""
+msgstr "使用红帽迁移分析检查虚拟环境"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:221
 msgid "Examining virtualization providers"
-msgstr ""
+msgstr "正在检查虚拟提供程序"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:62
 msgid "Failed to collect inventory data"
-msgstr ""
+msgstr "收集库存数据失败"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:170
 msgid "Failed to fetch providers"
-msgstr ""
+msgstr "获取提供程序失败"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:199
 msgid "Failed to fetch reports"
-msgstr ""
+msgstr "获取报告失败"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ProviderRefreshErrors.js:8
 msgid "Failed to refresh providers"
-msgstr ""
+msgstr "刷新提供程序失败"
 
-msgid "Failed to refresh relationships and power states for the following providers:"
-msgstr ""
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ProviderRefreshErrors.js:11
+msgid ""
+"Failed to refresh relationships and power states for the following "
+"providers:"
+msgstr "刷新以下提供程序的关系和电源状态失败："
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ReportTaskError.js:8
 msgid "Failed to run summary report"
-msgstr ""
+msgstr "运行摘要报告失败"
 
-msgid "Get a summarized report of your virtualization providers in CloudForms and collect a detailed inventory that can be further analyzed using the Migration Analytics application on cloud.redhat.com."
-msgstr ""
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsEmptyState/AnalyticsEmptyState.js:13
+msgid ""
+"Get a summarized report of your virtualization providers in CloudForms and "
+"collect a detailed inventory that can be further analyzed using the "
+"Migration Analytics application on cloud.redhat.com."
+msgstr "获取 CloudForms 中的虚拟提供程序的摘要报告，并收集可在 cloud.redhat.com 上使用迁移分析进一步分析的详细库存。"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsEmptyState/AnalyticsEmptyState.js:17
 msgid "Get started"
-msgstr ""
+msgstr "开始"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:40
 msgid "High level information including number of VMs and hypervisors."
-msgstr ""
+msgstr "包含虚拟机和管理程序的数量的高级别信息。"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:86
 msgid "Inventory collection complete"
-msgstr ""
+msgstr "库存收集完成"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:33
 msgid "Inventory data needed"
-msgstr ""
+msgstr "需要库存数据"
 
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestVersion.js:31
+msgid "Loading manifest..."
+msgstr "正在载入清单..."
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestVersion.js:21
 msgid "Manifest version:"
-msgstr ""
+msgstr "清单版本："
 
+#: ../app/javascript/react/screens/App/Analytics/Analytics.js:60
 msgid "Migration"
-msgstr ""
+msgstr "迁移"
 
+#: ../app/controllers/migration_analytics_controller.rb:7
+#: ../app/javascript/react/screens/App/Analytics/Analytics.js:62
+#: ../lib/cfme/migration_analytics/engine.rb:20
 msgid "Migration Analytics"
-msgstr ""
+msgstr "迁移分析"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:181
 msgid "Missing Providers"
-msgstr ""
+msgstr "缺少提供程序"
 
-msgid "Necessary for creating workload inventory and workload summary reports."
-msgstr ""
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:54
+msgid ""
+"Necessary for creating workload inventory and workload summary reports."
+msgstr "需要它才能创建工作负载库存和工作负载摘要报告。"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:41
 msgid "Necessary to calculate an initial migration savings estimate."
-msgstr ""
+msgstr "需要它才能计算初始迁移节约估算值。"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:24
 msgid "No matches found."
-msgstr ""
+msgstr "未找到匹配项。"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:21
 msgid "Number of ESXi hypervisors (2 socket servers) discovered"
-msgstr ""
+msgstr "发现的 ESXi 管理程序（2 个插槽服务器）的数量"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:22
 msgid "Number of VMs on discovered hypervisors"
-msgstr ""
+msgstr "发现的管理程序上的虚拟机数量"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:20
 msgid "Number of VMware providers"
-msgstr ""
+msgstr "VMware 提供程序的数量"
 
-msgid "Progress of SmartState Analysis tasks can be monitored on the Tasks page."
-msgstr ""
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:65
+msgid ""
+"Progress of SmartState Analysis tasks can be monitored on the Tasks page."
+msgstr "可以在“任务”页面上监控 SmartState 分析任务的进度。"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryAccordion.js:19
 msgid "Provider Summary"
-msgstr ""
+msgstr "提供程序摘要"
 
 #. TRANSLATORS: file: db/fixtures/miq_product_features.yml
+#: ../lib/cfme/migration_analytics/engine.rb:11 ../config/yaml_strings.rb:4
 msgid "Red Hat Migration Analytics"
-msgstr ""
+msgstr "红帽迁移分析"
 
-msgid "Requires that SmartState Analysis be run on each VM. This can take several hours depending on the number of VMs in the selected providers."
-msgstr ""
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:56
+msgid ""
+"Requires that SmartState Analysis be run on each VM. This can take several "
+"hours depending on the number of VMs in the selected providers."
+msgstr "需要在每个虚拟机上运行 SmartState 分析。根据所选提供程序中的虚拟机数量，这可能需要几个小时才能完成。"
 
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:33
+msgid "Restore default manifest"
+msgstr "恢复默认清单"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:103
 msgid "Return to Summary"
-msgstr ""
+msgstr "返回到摘要"
 
-msgid "See product documentation for instructions to configure and run SmartState Analysis."
-msgstr ""
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:63
+msgid ""
+"See product documentation for instructions to configure and run SmartState "
+"Analysis."
+msgstr "请查看产品文档，了解关于配置和运行 SmartState 分析的说明。"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:15
 msgid "Select providers for which inventory data will be collected."
-msgstr ""
+msgstr "选择将要收集其库存数据的提供程序。"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsProviderSelection/AnalyticsProviderSelection.js:23
 msgid "Select..."
-msgstr ""
+msgstr "选择..."
 
+#: ../app/javascript/react/screens/App/Analytics/redux/analyticsActions.js:44
+msgid "Selected file is not a valid manifest"
+msgstr "所选文件不是有效的清单"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ReportTaskError.js:11
 msgid "Task failed: "
-msgstr ""
+msgstr "任务失败："
 
-msgid "To download the saved inventory data, copy the command below and run it from a command line."
-msgstr ""
-
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:24
 msgid "Total disk space allocated for discovered VMs"
-msgstr ""
+msgstr "为已发现虚拟机分配的总磁盘空间"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:28
 msgid "Total memory allocated for discovered VMs"
-msgstr ""
+msgstr "为已发现虚拟机分配的总内存"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/SummaryTable.js:31
 msgid "Total vCPU cores allocated for discovered VMs"
-msgstr ""
+msgstr "为已发现虚拟机分配的总 vCPU 核心数"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ProviderRefreshErrors.js:25
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ReportTaskError.js:18
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:172
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:201
 msgid "Try again"
-msgstr ""
+msgstr "重试"
 
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestVersion.js:26
+msgid "Update"
+msgstr "更新"
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:15
+msgid "Update Manifest"
+msgstr "更新清单"
+
+#: ../app/javascript/react/screens/App/Analytics/components/ManifestUpdateModal.js:36
+msgid "Upload new manifest"
+msgstr "上传新清单"
+
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsDataCollection/AnalyticsDataCollection.js:90
 msgid "VMs examined"
-msgstr ""
+msgstr "已检查虚拟机"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/components/ProviderRefreshErrors.js:18
 msgid "View provider"
-msgstr ""
+msgstr "查看提供程序"
 
+#: ../app/javascript/react/screens/App/Analytics/screens/AnalyticsSummary/AnalyticsSummary.js:213
 msgid "Waiting for provider refresh"
-msgstr ""
+msgstr "正在等待提供程序刷新"
