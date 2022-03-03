@@ -26,7 +26,7 @@
     "redux-promise-middleware": "^6.1.1",
     "redux-thunk": "^2.3.0",
     "seamless-immutable": "^7.1.4",
-    "urijs": "^1.19.1"
+    "urijs": "^1.19.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
